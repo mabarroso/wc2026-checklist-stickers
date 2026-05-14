@@ -1,0 +1,29 @@
+{
+  "name": "panini-stickers",
+  "version": "1.0.0",
+  "description": "CLI tool to track Panini FIFA World Cup 2026 sticker collection",
+  "type": "module",
+  "bin": {
+    "panini-stickers": "./dist/panini-stickers.js"
+  },
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "build": "bun run rollup.config.ts",
+    "test": "bun test",
+    "lint": "echo 'Lint not configured'",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "conf": "^13.0.0",
+    "inquirer": "^9.2.12",
+    "pdfkit": "^0.15.0"
+  },
+  "devDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.19.0",
+    "@types/pdfkit": "^0.13.0",
+    "rollup": "^4.19.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.5.0"
+  }
+}
