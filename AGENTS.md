@@ -8,12 +8,22 @@ This is a **Bun + TypeScript CLI application** for tracking a Panini FIFA World 
 
 - **Bun** — runtime and build tool
 - **TypeScript** — language
-- **Rollup** — bundler (produces standalone binary)
+- **esbuild** — bundler (produces standalone binary)
 - **PDFKit** — PDF generation
 - **Inquirer** — interactive CLI menus
 - **Chalk** — terminal colors
 - **Conf** — JSON persistence (`~/.config/panini-stickers/`)
 - **Vitest** — testing
+
+## Documentation
+
+| File | Purpose |
+| ---- | ------- |
+| `docs/README.md` | Project documentation (English) |
+| `docs/README-es.md` | Project documentation (Spanish) |
+| `docs/STYLE-GUIDE.md` | Code style guide (also read as project spec) |
+| `docs/CHANGELOG.md` | Change history |
+| `docs/MOCKUPS/*.md` | CLI screen mockups |
 
 ## Language Rules
 
