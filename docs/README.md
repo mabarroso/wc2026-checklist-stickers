@@ -16,7 +16,81 @@ A CLI application to track your Panini FIFA World Cup 2026 sticker collection. M
 ```bash
 bun install
 bun run build
-./dist/panini-stickers
+./dist/panini-stickers.js
+```
+
+## Build Executables
+
+### CLI Executable
+
+```bash
+# Install dependencies
+bun install
+
+# Build standalone binary
+bun run build
+
+# Output: dist/panini-stickers.js
+chmod +x dist/panini-stickers.js
+./dist/panini-stickers.js
+```
+
+### GUI Executables (Tauri)
+
+Requires Rust installed:
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
+```
+
+**Build GUI:**
+
+```bash
+cd src/gui
+bun run tauri build
+```
+
+**Outputs:**
+
+| Platform | File | Location |
+|----------|------|----------|
+| Linux (Debian) | `.deb` | `src/gui/src-tauri/target/release/bundle/deb/` |
+| Linux (Fedora) | `.rpm` | `src/gui/src-tauri/target/release/bundle/rpm/` |
+| Windows | `.exe` | `src/gui/src-tauri/target/release/bundle/nsis/` |
+| macOS | `.dmg` | `src/gui/src-tauri/target/release/bundle/dmg/` |
+
+**Install:**
+
+```bash
+# Linux Debian/Ubuntu
+sudo dpkg -i "Panini WC 2026_1.0.0_amd64.deb"
+
+# Linux Fedora/RHEL
+sudo rpm -i "Panini WC 2026-1.0.0-1.x86_64.rpm"
+
+# Windows
+# Run the NSIS installer .exe
+
+# macOS
+# Mount the .dmg and drag to Applications
+```
+
+**Web GUI (no install):**
+
+```bash
+cd src/gui
+bun run dev     # Development server at http://localhost:5173
+bun run build   # Static build in src/gui/dist/
+```
+
+### Configurar Targets Adicionales
+
+Editar `src/gui/src-tauri/tauri.conf.json`:
+
+```json
+"bundle": {
+  "targets": ["deb", "rpm", "nsis", "dmg"]
+}
 ```
 
 ## CLI Menu Options
