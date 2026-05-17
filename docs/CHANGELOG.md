@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.0.1] - 2026-05-17
 
 ### Fixed
 
@@ -15,7 +15,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - `bun run gui:web` — Run GUI web in development
 - `bun run gui:desktop` — Run GUI desktop in development
-- Tauri desktop GUI with dark gaming theme
+
+## [Unreleased]
 
 ## [1.0.0] - 2026-05-15
 
