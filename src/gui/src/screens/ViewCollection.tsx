@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Plus, Repeat } from 'lucide-react';
-import { useCollectionStore, type FilterType } from '../stores';
+import { useCollectionStore, type FilterType, type SortOrder } from '../stores';
 import { getAllStickers } from '../data/stickers';
 import { Card, Badge, Header, Button } from '../components';
 
@@ -9,17 +9,22 @@ const filters: { key: FilterType; label: string }[] = [
   { key: 'all', label: 'Todas' },
   { key: 'missing', label: 'Faltantes' },
   { key: 'owned', label: 'En el álbum' },
-  { key: 'duplicates', label: 'Duplicadas' },
+  { key: 'duplicates', label: 'Repetidas' },
+];
+
+const sortOptions: { key: SortOrder; label: string }[] = [
+  { key: 'album', label: 'Álbum' },
+  { key: 'cromo', label: 'Cromo' },
 ];
 
 export function ViewCollectionScreen() {
-  const { owned, duplicates, filter, setFilter, markOwned, markDuplicate, unmarkOwned } = useCollectionStore();
+  const { owned, duplicates, filter, sortOrder, setFilter, setSortOrder, markOwned, markDuplicate, unmarkOwned } = useCollectionStore();
   const [selectedSticker, setSelectedSticker] = useState<string | null>(null);
 
   const allStickers = useMemo(() => getAllStickers(), []);
 
   const filteredStickers = useMemo(() => {
-    return allStickers.filter((sticker) => {
+    const filtered = allStickers.filter((sticker) => {
       const ownedQty = owned[sticker.id] || 0;
       const dupQty = duplicates[sticker.id] || 0;
 
@@ -34,9 +39,15 @@ export function ViewCollectionScreen() {
           return true;
       }
     });
-  }, [allStickers, owned, duplicates, filter]);
 
-const handleCardClick = useCallback((stickerId: string) => {
+    if (sortOrder === 'cromo') {
+      return [...filtered].sort((a, b) => a.id.localeCompare(b.id));
+    }
+
+    return filtered;
+  }, [allStickers, owned, duplicates, filter, sortOrder]);
+
+  const handleCardClick = useCallback((stickerId: string) => {
     const currentOwned = owned[stickerId] || 0;
     if (currentOwned === 0) {
       markOwned(stickerId);
@@ -69,7 +80,7 @@ const handleCardClick = useCallback((stickerId: string) => {
           {filteredStickers.length} cromos
         </p>
 
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-4 flex-wrap">
           {filters.map((f) => (
             <button
               key={f.key}
@@ -83,6 +94,26 @@ const handleCardClick = useCallback((stickerId: string) => {
               {f.label}
             </button>
           ))}
+          <div className="flex-1" />
+          <div className="relative">
+            <select
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value as SortOrder)}
+              className="appearance-none bg-[var(--color-surface)] text-[var(--color-cyan)] font-semibold px-4 py-2 pr-10 rounded-lg cursor-pointer border-2 border-[var(--color-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)] focus:ring-opacity-50"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 0.75rem center',
+                backgroundSize: '1rem',
+              }}
+            >
+              {sortOptions.map((opt) => (
+                <option key={opt.key} value={opt.key} className="bg-[var(--color-surface)] text-[var(--color-cyan)]">
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <motion.div

@@ -1,12 +1,20 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search } from 'lucide-react';
+import { Search, Plus, Trash2, Repeat } from 'lucide-react';
 import { useCollectionStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
-import { Card, Badge, Header } from '../components';
+import { Card, Badge, Header, Button } from '../components';
 
 export function SearchScreen() {
-  const { owned, duplicates, setSelectedSticker, selectedStickerId } = useCollectionStore();
+  const {
+    owned,
+    duplicates,
+    setSelectedSticker,
+    selectedStickerId,
+    markOwned,
+    markDuplicate,
+    unmarkOwned,
+  } = useCollectionStore();
   const [query, setQuery] = useState('');
 
   const allStickers = useMemo(() => getAllStickers(), []);
@@ -35,6 +43,9 @@ export function SearchScreen() {
     if (ownedQty > 0) return 'owned';
     return 'missing';
   };
+
+  const getOwnedQty = (id: string) => owned[id] || 0;
+  const getDupQty = (id: string) => duplicates[id] || 0;
 
   return (
     <div>
@@ -70,38 +81,90 @@ export function SearchScreen() {
           <div className="flex-1 overflow-auto">
             <div className="grid grid-cols-4 gap-3">
               <AnimatePresence>
-                {results.map((sticker) => (
-                  <motion.div
-                    key={sticker.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    onClick={() => setSelectedSticker(sticker.id)}
-                    className={`cursor-pointer rounded-xl p-3 transition-all ${
-                      selectedStickerId === sticker.id
-                        ? 'bg-[var(--color-cyan)]/20 border border-[var(--color-cyan)]'
-                        : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface-2)]'
-                    }`}
-                  >
-                    <p className="text-xs font-mono text-[var(--color-cyan)]">
-                      {sticker.id}
-                    </p>
-                    <p className="text-sm truncate text-[var(--color-white)]">
-                      {sticker.name}
-                    </p>
-                    <p className="text-xs text-[var(--color-white)] opacity-60">
-                      {sticker.team}
-                    </p>
-                    {getStatus(sticker.id) !== 'missing' && (
-                      <Badge
-                        variant={getStatus(sticker.id) === 'duplicate' ? 'orange' : 'cyan'}
-                        className="mt-2"
-                      >
-                        {getStatus(sticker.id) === 'duplicate' ? 'Duplicada' : 'En el álbum'}
-                      </Badge>
-                    )}
-                  </motion.div>
-                ))}
+                {results.map((sticker) => {
+                  const status = getStatus(sticker.id);
+                  const ownedQty = getOwnedQty(sticker.id);
+                  const dupQty = getDupQty(sticker.id);
+
+                  return (
+                    <motion.div
+                      key={sticker.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      onClick={() => setSelectedSticker(sticker.id)}
+                      className={`cursor-pointer rounded-xl p-3 transition-all ${
+                        selectedStickerId === sticker.id
+                          ? 'bg-[var(--color-cyan)]/20 border border-[var(--color-cyan)]'
+                          : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface-2)]'
+                      }`}
+                    >
+                      <p className="text-xs font-mono text-[var(--color-cyan)]">
+                        {sticker.id}
+                      </p>
+                      <p className="text-sm truncate text-[var(--color-white)]">
+                        {sticker.name}
+                      </p>
+                      <p className="text-xs text-[var(--color-white)] opacity-60">
+                        {sticker.team}
+                      </p>
+                      {status !== 'missing' && (
+                        <div className="flex gap-1 mt-2">
+                          {ownedQty > 0 && (
+                            <Badge variant="cyan">x{ownedQty}</Badge>
+                          )}
+                          {dupQty > 0 && (
+                            <Badge variant="orange">R:{dupQty}</Badge>
+                          )}
+                        </div>
+                      )}
+                      <div className="flex gap-1 mt-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            markOwned(sticker.id);
+                          }}
+                          disabled={ownedQty > 0}
+                          className={`text-xs px-2 py-1 rounded transition-all ${
+                            ownedQty > 0
+                              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
+                              : 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)] hover:bg-[var(--color-cyan)]/30'
+                          }`}
+                        >
+                          Añadir
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            unmarkOwned(sticker.id);
+                          }}
+                          disabled={ownedQty === 0}
+                          className={`text-xs px-2 py-1 rounded transition-all ${
+                            ownedQty === 0
+                              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
+                              : 'bg-[var(--color-white)]/10 text-[var(--color-white)] hover:bg-[var(--color-white)]/20'
+                          }`}
+                        >
+                          Quitar
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            markDuplicate(sticker.id);
+                          }}
+                          disabled={dupQty > 0}
+                          className={`text-xs px-2 py-1 rounded transition-all ${
+                            dupQty > 0
+                              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
+                              : 'bg-[var(--color-orange)]/20 text-[var(--color-orange)] hover:bg-[var(--color-orange)]/30'
+                          }`}
+                        >
+                          Repetir
+                        </button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </AnimatePresence>
             </div>
           </div>
@@ -123,17 +186,45 @@ export function SearchScreen() {
               <p className="text-sm text-[var(--color-white)] opacity-60">
                 {selectedSticker.team}
               </p>
-              <div className="mt-4 flex gap-2">
-                {(owned[selectedSticker.id] || 0) > 0 && (
+              <div className="mt-4 flex gap-2 flex-wrap justify-center">
+                {getOwnedQty(selectedSticker.id) > 0 && (
                   <Badge variant="cyan">
-                    En el álbum x{owned[selectedSticker.id]}
+                    En el álbum x{getOwnedQty(selectedSticker.id)}
                   </Badge>
                 )}
-                {(duplicates[selectedSticker.id] || 0) > 0 && (
+                {getDupQty(selectedSticker.id) > 0 && (
                   <Badge variant="orange">
-                    Duplicada x{duplicates[selectedSticker.id]}
+                    Repetida x{getDupQty(selectedSticker.id)}
                   </Badge>
                 )}
+              </div>
+              <div className="mt-6 space-y-2 w-full">
+                <Button
+                  onClick={() => markOwned(selectedSticker.id)}
+                  className="w-full"
+                  disabled={getOwnedQty(selectedSticker.id) > 0}
+                >
+                  <Plus size={16} className="mr-2" />
+                  Añadir al álbum
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => unmarkOwned(selectedSticker.id)}
+                  className="w-full"
+                  disabled={getOwnedQty(selectedSticker.id) === 0}
+                >
+                  <Trash2 size={16} className="mr-2" />
+                  Quitar del álbum
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => markDuplicate(selectedSticker.id)}
+                  className="w-full"
+                  disabled={getDupQty(selectedSticker.id) > 0}
+                >
+                  <Repeat size={16} className="mr-2" />
+                  Marcar como repetida
+                </Button>
               </div>
             </Card>
           ) : (

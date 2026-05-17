@@ -6,103 +6,103 @@
     "type": "logo"
   },
   {
-    "id": "FWC1",
+    "id": "FWC01",
     "name": "Official Emblem1",
     "team": "FIFA World Cup 2026",
     "type": "fwc_special"
   },
   {
-    "id": "FWC2",
+    "id": "FWC02",
     "name": "Official Emblem2",
     "team": "FIFA World Cup 2026",
     "type": "fwc_special"
   },
   {
-    "id": "FWC3",
+    "id": "FWC03",
     "name": "Official Mascots",
     "team": "FIFA World Cup 2026",
     "type": "fwc_special"
   },
   {
-    "id": "FWC4",
+    "id": "FWC04",
     "name": "Official Slogan",
     "team": "FIFA World Cup 2026",
     "type": "fwc_special"
   },
   {
-    "id": "FWC5",
+    "id": "FWC05",
     "name": "Official Ball",
     "team": "FIFA World Cup 2026",
     "type": "fwc_special"
   },
   {
-    "id": "FWC6",
+    "id": "FWC06",
     "name": "Canada",
     "team": "Host Countries and Cities",
     "type": "fwc_special"
   },
   {
-    "id": "FWC7",
+    "id": "FWC07",
     "name": "Mexico",
     "team": "Host Countries and Cities",
     "type": "fwc_special"
   },
   {
-    "id": "FWC8",
+    "id": "FWC08",
     "name": "USA",
     "team": "Host Countries and Cities",
     "type": "fwc_special"
   },
   {
-    "id": "MEX1",
+    "id": "MEX01",
     "name": "Emblem",
     "team": "Mexico",
     "type": "team_badge"
   },
   {
-    "id": "MEX2",
+    "id": "MEX02",
     "name": "Luis Malagón",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX3",
+    "id": "MEX03",
     "name": "Johan Vasquez",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX4",
+    "id": "MEX04",
     "name": "Jorge Sánchez",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX5",
+    "id": "MEX05",
     "name": "Cesar Montes",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX6",
+    "id": "MEX06",
     "name": "Jesus Gallardo",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX7",
+    "id": "MEX07",
     "name": "Israel Reyes",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX8",
+    "id": "MEX08",
     "name": "Diego Lainez",
     "team": "Mexico",
     "type": "player"
   },
   {
-    "id": "MEX9",
+    "id": "MEX09",
     "name": "Carlos Rodriguez",
     "team": "Mexico",
     "type": "player"
@@ -174,55 +174,55 @@
     "type": "player"
   },
   {
-    "id": "RSA1",
+    "id": "RSA01",
     "name": "Emblem",
     "team": "South Africa",
     "type": "team_badge"
   },
   {
-    "id": "RSA2",
+    "id": "RSA02",
     "name": "Ronwen Williams",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA3",
+    "id": "RSA03",
     "name": "Sipho Chaine",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA4",
+    "id": "RSA04",
     "name": "Aubrey Modiba",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA5",
+    "id": "RSA05",
     "name": "Samukele Kabini",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA6",
+    "id": "RSA06",
     "name": "Mbekezeli Mbokazi",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA7",
+    "id": "RSA07",
     "name": "Khulumani Ndamane",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA8",
+    "id": "RSA08",
     "name": "Siyabonga Ngezana",
     "team": "South Africa",
     "type": "player"
   },
   {
-    "id": "RSA9",
+    "id": "RSA09",
     "name": "Khuliso Mudau",
     "team": "South Africa",
     "type": "player"
@@ -294,55 +294,55 @@
     "type": "player"
   },
   {
-    "id": "KOR1",
+    "id": "KOR01",
     "name": "Emblem",
     "team": "South Korea",
     "type": "team_badge"
   },
   {
-    "id": "KOR2",
+    "id": "KOR02",
     "name": "Hyeon-woo Jo",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR3",
+    "id": "KOR03",
     "name": "Seung-Gyu Kim",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR4",
+    "id": "KOR04",
     "name": "Min-jae Kim",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR5",
+    "id": "KOR05",
     "name": "Yu-min Cho",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR6",
+    "id": "KOR06",
     "name": "Young-woo Seol",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR7",
+    "id": "KOR07",
     "name": "Han-beom Lee",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR8",
+    "id": "KOR08",
     "name": "Tae-seok Lee",
     "team": "South Korea",
     "type": "player"
   },
   {
-    "id": "KOR9",
+    "id": "KOR09",
     "name": "Myung-jae Lee",
     "team": "South Korea",
     "type": "player"
@@ -414,55 +414,55 @@
     "type": "player"
   },
   {
-    "id": "CZE1",
+    "id": "CZE01",
     "name": "Emblem",
     "team": "Czechia",
     "type": "team_badge"
   },
   {
-    "id": "CZE2",
+    "id": "CZE02",
     "name": "Matej Kovar",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE3",
+    "id": "CZE03",
     "name": "Jindrich Stanek",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE4",
+    "id": "CZE04",
     "name": "Ladislav Krejci",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE5",
+    "id": "CZE05",
     "name": "Vladimir Coufal",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE6",
+    "id": "CZE06",
     "name": "Jaroslav Zeleny",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE7",
+    "id": "CZE07",
     "name": "Tomas Holes",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE8",
+    "id": "CZE08",
     "name": "David Zima",
     "team": "Czechia",
     "type": "player"
   },
   {
-    "id": "CZE9",
+    "id": "CZE09",
     "name": "Michal Sadilek",
     "team": "Czechia",
     "type": "player"
@@ -534,55 +534,55 @@
     "type": "player"
   },
   {
-    "id": "CAN1",
+    "id": "CAN01",
     "name": "Emblem",
     "team": "Canada",
     "type": "team_badge"
   },
   {
-    "id": "CAN2",
+    "id": "CAN02",
     "name": "Dayne St.Clair",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN3",
+    "id": "CAN03",
     "name": "Alphonso Davies",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN4",
+    "id": "CAN04",
     "name": "Alistair Johnston",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN5",
+    "id": "CAN05",
     "name": "Samuel Adekugbe",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN6",
+    "id": "CAN06",
     "name": "Richie Laryea",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN7",
+    "id": "CAN07",
     "name": "Derek Cornelius",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN8",
+    "id": "CAN08",
     "name": "Moïse Bombito",
     "team": "Canada",
     "type": "player"
   },
   {
-    "id": "CAN9",
+    "id": "CAN09",
     "name": "Kamal Miller",
     "team": "Canada",
     "type": "player"
@@ -654,55 +654,55 @@
     "type": "player"
   },
   {
-    "id": "BIH1",
+    "id": "BIH01",
     "name": "Emblem",
     "team": "Bosnia and Herzegovina",
     "type": "team_badge"
   },
   {
-    "id": "BIH2",
+    "id": "BIH02",
     "name": "Nikola Vasilj",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH3",
+    "id": "BIH03",
     "name": "Amer Dedic",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH4",
+    "id": "BIH04",
     "name": "Sead Kolasinac",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH5",
+    "id": "BIH05",
     "name": "Tarik Muharemovic",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH6",
+    "id": "BIH06",
     "name": "Nihad Mujakic",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH7",
+    "id": "BIH07",
     "name": "Nikola Katic",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH8",
+    "id": "BIH08",
     "name": "Amir Hadziahmetovic",
     "team": "Bosnia and Herzegovina",
     "type": "player"
   },
   {
-    "id": "BIH9",
+    "id": "BIH09",
     "name": "Benjamin Tahirovic",
     "team": "Bosnia and Herzegovina",
     "type": "player"
@@ -774,55 +774,55 @@
     "type": "player"
   },
   {
-    "id": "QAT1",
+    "id": "QAT01",
     "name": "Emblem",
     "team": "Qatar",
     "type": "team_badge"
   },
   {
-    "id": "QAT2",
+    "id": "QAT02",
     "name": "Meshaal Barsham",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT3",
+    "id": "QAT03",
     "name": "Sultan Albrake",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT4",
+    "id": "QAT04",
     "name": "Lucas Mendes",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT5",
+    "id": "QAT05",
     "name": "Homam Ahmed",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT6",
+    "id": "QAT06",
     "name": "Boualem Khoukhi",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT7",
+    "id": "QAT07",
     "name": "Pedro Miguel",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT8",
+    "id": "QAT08",
     "name": "Tarek Salman",
     "team": "Qatar",
     "type": "player"
   },
   {
-    "id": "QAT9",
+    "id": "QAT09",
     "name": "Mohamed Al-Mannai",
     "team": "Qatar",
     "type": "player"
@@ -894,55 +894,55 @@
     "type": "player"
   },
   {
-    "id": "SUI1",
+    "id": "SUI01",
     "name": "Emblem",
     "team": "Switzerland",
     "type": "team_badge"
   },
   {
-    "id": "SUI2",
+    "id": "SUI02",
     "name": "Gregor Kobel",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI3",
+    "id": "SUI03",
     "name": "Yvon Mvogo",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI4",
+    "id": "SUI04",
     "name": "Manuel Akanji",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI5",
+    "id": "SUI05",
     "name": "Ricardo Rodriguez",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI6",
+    "id": "SUI06",
     "name": "Nico Elvedi",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI7",
+    "id": "SUI07",
     "name": "Aurèle Amenda",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI8",
+    "id": "SUI08",
     "name": "Silvan Widmer",
     "team": "Switzerland",
     "type": "player"
   },
   {
-    "id": "SUI9",
+    "id": "SUI09",
     "name": "Granit Xhaka",
     "team": "Switzerland",
     "type": "player"
@@ -1014,55 +1014,55 @@
     "type": "player"
   },
   {
-    "id": "BRA1",
+    "id": "BRA01",
     "name": "Emblem",
     "team": "Brazil",
     "type": "team_badge"
   },
   {
-    "id": "BRA2",
+    "id": "BRA02",
     "name": "Alisson",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA3",
+    "id": "BRA03",
     "name": "Bento",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA4",
+    "id": "BRA04",
     "name": "Marquinhos",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA5",
+    "id": "BRA05",
     "name": "Éder Militão",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA6",
+    "id": "BRA06",
     "name": "Gabriel Magalhães",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA7",
+    "id": "BRA07",
     "name": "Danilo",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA8",
+    "id": "BRA08",
     "name": "Wesley",
     "team": "Brazil",
     "type": "player"
   },
   {
-    "id": "BRA9",
+    "id": "BRA09",
     "name": "Lucas Paquetá",
     "team": "Brazil",
     "type": "player"
@@ -1134,55 +1134,55 @@
     "type": "player"
   },
   {
-    "id": "MAR1",
+    "id": "MAR01",
     "name": "Emblem",
     "team": "Morocco",
     "type": "team_badge"
   },
   {
-    "id": "MAR2",
+    "id": "MAR02",
     "name": "Yassine Bounou",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR3",
+    "id": "MAR03",
     "name": "Munir El Kajoui",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR4",
+    "id": "MAR04",
     "name": "Achraf Hakimi",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR5",
+    "id": "MAR05",
     "name": "Noussair Mazraoui",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR6",
+    "id": "MAR06",
     "name": "Nayef Aguerd",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR7",
+    "id": "MAR07",
     "name": "Romain Saïss",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR8",
+    "id": "MAR08",
     "name": "Jawad El Yamiq",
     "team": "Morocco",
     "type": "player"
   },
   {
-    "id": "MAR9",
+    "id": "MAR09",
     "name": "Adam Masina",
     "team": "Morocco",
     "type": "player"
@@ -1254,55 +1254,55 @@
     "type": "player"
   },
   {
-    "id": "HAI1",
+    "id": "HAI01",
     "name": "Emblem",
     "team": "Haiti",
     "type": "team_badge"
   },
   {
-    "id": "HAI2",
+    "id": "HAI02",
     "name": "Johny Placide",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI3",
+    "id": "HAI03",
     "name": "Carlens Arcus",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI4",
+    "id": "HAI04",
     "name": "Martin Expérience",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI5",
+    "id": "HAI05",
     "name": "Jean-Kevin Duverne",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI6",
+    "id": "HAI06",
     "name": "Ricardo Adé",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI7",
+    "id": "HAI07",
     "name": "Duke Lacroix",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI8",
+    "id": "HAI08",
     "name": "Garven Metusala",
     "team": "Haiti",
     "type": "player"
   },
   {
-    "id": "HAI9",
+    "id": "HAI09",
     "name": "Hannes Delcroix",
     "team": "Haiti",
     "type": "player"
@@ -1374,55 +1374,55 @@
     "type": "player"
   },
   {
-    "id": "SCO1",
+    "id": "SCO01",
     "name": "Emblem",
     "team": "Scotland",
     "type": "team_badge"
   },
   {
-    "id": "SCO2",
+    "id": "SCO02",
     "name": "Angus Gunn",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO3",
+    "id": "SCO03",
     "name": "Jack Hendry",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO4",
+    "id": "SCO04",
     "name": "Kieran Tierney",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO5",
+    "id": "SCO05",
     "name": "Aaron Hickey",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO6",
+    "id": "SCO06",
     "name": "Andrew Robertson",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO7",
+    "id": "SCO07",
     "name": "Scott McKenna",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO8",
+    "id": "SCO08",
     "name": "John Souttar",
     "team": "Scotland",
     "type": "player"
   },
   {
-    "id": "SCO9",
+    "id": "SCO09",
     "name": "Anthony Ralston",
     "team": "Scotland",
     "type": "player"
@@ -1494,55 +1494,55 @@
     "type": "player"
   },
   {
-    "id": "USA1",
+    "id": "USA01",
     "name": "Emblem",
     "team": "USA",
     "type": "team_badge"
   },
   {
-    "id": "USA2",
+    "id": "USA02",
     "name": "Matt Freese",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA3",
+    "id": "USA03",
     "name": "Chris Richards",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA4",
+    "id": "USA04",
     "name": "Tim Ream",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA5",
+    "id": "USA05",
     "name": "Mark McKenzie",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA6",
+    "id": "USA06",
     "name": "Alex Freeman",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA7",
+    "id": "USA07",
     "name": "Antonee Robinson",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA8",
+    "id": "USA08",
     "name": "Tyler Adams",
     "team": "USA",
     "type": "player"
   },
   {
-    "id": "USA9",
+    "id": "USA09",
     "name": "Tanner Tessmann",
     "team": "USA",
     "type": "player"
@@ -1614,55 +1614,55 @@
     "type": "player"
   },
   {
-    "id": "PAR1",
+    "id": "PAR01",
     "name": "Emblem",
     "team": "Paraguay",
     "type": "team_badge"
   },
   {
-    "id": "PAR2",
+    "id": "PAR02",
     "name": "Roberto Fernandez",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR3",
+    "id": "PAR03",
     "name": "Orlando Gill",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR4",
+    "id": "PAR04",
     "name": "Gustavo Gomez",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR5",
+    "id": "PAR05",
     "name": "Fabián Balbuena",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR6",
+    "id": "PAR06",
     "name": "Juan José Cáceres",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR7",
+    "id": "PAR07",
     "name": "Omar Alderete",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR8",
+    "id": "PAR08",
     "name": "Junior Alonso",
     "team": "Paraguay",
     "type": "player"
   },
   {
-    "id": "PAR9",
+    "id": "PAR09",
     "name": "Mathías Villasanti",
     "team": "Paraguay",
     "type": "player"
@@ -1734,55 +1734,55 @@
     "type": "player"
   },
   {
-    "id": "AUS1",
+    "id": "AUS01",
     "name": "Emblem",
     "team": "Australia",
     "type": "team_badge"
   },
   {
-    "id": "AUS2",
+    "id": "AUS02",
     "name": "Mathew Ryan",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS3",
+    "id": "AUS03",
     "name": "Joe Gauci",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS4",
+    "id": "AUS04",
     "name": "Harry Souttar",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS5",
+    "id": "AUS05",
     "name": "Alessandro Circati",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS6",
+    "id": "AUS06",
     "name": "Jordan Bos",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS7",
+    "id": "AUS07",
     "name": "Aziz Behich",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS8",
+    "id": "AUS08",
     "name": "Cameron Burgess",
     "team": "Australia",
     "type": "player"
   },
   {
-    "id": "AUS9",
+    "id": "AUS09",
     "name": "Lewis Miller",
     "team": "Australia",
     "type": "player"
@@ -1854,55 +1854,55 @@
     "type": "player"
   },
   {
-    "id": "TUR1",
+    "id": "TUR01",
     "name": "Emblem",
     "team": "Türkiye",
     "type": "team_badge"
   },
   {
-    "id": "TUR2",
+    "id": "TUR02",
     "name": "Ugurcan Cakir",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR3",
+    "id": "TUR03",
     "name": "Mert Muldur",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR4",
+    "id": "TUR04",
     "name": "Zeki Celik",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR5",
+    "id": "TUR05",
     "name": "Abdulkerim Bardakci",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR6",
+    "id": "TUR06",
     "name": "Caglar Soyuncu",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR7",
+    "id": "TUR07",
     "name": "Merih Demiral",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR8",
+    "id": "TUR08",
     "name": "Ferdi Kadioglu",
     "team": "Türkiye",
     "type": "player"
   },
   {
-    "id": "TUR9",
+    "id": "TUR09",
     "name": "Kaan Ayhan",
     "team": "Türkiye",
     "type": "player"
@@ -1974,55 +1974,55 @@
     "type": "player"
   },
   {
-    "id": "GER1",
+    "id": "GER01",
     "name": "Emblem",
     "team": "Germany",
     "type": "team_badge"
   },
   {
-    "id": "GER2",
+    "id": "GER02",
     "name": "Marc-André ter Stegen",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER3",
+    "id": "GER03",
     "name": "Jonathan Tah",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER4",
+    "id": "GER04",
     "name": "David Raum",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER5",
+    "id": "GER05",
     "name": "Nico Schlotterbeck",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER6",
+    "id": "GER06",
     "name": "Antonio Rüdiger",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER7",
+    "id": "GER07",
     "name": "Waldemar Anton",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER8",
+    "id": "GER08",
     "name": "Ridle Baku",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER9",
+    "id": "GER09",
     "name": "Maximilian Mittelstadt",
     "team": "Germany",
     "type": "player"
@@ -2094,49 +2094,49 @@
     "type": "player"
   },
   {
-    "id": "GER2s",
+    "id": "GER02s",
     "name": "Marc-André ter Stegen",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER3s",
+    "id": "GER03s",
     "name": "Jonathan Tah",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER4s",
+    "id": "GER04s",
     "name": "David Raum",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER5s",
+    "id": "GER05s",
     "name": "Nico Schlotterbeck",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER6s",
+    "id": "GER06s",
     "name": "Antonio Rüdiger",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER7s",
+    "id": "GER07s",
     "name": "Waldemar Anton",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER8s",
+    "id": "GER08s",
     "name": "Ridle Baku",
     "team": "Germany",
     "type": "player"
   },
   {
-    "id": "GER9s",
+    "id": "GER09s",
     "name": "Maximilian Mittelstadt",
     "team": "Germany",
     "type": "player"
@@ -2202,55 +2202,55 @@
     "type": "player"
   },
   {
-    "id": "CUW1",
+    "id": "CUW01",
     "name": "Emblem",
     "team": "Curaçao",
     "type": "team_badge"
   },
   {
-    "id": "CUW2",
+    "id": "CUW02",
     "name": "Eloy Room",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW3",
+    "id": "CUW03",
     "name": "Armando Obispo",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW4",
+    "id": "CUW04",
     "name": "Sherel Floranus",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW5",
+    "id": "CUW05",
     "name": "Jurien Gaari",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW6",
+    "id": "CUW06",
     "name": "Joshua Brenet",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW7",
+    "id": "CUW07",
     "name": "Roshon Van Eijma",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW8",
+    "id": "CUW08",
     "name": "Shurandy Sambo",
     "team": "Curaçao",
     "type": "player"
   },
   {
-    "id": "CUW9",
+    "id": "CUW09",
     "name": "Livano Comenencia",
     "team": "Curaçao",
     "type": "player"
@@ -2322,55 +2322,55 @@
     "type": "player"
   },
   {
-    "id": "CIV1",
+    "id": "CIV01",
     "name": "Emblem",
     "team": "Ivory Coast",
     "type": "team_badge"
   },
   {
-    "id": "CIV2",
+    "id": "CIV02",
     "name": "Yahia Fofana",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV3",
+    "id": "CIV03",
     "name": "Ghislain Konan",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV4",
+    "id": "CIV04",
     "name": "Wilfried Singo",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV5",
+    "id": "CIV05",
     "name": "Odilon Kossounou",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV6",
+    "id": "CIV06",
     "name": "Evan Ndicka",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV7",
+    "id": "CIV07",
     "name": "Willy Boly",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV8",
+    "id": "CIV08",
     "name": "Emmanuel Agbadou",
     "team": "Ivory Coast",
     "type": "player"
   },
   {
-    "id": "CIV9",
+    "id": "CIV09",
     "name": "Ousmane Diomande",
     "team": "Ivory Coast",
     "type": "player"
@@ -2442,55 +2442,55 @@
     "type": "player"
   },
   {
-    "id": "ECU1",
+    "id": "ECU01",
     "name": "Emblem",
     "team": "Ecuador",
     "type": "team_badge"
   },
   {
-    "id": "ECU2",
+    "id": "ECU02",
     "name": "Hernán Galíndez",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU3",
+    "id": "ECU03",
     "name": "Gonzalo Valle",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU4",
+    "id": "ECU04",
     "name": "Piero Hincapié",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU5",
+    "id": "ECU05",
     "name": "Pervis Estupiñán",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU6",
+    "id": "ECU06",
     "name": "Willian Pacho",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU7",
+    "id": "ECU07",
     "name": "Ángelo Preciado",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU8",
+    "id": "ECU08",
     "name": "Joel Ordóñez",
     "team": "Ecuador",
     "type": "player"
   },
   {
-    "id": "ECU9",
+    "id": "ECU09",
     "name": "Moises Caicedo",
     "team": "Ecuador",
     "type": "player"
@@ -2562,55 +2562,55 @@
     "type": "player"
   },
   {
-    "id": "NED1",
+    "id": "NED01",
     "name": "Emblem",
     "team": "Netherlands",
     "type": "team_badge"
   },
   {
-    "id": "NED2",
+    "id": "NED02",
     "name": "Bart Verbruggen",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED3",
+    "id": "NED03",
     "name": "Virgil van Dijk",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED4",
+    "id": "NED04",
     "name": "Micky van de Ven",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED5",
+    "id": "NED05",
     "name": "Jurrien Timber",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED6",
+    "id": "NED06",
     "name": "Denzel Dumfries",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED7",
+    "id": "NED07",
     "name": "Nathan Aké",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED8",
+    "id": "NED08",
     "name": "Jeremie Frimpong",
     "team": "Netherlands",
     "type": "player"
   },
   {
-    "id": "NED9",
+    "id": "NED09",
     "name": "Jan Paul van Hecke",
     "team": "Netherlands",
     "type": "player"
@@ -2682,55 +2682,55 @@
     "type": "player"
   },
   {
-    "id": "JPN1",
+    "id": "JPN01",
     "name": "Emblem",
     "team": "Japan",
     "type": "team_badge"
   },
   {
-    "id": "JPN2",
+    "id": "JPN02",
     "name": "Zion Suzuki",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN3",
+    "id": "JPN03",
     "name": "Henry Heroki Mochizuki",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN4",
+    "id": "JPN04",
     "name": "Ayumu Seko",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN5",
+    "id": "JPN05",
     "name": "Junnosuke Suzuki",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN6",
+    "id": "JPN06",
     "name": "Shogo Taniguchi",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN7",
+    "id": "JPN07",
     "name": "Tsuyoshi Watanabe",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN8",
+    "id": "JPN08",
     "name": "Kaishu Sano",
     "team": "Japan",
     "type": "player"
   },
   {
-    "id": "JPN9",
+    "id": "JPN09",
     "name": "Yuki Soma",
     "team": "Japan",
     "type": "player"
@@ -2802,55 +2802,55 @@
     "type": "player"
   },
   {
-    "id": "SWE1",
+    "id": "SWE01",
     "name": "Emblem",
     "team": "Sweden",
     "type": "team_badge"
   },
   {
-    "id": "SWE2",
+    "id": "SWE02",
     "name": "Victor Johansson",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE3",
+    "id": "SWE03",
     "name": "Isak Hien",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE4",
+    "id": "SWE04",
     "name": "Gabriel Gudmundsson",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE5",
+    "id": "SWE05",
     "name": "Emil Holm",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE6",
+    "id": "SWE06",
     "name": "Victor Nilsson Lindelöf",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE7",
+    "id": "SWE07",
     "name": "Gustaf Lagerbielke",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE8",
+    "id": "SWE08",
     "name": "Lucas Bergvall",
     "team": "Sweden",
     "type": "player"
   },
   {
-    "id": "SWE9",
+    "id": "SWE09",
     "name": "Hugo Larsson",
     "team": "Sweden",
     "type": "player"
@@ -2922,55 +2922,55 @@
     "type": "player"
   },
   {
-    "id": "TUN1",
+    "id": "TUN01",
     "name": "Emblem",
     "team": "Tunisia",
     "type": "team_badge"
   },
   {
-    "id": "TUN2",
+    "id": "TUN02",
     "name": "Bechir Ben Said",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN3",
+    "id": "TUN03",
     "name": "Aymen Dahmen",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN4",
+    "id": "TUN04",
     "name": "Yan Valery",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN5",
+    "id": "TUN05",
     "name": "Montassar Talbi",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN6",
+    "id": "TUN06",
     "name": "Yassine Meriah",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN7",
+    "id": "TUN07",
     "name": "Ali Abdi",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN8",
+    "id": "TUN08",
     "name": "Dylan Bronn",
     "team": "Tunisia",
     "type": "player"
   },
   {
-    "id": "TUN9",
+    "id": "TUN09",
     "name": "Ellyes Skhiri",
     "team": "Tunisia",
     "type": "player"
@@ -3042,55 +3042,55 @@
     "type": "player"
   },
   {
-    "id": "BEL1",
+    "id": "BEL01",
     "name": "Emblem",
     "team": "Belgium",
     "type": "team_badge"
   },
   {
-    "id": "BEL2",
+    "id": "BEL02",
     "name": "Thibaut Courtois",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL3",
+    "id": "BEL03",
     "name": "Arthur Theate",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL4",
+    "id": "BEL04",
     "name": "Timothy Castagne",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL5",
+    "id": "BEL05",
     "name": "Zeno Debast",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL6",
+    "id": "BEL06",
     "name": "Brandon Mechele",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL7",
+    "id": "BEL07",
     "name": "Maxim De Cuyper",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL8",
+    "id": "BEL08",
     "name": "Thomas Meunier",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL9",
+    "id": "BEL09",
     "name": "Youri Tielemans",
     "team": "Belgium",
     "type": "player"
@@ -3162,49 +3162,49 @@
     "type": "player"
   },
   {
-    "id": "BEL2s",
+    "id": "BEL02s",
     "name": "Thibaut Courtois",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL3s",
+    "id": "BEL03s",
     "name": "Arthur Theate",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL4s",
+    "id": "BEL04s",
     "name": "Timothy Castagne",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL5s",
+    "id": "BEL05s",
     "name": "Zeno Debast",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL6s",
+    "id": "BEL06s",
     "name": "Brandon Mechele",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL7s",
+    "id": "BEL07s",
     "name": "Maxim De Cuyper",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL8s",
+    "id": "BEL08s",
     "name": "Thomas Meunier",
     "team": "Belgium",
     "type": "player"
   },
   {
-    "id": "BEL9s",
+    "id": "BEL09s",
     "name": "Youri Tielemans",
     "team": "Belgium",
     "type": "player"
@@ -3270,55 +3270,55 @@
     "type": "player"
   },
   {
-    "id": "EGY1",
+    "id": "EGY01",
     "name": "Emblem",
     "team": "Egypt",
     "type": "team_badge"
   },
   {
-    "id": "EGY2",
+    "id": "EGY02",
     "name": "Mohamed El Shenawy",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY3",
+    "id": "EGY03",
     "name": "Mohamed Hany",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY4",
+    "id": "EGY04",
     "name": "Mohamed Hamdy",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY5",
+    "id": "EGY05",
     "name": "Yasser Ibrahim",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY6",
+    "id": "EGY06",
     "name": "Khaled Sobhi",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY7",
+    "id": "EGY07",
     "name": "Ramy Rabia",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY8",
+    "id": "EGY08",
     "name": "Hossam Abdelmaguid",
     "team": "Egypt",
     "type": "player"
   },
   {
-    "id": "EGY9",
+    "id": "EGY09",
     "name": "Ahmed Fatouh",
     "team": "Egypt",
     "type": "player"
@@ -3390,55 +3390,55 @@
     "type": "player"
   },
   {
-    "id": "IRN1",
+    "id": "IRN01",
     "name": "Emblem",
     "team": "Iran",
     "type": "team_badge"
   },
   {
-    "id": "IRN2",
+    "id": "IRN02",
     "name": "Alireza Beiranvand",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN3",
+    "id": "IRN03",
     "name": "Morteza Pouraliganji",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN4",
+    "id": "IRN04",
     "name": "Ehsan Hajsafi",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN5",
+    "id": "IRN05",
     "name": "Milad Mohammadi",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN6",
+    "id": "IRN06",
     "name": "Shojae Khalilzadeh",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN7",
+    "id": "IRN07",
     "name": "Ramin Rezaeian",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN8",
+    "id": "IRN08",
     "name": "Hossein Kanaani",
     "team": "Iran",
     "type": "player"
   },
   {
-    "id": "IRN9",
+    "id": "IRN09",
     "name": "Sadegh Moharrami",
     "team": "Iran",
     "type": "player"
@@ -3510,55 +3510,55 @@
     "type": "player"
   },
   {
-    "id": "NZL1",
+    "id": "NZL01",
     "name": "Emblem",
     "team": "New Zealand",
     "type": "team_badge"
   },
   {
-    "id": "NZL2",
+    "id": "NZL02",
     "name": "Max Crocombe",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL3",
+    "id": "NZL03",
     "name": "Alex Paulsen",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL4",
+    "id": "NZL04",
     "name": "Michael Boxall",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL5",
+    "id": "NZL05",
     "name": "Liberato Cacace",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL6",
+    "id": "NZL06",
     "name": "Tim Payne",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL7",
+    "id": "NZL07",
     "name": "Tyler Bindon",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL8",
+    "id": "NZL08",
     "name": "Francis de Vries",
     "team": "New Zealand",
     "type": "player"
   },
   {
-    "id": "NZL9",
+    "id": "NZL09",
     "name": "Finn Surman",
     "team": "New Zealand",
     "type": "player"
@@ -3630,55 +3630,55 @@
     "type": "player"
   },
   {
-    "id": "ESP1",
+    "id": "ESP01",
     "name": "Emblem",
     "team": "Spain",
     "type": "team_badge"
   },
   {
-    "id": "ESP2",
+    "id": "ESP02",
     "name": "Unai Simon",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP3",
+    "id": "ESP03",
     "name": "Robin Le Normand",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP4",
+    "id": "ESP04",
     "name": "Aymeric Laporte",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP5",
+    "id": "ESP05",
     "name": "Dean Huijsen",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP6",
+    "id": "ESP06",
     "name": "Pedro Porro",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP7",
+    "id": "ESP07",
     "name": "Dani Carvajal",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP8",
+    "id": "ESP08",
     "name": "Marc Cucurella",
     "team": "Spain",
     "type": "player"
   },
   {
-    "id": "ESP9",
+    "id": "ESP09",
     "name": "Martín Zubimendi",
     "team": "Spain",
     "type": "player"
@@ -3750,55 +3750,55 @@
     "type": "player"
   },
   {
-    "id": "CPV1",
+    "id": "CPV01",
     "name": "Emblem",
     "team": "Cape Verde",
     "type": "team_badge"
   },
   {
-    "id": "CPV2",
+    "id": "CPV02",
     "name": "Vozinha",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV3",
+    "id": "CPV03",
     "name": "Logan Costa",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV4",
+    "id": "CPV04",
     "name": "Pico",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV5",
+    "id": "CPV05",
     "name": "Diney",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV6",
+    "id": "CPV06",
     "name": "Steven Moreira",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV7",
+    "id": "CPV07",
     "name": "Wagner Pina",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV8",
+    "id": "CPV08",
     "name": "Joao Paulo",
     "team": "Cape Verde",
     "type": "player"
   },
   {
-    "id": "CPV9",
+    "id": "CPV09",
     "name": "Yannick Semedo",
     "team": "Cape Verde",
     "type": "player"
@@ -3870,55 +3870,55 @@
     "type": "player"
   },
   {
-    "id": "KSA1",
+    "id": "KSA01",
     "name": "Emblem",
     "team": "Saudi Arabia",
     "type": "team_badge"
   },
   {
-    "id": "KSA2",
+    "id": "KSA02",
     "name": "Nawaf Alaqidi",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA3",
+    "id": "KSA03",
     "name": "Abdulrahman Al-Sanbi",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA4",
+    "id": "KSA04",
     "name": "Saud Abdulhamid",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA5",
+    "id": "KSA05",
     "name": "Nawaf Bouwashl",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA6",
+    "id": "KSA06",
     "name": "Jihad Thakri",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA7",
+    "id": "KSA07",
     "name": "Moteb Al-Harbi",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA8",
+    "id": "KSA08",
     "name": "Hassan Altambakti",
     "team": "Saudi Arabia",
     "type": "player"
   },
   {
-    "id": "KSA9",
+    "id": "KSA09",
     "name": "Musab Aljuwayr",
     "team": "Saudi Arabia",
     "type": "player"
@@ -3990,55 +3990,55 @@
     "type": "player"
   },
   {
-    "id": "URU1",
+    "id": "URU01",
     "name": "Emblem",
     "team": "Uruguay",
     "type": "team_badge"
   },
   {
-    "id": "URU2",
+    "id": "URU02",
     "name": "Sergio Rochet",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU3",
+    "id": "URU03",
     "name": "Santiago Mele",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU4",
+    "id": "URU04",
     "name": "Ronald Araujo",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU5",
+    "id": "URU05",
     "name": "José María Giménez",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU6",
+    "id": "URU06",
     "name": "Sebastian Caceres",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU7",
+    "id": "URU07",
     "name": "Mathias Olivera",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU8",
+    "id": "URU08",
     "name": "Guillermo Varela",
     "team": "Uruguay",
     "type": "player"
   },
   {
-    "id": "URU9",
+    "id": "URU09",
     "name": "Nahitan Nandez",
     "team": "Uruguay",
     "type": "player"
@@ -4110,55 +4110,55 @@
     "type": "player"
   },
   {
-    "id": "FRA1",
+    "id": "FRA01",
     "name": "Emblem",
     "team": "France",
     "type": "team_badge"
   },
   {
-    "id": "FRA2",
+    "id": "FRA02",
     "name": "Mike Maignan",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA3",
+    "id": "FRA03",
     "name": "Theo Hernandez",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA4",
+    "id": "FRA04",
     "name": "William Saliba",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA5",
+    "id": "FRA05",
     "name": "Jules Kounde",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA6",
+    "id": "FRA06",
     "name": "Ibrahima Konate",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA7",
+    "id": "FRA07",
     "name": "Dayot Upamecano",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA8",
+    "id": "FRA08",
     "name": "Lucas Digne",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA9",
+    "id": "FRA09",
     "name": "Aurélien Tchouaméni",
     "team": "France",
     "type": "player"
@@ -4224,49 +4224,49 @@
     "type": "player"
   },
   {
-    "id": "FRA2s",
+    "id": "FRA02s",
     "name": "Mike Maignan",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA3s",
+    "id": "FRA03s",
     "name": "Theo Hernandez",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA4s",
+    "id": "FRA04s",
     "name": "William Saliba",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA5s",
+    "id": "FRA05s",
     "name": "Jules Kounde",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA6s",
+    "id": "FRA06s",
     "name": "Ibrahima Konate",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA7s",
+    "id": "FRA07s",
     "name": "Dayot Upamecano",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA8s",
+    "id": "FRA08s",
     "name": "Lucas Digne",
     "team": "France",
     "type": "player"
   },
   {
-    "id": "FRA9s",
+    "id": "FRA09s",
     "name": "Aurélien Tchouaméni",
     "team": "France",
     "type": "player"
@@ -4338,55 +4338,55 @@
     "type": "player"
   },
   {
-    "id": "SEN1",
+    "id": "SEN01",
     "name": "Emblem",
     "team": "Senegal",
     "type": "team_badge"
   },
   {
-    "id": "SEN2",
+    "id": "SEN02",
     "name": "Édouard Mendy",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN3",
+    "id": "SEN03",
     "name": "Yehvann Diouf",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN4",
+    "id": "SEN04",
     "name": "Moussa Niakhaté",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN5",
+    "id": "SEN05",
     "name": "Abdoulaye Seck",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN6",
+    "id": "SEN06",
     "name": "Ismail Jakobs",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN7",
+    "id": "SEN07",
     "name": "El Hadji Malick Diouf",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN8",
+    "id": "SEN08",
     "name": "Kalidou Koulibaly",
     "team": "Senegal",
     "type": "player"
   },
   {
-    "id": "SEN9",
+    "id": "SEN09",
     "name": "Idrissa Gana Gueye",
     "team": "Senegal",
     "type": "player"
@@ -4458,55 +4458,55 @@
     "type": "player"
   },
   {
-    "id": "IRQ1",
+    "id": "IRQ01",
     "name": "Emblem",
     "team": "Iraq",
     "type": "team_badge"
   },
   {
-    "id": "IRQ2",
+    "id": "IRQ02",
     "name": "Jalal Hassan",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ3",
+    "id": "IRQ03",
     "name": "Rebin Sulaka",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ4",
+    "id": "IRQ04",
     "name": "Hussein Ali",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ5",
+    "id": "IRQ05",
     "name": "Akam Hashem",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ6",
+    "id": "IRQ06",
     "name": "Merchas Doski",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ7",
+    "id": "IRQ07",
     "name": "Zaid Tahseen",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ8",
+    "id": "IRQ08",
     "name": "Manaf Younis",
     "team": "Iraq",
     "type": "player"
   },
   {
-    "id": "IRQ9",
+    "id": "IRQ09",
     "name": "Zidane Iqbal",
     "team": "Iraq",
     "type": "player"
@@ -4578,55 +4578,55 @@
     "type": "player"
   },
   {
-    "id": "NOR1",
+    "id": "NOR01",
     "name": "Emblem",
     "team": "Norway",
     "type": "team_badge"
   },
   {
-    "id": "NOR2",
+    "id": "NOR02",
     "name": "Orjan Nyland",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR3",
+    "id": "NOR03",
     "name": "Julian Ryerson",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR4",
+    "id": "NOR04",
     "name": "Leo Ostigård",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR5",
+    "id": "NOR05",
     "name": "Kristoffer Vassbakk Ajer",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR6",
+    "id": "NOR06",
     "name": "Marcus Holmgren Pedersen",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR7",
+    "id": "NOR07",
     "name": "David Møller Wolfe",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR8",
+    "id": "NOR08",
     "name": "Torbjørn Heggem",
     "team": "Norway",
     "type": "player"
   },
   {
-    "id": "NOR9",
+    "id": "NOR09",
     "name": "Morten Thorsby",
     "team": "Norway",
     "type": "player"
@@ -4698,55 +4698,55 @@
     "type": "player"
   },
   {
-    "id": "ARG1",
+    "id": "ARG01",
     "name": "Emblem",
     "team": "Argentina",
     "type": "team_badge"
   },
   {
-    "id": "ARG2",
+    "id": "ARG02",
     "name": "Emiliano Martinez",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG3",
+    "id": "ARG03",
     "name": "Nahuel Molina",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG4",
+    "id": "ARG04",
     "name": "Cristian Romero",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG5",
+    "id": "ARG05",
     "name": "Nicolas Otamendi",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG6",
+    "id": "ARG06",
     "name": "Nicolas Tagliafico",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG7",
+    "id": "ARG07",
     "name": "Leonardo Balerdi",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG8",
+    "id": "ARG08",
     "name": "Enzo Fernandez",
     "team": "Argentina",
     "type": "player"
   },
   {
-    "id": "ARG9",
+    "id": "ARG09",
     "name": "Alexis Mac Allister",
     "team": "Argentina",
     "type": "player"
@@ -4818,55 +4818,55 @@
     "type": "player"
   },
   {
-    "id": "ALG1",
+    "id": "ALG01",
     "name": "Emblem",
     "team": "Algeria",
     "type": "team_badge"
   },
   {
-    "id": "ALG2",
+    "id": "ALG02",
     "name": "Alexis Guendouz",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG3",
+    "id": "ALG03",
     "name": "Ramy Bensebaini",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG4",
+    "id": "ALG04",
     "name": "Youcef Atal",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG5",
+    "id": "ALG05",
     "name": "Rayan Aït-Nouri",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG6",
+    "id": "ALG06",
     "name": "Mohamed Amine Tougai",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG7",
+    "id": "ALG07",
     "name": "Aïssa Mandi",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG8",
+    "id": "ALG08",
     "name": "Ismael Bennacer",
     "team": "Algeria",
     "type": "player"
   },
   {
-    "id": "ALG9",
+    "id": "ALG09",
     "name": "Houssem Aouar",
     "team": "Algeria",
     "type": "player"
@@ -4938,55 +4938,55 @@
     "type": "player"
   },
   {
-    "id": "AUT1",
+    "id": "AUT01",
     "name": "Emblem",
     "team": "Austria",
     "type": "team_badge"
   },
   {
-    "id": "AUT2",
+    "id": "AUT02",
     "name": "Alexander Schlager",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT3",
+    "id": "AUT03",
     "name": "Patrick Pentz",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT4",
+    "id": "AUT04",
     "name": "David Alaba",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT5",
+    "id": "AUT05",
     "name": "Kevin Danso",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT6",
+    "id": "AUT06",
     "name": "Philipp Lienhart",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT7",
+    "id": "AUT07",
     "name": "Stefan Posch",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT8",
+    "id": "AUT08",
     "name": "Phillipp Mwene",
     "team": "Austria",
     "type": "player"
   },
   {
-    "id": "AUT9",
+    "id": "AUT09",
     "name": "Alexander Prass",
     "team": "Austria",
     "type": "player"
@@ -5058,55 +5058,55 @@
     "type": "player"
   },
   {
-    "id": "JOR1",
+    "id": "JOR01",
     "name": "Emblem",
     "team": "Jordan",
     "type": "team_badge"
   },
   {
-    "id": "JOR2",
+    "id": "JOR02",
     "name": "Yazeed Abulaila",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR3",
+    "id": "JOR03",
     "name": "Ihsan Haddad",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR4",
+    "id": "JOR04",
     "name": "Mohammad Abu Hashish",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR5",
+    "id": "JOR05",
     "name": "Yazan Al-Arab",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR6",
+    "id": "JOR06",
     "name": "Abdallah Nasib",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR7",
+    "id": "JOR07",
     "name": "Saleem Obaid",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR8",
+    "id": "JOR08",
     "name": "Mohammad Abualnadi",
     "team": "Jordan",
     "type": "player"
   },
   {
-    "id": "JOR9",
+    "id": "JOR09",
     "name": "Ibrahim Saadeh",
     "team": "Jordan",
     "type": "player"
@@ -5178,55 +5178,55 @@
     "type": "player"
   },
   {
-    "id": "POR1",
+    "id": "POR01",
     "name": "Emblem",
     "team": "Portugal",
     "type": "team_badge"
   },
   {
-    "id": "POR2",
+    "id": "POR02",
     "name": "Diogo Costa",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR3",
+    "id": "POR03",
     "name": "José Sá",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR4",
+    "id": "POR04",
     "name": "Ruben Dias",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR5",
+    "id": "POR05",
     "name": "João Cancelo",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR6",
+    "id": "POR06",
     "name": "Diogo Dalot",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR7",
+    "id": "POR07",
     "name": "Nuno Mendes",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR8",
+    "id": "POR08",
     "name": "Gonçalo Inácio",
     "team": "Portugal",
     "type": "player"
   },
   {
-    "id": "POR9",
+    "id": "POR09",
     "name": "Bernardo Silva",
     "team": "Portugal",
     "type": "player"
@@ -5298,55 +5298,55 @@
     "type": "player"
   },
   {
-    "id": "COD1",
+    "id": "COD01",
     "name": "Emblem",
     "team": "Congo DR",
     "type": "team_badge"
   },
   {
-    "id": "COD2",
+    "id": "COD02",
     "name": "Lionel Mpasi-Nzau",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD3",
+    "id": "COD03",
     "name": "Aaron Wan-Bissaka",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD4",
+    "id": "COD04",
     "name": "Axel Tuanzebe",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD5",
+    "id": "COD05",
     "name": "Arthur Masuaku",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD6",
+    "id": "COD06",
     "name": "Chancel Mbemba",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD7",
+    "id": "COD07",
     "name": "Joris Kayembe",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD8",
+    "id": "COD08",
     "name": "Charles Pickel",
     "team": "Congo DR",
     "type": "player"
   },
   {
-    "id": "COD9",
+    "id": "COD09",
     "name": "Ngal'ayel Mukau",
     "team": "Congo DR",
     "type": "player"
@@ -5418,55 +5418,55 @@
     "type": "player"
   },
   {
-    "id": "UZB1",
+    "id": "UZB01",
     "name": "Emblem",
     "team": "Uzbekistan",
     "type": "team_badge"
   },
   {
-    "id": "UZB2",
+    "id": "UZB02",
     "name": "Utkir Yusupov",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB3",
+    "id": "UZB03",
     "name": "Farrukh Savfiev",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB4",
+    "id": "UZB04",
     "name": "Sherzod Nasrullaev",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB5",
+    "id": "UZB05",
     "name": "Umar Eshmurodov",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB6",
+    "id": "UZB06",
     "name": "Husniddin Aliqulov",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB7",
+    "id": "UZB07",
     "name": "Rustamjon Ashurmatov",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB8",
+    "id": "UZB08",
     "name": "Khojiakbar Alijonov",
     "team": "Uzbekistan",
     "type": "player"
   },
   {
-    "id": "UZB9",
+    "id": "UZB09",
     "name": "Abdukodir Khusanov",
     "team": "Uzbekistan",
     "type": "player"
@@ -5538,55 +5538,55 @@
     "type": "player"
   },
   {
-    "id": "COL1",
+    "id": "COL01",
     "name": "Emblem",
     "team": "Colombia",
     "type": "team_badge"
   },
   {
-    "id": "COL2",
+    "id": "COL02",
     "name": "Camilo Vargas",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL3",
+    "id": "COL03",
     "name": "David Ospina",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL4",
+    "id": "COL04",
     "name": "Dávinson Sánchez",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL5",
+    "id": "COL05",
     "name": "Yerry Mina",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL6",
+    "id": "COL06",
     "name": "Daniel Munoz",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL7",
+    "id": "COL07",
     "name": "Johan Mojica",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL8",
+    "id": "COL08",
     "name": "Jhon Lucumí",
     "team": "Colombia",
     "type": "player"
   },
   {
-    "id": "COL9",
+    "id": "COL09",
     "name": "Santiago Arias",
     "team": "Colombia",
     "type": "player"
@@ -5658,55 +5658,55 @@
     "type": "player"
   },
   {
-    "id": "ENG1",
+    "id": "ENG01",
     "name": "Emblem",
     "team": "England",
     "type": "team_badge"
   },
   {
-    "id": "ENG2",
+    "id": "ENG02",
     "name": "Jordan Pickford",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG3",
+    "id": "ENG03",
     "name": "John Stones",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG4",
+    "id": "ENG04",
     "name": "Marc Guéhi",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG5",
+    "id": "ENG05",
     "name": "Ezri Konsa",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG6",
+    "id": "ENG06",
     "name": "Trent Alexander-Arnold",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG7",
+    "id": "ENG07",
     "name": "Reece James",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG8",
+    "id": "ENG08",
     "name": "Dan Burn",
     "team": "England",
     "type": "player"
   },
   {
-    "id": "ENG9",
+    "id": "ENG09",
     "name": "Jordan Henderson",
     "team": "England",
     "type": "player"
@@ -5778,55 +5778,55 @@
     "type": "player"
   },
   {
-    "id": "CRO1",
+    "id": "CRO01",
     "name": "Emblem",
     "team": "Croatia",
     "type": "team_badge"
   },
   {
-    "id": "CRO2",
+    "id": "CRO02",
     "name": "Dominik Livaković",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO3",
+    "id": "CRO03",
     "name": "Duje Caleta-Car",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO4",
+    "id": "CRO04",
     "name": "Josko Gvardiol",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO5",
+    "id": "CRO05",
     "name": "Josip Stanišić",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO6",
+    "id": "CRO06",
     "name": "Luka Vušković",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO7",
+    "id": "CRO07",
     "name": "Josip Sutalo",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO8",
+    "id": "CRO08",
     "name": "Kristijan Jakic",
     "team": "Croatia",
     "type": "player"
   },
   {
-    "id": "CRO9",
+    "id": "CRO09",
     "name": "Luka Modrić",
     "team": "Croatia",
     "type": "player"
@@ -5898,55 +5898,55 @@
     "type": "player"
   },
   {
-    "id": "GHA1",
+    "id": "GHA01",
     "name": "Emblem",
     "team": "Ghana",
     "type": "team_badge"
   },
   {
-    "id": "GHA2",
+    "id": "GHA02",
     "name": "Lawrence Ati Zigi",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA3",
+    "id": "GHA03",
     "name": "Tariq Lamptey",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA4",
+    "id": "GHA04",
     "name": "Mohammed Salisu",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA5",
+    "id": "GHA05",
     "name": "Alidu Seidu",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA6",
+    "id": "GHA06",
     "name": "Alexander Djiku",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA7",
+    "id": "GHA07",
     "name": "Gideon Mensah",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA8",
+    "id": "GHA08",
     "name": "Caleb Yirenkyi",
     "team": "Ghana",
     "type": "player"
   },
   {
-    "id": "GHA9",
+    "id": "GHA09",
     "name": "Abdul Issahaku Fatawu",
     "team": "Ghana",
     "type": "player"
@@ -6018,55 +6018,55 @@
     "type": "player"
   },
   {
-    "id": "PAN1",
+    "id": "PAN01",
     "name": "Emblem",
     "team": "Panama",
     "type": "team_badge"
   },
   {
-    "id": "PAN2",
+    "id": "PAN02",
     "name": "Orlando Mosquera",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN3",
+    "id": "PAN03",
     "name": "Luis Mejia",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN4",
+    "id": "PAN04",
     "name": "Fidel Escobar",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN5",
+    "id": "PAN05",
     "name": "Andres Andrade",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN6",
+    "id": "PAN06",
     "name": "Michael Amir Murillo",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN7",
+    "id": "PAN07",
     "name": "Eric Davis",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN8",
+    "id": "PAN08",
     "name": "Jose Cordoba",
     "team": "Panama",
     "type": "player"
   },
   {
-    "id": "PAN9",
+    "id": "PAN09",
     "name": "Cesar Blackman",
     "team": "Panama",
     "type": "player"
@@ -6138,7 +6138,7 @@
     "type": "player"
   },
   {
-    "id": "FWC9",
+    "id": "FWC09",
     "name": "Italy 1934",
     "team": "FIFA World Cup History",
     "type": "fwc_special"
@@ -6204,55 +6204,55 @@
     "type": "fwc_special"
   },
   {
-    "id": "CC-US1",
+    "id": "CC-US01",
     "name": "Lamine Yamal",
     "team": "Spain",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US2",
+    "id": "CC-US02",
     "name": "Joshua Kimmich",
     "team": "Germany",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US3",
+    "id": "CC-US03",
     "name": "Harry Kane",
     "team": "England",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US4",
+    "id": "CC-US04",
     "name": "Santiago Giménez",
     "team": "Mexico",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US5",
+    "id": "CC-US05",
     "name": "Antonee Robinson",
     "team": "USA",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US6",
+    "id": "CC-US06",
     "name": "Jefferson Lerma",
     "team": "Colombia",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US7",
+    "id": "CC-US07",
     "name": "Edson Álvarez",
     "team": "Mexico",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US8",
+    "id": "CC-US08",
     "name": "Virgil van Dijk",
     "team": "Netherlands",
     "type": "cocacola_us"
   },
   {
-    "id": "CC-US9",
+    "id": "CC-US09",
     "name": "Alphonso Davies",
     "team": "Canada",
     "type": "cocacola_us"
@@ -6276,55 +6276,55 @@
     "type": "cocacola_us"
   },
   {
-    "id": "CC-LAM1",
+    "id": "CC-LAM01",
     "name": "Lamine Yamal",
     "team": "Spain",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM2",
+    "id": "CC-LAM02",
     "name": "Joshua Kimmich",
     "team": "Germany",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM3",
+    "id": "CC-LAM03",
     "name": "Harry Kane",
     "team": "England",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM4",
+    "id": "CC-LAM04",
     "name": "Santiago Giménez",
     "team": "Mexico",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM5",
+    "id": "CC-LAM05",
     "name": "Josko Gvardiol",
     "team": "Croatia",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM6",
+    "id": "CC-LAM06",
     "name": "Federico Valverde",
     "team": "Uruguay",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM7",
+    "id": "CC-LAM07",
     "name": "Jefferson Lerma",
     "team": "Colombia",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM8",
+    "id": "CC-LAM08",
     "name": "Enner Valencia",
     "team": "Ecuador",
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-LAM9",
+    "id": "CC-LAM09",
     "name": "Gabriel Magalhães",
     "team": "Brazil",
     "type": "cocacola_lam"
@@ -6360,55 +6360,55 @@
     "type": "cocacola_lam"
   },
   {
-    "id": "CC-RW1",
+    "id": "CC-RW01",
     "name": "Lamine Yamal",
     "team": "Spain",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW2",
+    "id": "CC-RW02",
     "name": "Joshua Kimmich",
     "team": "Germany",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW3",
+    "id": "CC-RW03",
     "name": "Harry Kane",
     "team": "England",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW4",
+    "id": "CC-RW04",
     "name": "Edson Álvarez",
     "team": "Mexico",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW5",
+    "id": "CC-RW05",
     "name": "Josko Gvardiol",
     "team": "Croatia",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW6",
+    "id": "CC-RW06",
     "name": "Federico Valverde",
     "team": "Uruguay",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW7",
+    "id": "CC-RW07",
     "name": "Jefferson Lerma",
     "team": "Colombia",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW8",
+    "id": "CC-RW08",
     "name": "Enner Valencia",
     "team": "Ecuador",
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-RW9",
+    "id": "CC-RW09",
     "name": "Jordan Ayew",
     "team": "Ghana",
     "type": "cocacola_rw"
@@ -6444,55 +6444,55 @@
     "type": "cocacola_rw"
   },
   {
-    "id": "CC-EU1",
+    "id": "CC-EU01",
     "name": "Lamine Yamal",
     "team": "Spain",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU2",
+    "id": "CC-EU02",
     "name": "Joshua Kimmich",
     "team": "Germany",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU3",
+    "id": "CC-EU03",
     "name": "Eduardo Camavinga",
     "team": "France",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU4",
+    "id": "CC-EU04",
     "name": "Josko Gvardiol",
     "team": "Croatia",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU5",
+    "id": "CC-EU05",
     "name": "Federico Valverde",
     "team": "Uruguay",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU6",
+    "id": "CC-EU06",
     "name": "Virgil van Dijk",
     "team": "Netherlands",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU7",
+    "id": "CC-EU07",
     "name": "Alphonso Davies",
     "team": "Canada",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU8",
+    "id": "CC-EU08",
     "name": "Raúl Jiménez",
     "team": "Mexico",
     "type": "cocacola_eu"
   },
   {
-    "id": "CC-EU9",
+    "id": "CC-EU09",
     "name": "William Saliba",
     "team": "France",
     "type": "cocacola_eu"
