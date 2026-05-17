@@ -1,0 +1,12 @@
+Tag: v1.0.0
+Title: v1.0.0 — Complete Album
+
+---
+
+First release of the Panini FIFA World Cup 2026™ Sticker Collectible. Includes:
+
+- Interactive Spanish CLI to manage your album
+- Desktop GUI with dark gaming-inspired theme
+- 1,195 stickers organized in 14 categories
+- Export to PDF, CSV, and TXT
+- Packages for Linux (deb, rpm), Windows (NSIS), and macOS (dmg)

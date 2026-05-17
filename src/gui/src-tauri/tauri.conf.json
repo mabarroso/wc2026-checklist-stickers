@@ -27,13 +27,7 @@
     }
   },
   "plugins": {
-    "opener": {
-      "requireLiteralLeadingDot": false
-    },
-    "fs": {
-      "scope": ["**"]
-    },
-    "dialog": {}
+    "opener": {}
   },
   "bundle": {
     "active": true,
