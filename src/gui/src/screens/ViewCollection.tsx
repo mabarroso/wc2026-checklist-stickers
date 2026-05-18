@@ -20,8 +20,24 @@ const sortOptions: { key: SortOrder; label: string }[] = [
 export function ViewCollectionScreen() {
   const { owned, duplicates, filter, sortOrder, setFilter, setSortOrder, markOwned, markDuplicate, unmarkOwned } = useCollectionStore();
   const [selectedSticker, setSelectedSticker] = useState<string | null>(null);
+  const [teamFilter, setTeamFilter] = useState<string>('all');
 
   const allStickers = useMemo(() => getAllStickers(), []);
+
+  const teamOptions = useMemo(() => {
+    const teams = new Map<string, { team: string; id: string }>();
+    allStickers.forEach((sticker) => {
+      const idFix = sticker.id.replace(/[-0-9]/g, '').substring(0, 3);
+      if (!teams.has(idFix)) {
+        teams.set(idFix, { team: sticker.team, id: idFix });
+      }
+    });
+    const options: { value: string; label: string }[] = [{ value: 'all', label: 'Todos' }];
+    Array.from(teams.values())
+      .sort((a, b) => a.team.localeCompare(b.team))
+      .forEach((t) => options.push({ value: t.id, label: `${t.id} - ${t.team}` }));
+    return options;
+  }, [allStickers]);
 
   const filteredStickers = useMemo(() => {
     const filtered = allStickers.filter((sticker) => {
@@ -40,25 +56,34 @@ export function ViewCollectionScreen() {
       }
     });
 
+    if (teamFilter !== 'all') {
+      return filtered.filter((sticker) => {
+        const idFix = sticker.id.replace(/[-0-9]/g, '').substring(0, 3);
+        return idFix === teamFilter;
+      });
+    }
+
     if (sortOrder === 'cromo') {
       return [...filtered].sort((a, b) => a.id.localeCompare(b.id));
     }
 
     return filtered;
-  }, [allStickers, owned, duplicates, filter, sortOrder]);
+  }, [allStickers, owned, duplicates, filter, sortOrder, teamFilter]);
 
   const handleCardClick = useCallback((stickerId: string) => {
-    const currentOwned = owned[stickerId] || 0;
-    if (currentOwned === 0) {
-      markOwned(stickerId);
-    }
     setSelectedSticker(stickerId);
-  }, [owned, markOwned, setSelectedSticker]);
+  }, []);
 
   const handleRemoveFromAlbum = (stickerId: string) => {
     const ownedQty = owned[stickerId] || 0;
     if (ownedQty > 0) {
       unmarkOwned(stickerId);
+    }
+    const dupQty = duplicates[stickerId] || 0;
+    if (dupQty > 0) {
+      const newDuplicates = { ...duplicates };
+      delete newDuplicates[stickerId];
+      useCollectionStore.getState().setDuplicates(newDuplicates);
     }
     setSelectedSticker(null);
   };
@@ -97,6 +122,25 @@ export function ViewCollectionScreen() {
           <div className="flex-1" />
           <div className="relative">
             <select
+              value={teamFilter}
+              onChange={(e) => setTeamFilter(e.target.value)}
+              className="appearance-none bg-[var(--color-surface)] text-[var(--color-white)] font-semibold px-4 py-2 pr-10 rounded-lg cursor-pointer border-2 border-[var(--color-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)] focus:ring-opacity-50 mr-2"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 0.75rem center',
+                backgroundSize: '1rem',
+              }}
+            >
+              {teamOptions.map((opt) => (
+                <option key={opt.value} value={opt.value} className="bg-[var(--color-surface)] text-[var(--color-white)]">
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="relative">
+            <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value as SortOrder)}
               className="appearance-none bg-[var(--color-surface)] text-[var(--color-cyan)] font-semibold px-4 py-2 pr-10 rounded-lg cursor-pointer border-2 border-[var(--color-cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)] focus:ring-opacity-50"
@@ -129,7 +173,7 @@ export function ViewCollectionScreen() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 className={`cursor-pointer rounded-3xl overflow-hidden transition-all duration-200 ${
-                  selectedSticker === sticker.id ? 'ring-2 ring-[var(--color-cyan)]' : ''
+                  selectedSticker === sticker.id ? 'ring-4 ring-[var(--color-lime)] ring-offset-2 ring-offset-[var(--color-bg)]' : ''
                 }`}
               >
                 <Card
@@ -159,6 +203,40 @@ export function ViewCollectionScreen() {
                       <span className="text-3xl">⚽</span>
                       <span className="text-xs font-mono text-[var(--text-muted)] mt-1">{sticker.id}</span>
                     </div>
+                    {selectedSticker === sticker.id && (
+                      <div className="flex justify-center gap-1 mt-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            markOwned(sticker.id, 1);
+                          }}
+                          className="p-1.5 rounded-lg bg-[var(--color-cyan)] text-[var(--color-bg)] hover:opacity-80 transition-opacity"
+                          title="Añadir al álbum"
+                        >
+                          <Plus size={14} />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleRemoveFromAlbum(sticker.id);
+                          }}
+                          className="p-1.5 rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] hover:bg-red-500 transition-colors"
+                          title="Quitar del álbum"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            markDuplicate(sticker.id, 1);
+                          }}
+                          className="p-1.5 rounded-lg bg-[var(--color-orange)] text-[var(--color-bg)] hover:opacity-80 transition-opacity"
+                          title="Marcar como repetida"
+                        >
+                          <Repeat size={14} />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </Card>
               </motion.div>
@@ -166,50 +244,6 @@ export function ViewCollectionScreen() {
           </AnimatePresence>
         </motion.div>
       </div>
-
-      {selectedSticker && (
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 20 }}
-          className="w-80 flex-shrink-0"
-        >
-          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] p-6">
-            <h3 className="text-lg font-semibold text-[var(--color-white)] mb-4">
-              Acciones
-            </h3>
-            <div className="space-y-3">
-              <Button
-                onClick={() => {
-                  markOwned(selectedSticker, 1);
-                }}
-                className="w-full"
-              >
-                <Plus size={16} className="mr-2" />
-                Añadir al álbum
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => handleRemoveFromAlbum(selectedSticker)}
-                className="w-full"
-              >
-                <Trash2 size={16} className="mr-2" />
-                Quitar del álbum
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  markDuplicate(selectedSticker, 1);
-                }}
-                className="w-full"
-              >
-                <Repeat size={16} className="mr-2" />
-                Marcar como repetida
-              </Button>
-            </div>
-          </Card>
-        </motion.div>
-      )}
     </div>
   );
 }
