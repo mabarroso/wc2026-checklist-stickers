@@ -2,6 +2,11 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import { PdfExporter, CsvExporter, TxtExporter } from '../exporters';
 import { ConfStorageAdapter } from '../storage/ConfStorageAdapter';
+import {
+  filterStickersByExportSource,
+  getExportSourceLabel,
+  type ExportSourceScope,
+} from '../exporters/export-source-filter';
 
 export type ExportFormat = 'pdf' | 'csv' | 'txt';
 
@@ -45,12 +50,35 @@ export class ExportMenu {
 
     const missingStickers = allStickers.filter(s => state.getOwnedQuantity(s.id) === 0);
 
-    if (missingStickers.length === 0) {
+    const sourceAnswers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'scope',
+        message: '¿Qué origen quieres exportar?',
+        choices: [
+          { name: 'Panini', value: 'panini' },
+          { name: 'Extra', value: 'extra' },
+          { name: 'Coca cola', value: 'coca_cola' },
+          { name: "McDonald's", value: 'mcdonalds' },
+          { name: 'Todos', value: 'todos' },
+        ],
+        pageSize: 5,
+      },
+    ]);
+
+    const selectedScope = sourceAnswers.scope as ExportSourceScope;
+    const filteredMissingStickers = filterStickersByExportSource(missingStickers, selectedScope);
+
+    if (filteredMissingStickers.length === 0) {
       console.log(chalk.green('\n🎉 ¡Felicidades! No tienes cromos faltantes.\n'));
       return null;
     }
 
-    console.log(chalk.white(`Se encontraron ${missingStickers.length} cromo(s) faltante(s).\n`));
+    console.log(
+      chalk.white(
+        `Se encontraron ${filteredMissingStickers.length} cromo(s) faltante(s) para ${getExportSourceLabel(selectedScope)}.\n`,
+      ),
+    );
 
     const answers = await inquirer.prompt([
       {
@@ -73,17 +101,17 @@ export class ExportMenu {
     try {
       switch (format) {
         case 'pdf': {
-          const exporter = new PdfExporter({ stickers: missingStickers });
+          const exporter = new PdfExporter({ stickers: filteredMissingStickers });
           fullPath = await exporter.export(destination);
           break;
         }
         case 'csv': {
-          const exporter = new CsvExporter({ stickers: missingStickers });
+          const exporter = new CsvExporter({ stickers: filteredMissingStickers });
           fullPath = await exporter.export(destination);
           break;
         }
         case 'txt': {
-          const exporter = new TxtExporter({ stickers: missingStickers });
+          const exporter = new TxtExporter({ stickers: filteredMissingStickers });
           fullPath = await exporter.export(destination);
           break;
         }

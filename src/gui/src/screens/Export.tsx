@@ -12,6 +12,11 @@ import {
   parseBackup,
   serializeBackup,
 } from '../lib/backup-file';
+import {
+  filterGuiStickersByExportSource,
+  getGuiExportSourceLabel,
+  type GuiExportSourceScope,
+} from '../lib/export-source-filter';
 
 const formats = [
   { id: 'pdf', label: 'PDF', icon: FileText, color: 'var(--color-red)', desc: 'Lista para imprimir' },
@@ -27,6 +32,7 @@ export function ExportScreen() {
   const [error, setError] = useState<string | null>(null);
   const [backupMessage, setBackupMessage] = useState<string | null>(null);
   const [backupBusy, setBackupBusy] = useState(false);
+  const [sourceScope, setSourceScope] = useState<GuiExportSourceScope>('todos');
 
   const allStickers = useMemo(() => getAllStickers(), []);
 
@@ -34,7 +40,9 @@ export function ExportScreen() {
     return allStickers.filter((s) => !owned[s.id]);
   }, [allStickers, owned]);
 
-  const missingCount = missing.length;
+  const filteredMissing = useMemo(() => filterGuiStickersByExportSource(missing, sourceScope), [missing, sourceScope]);
+
+  const missingCount = filteredMissing.length;
 
   const hasData = useMemo(() => {
     const ownedCount = Object.values(owned).some((qty) => qty > 0);
@@ -49,15 +57,21 @@ export function ExportScreen() {
 
     try {
       let result: string;
+      if (filteredMissing.length === 0) {
+        setExporting(false);
+        setError(`No hay cromos faltantes para ${getGuiExportSourceLabel(sourceScope)}.`);
+        return;
+      }
+
       switch (format) {
         case 'pdf':
-          result = await invoke('export_pdf', { stickers: missing });
+          result = await invoke('export_pdf', { stickers: filteredMissing });
           break;
         case 'csv':
-          result = await invoke('export_csv', { stickers: missing });
+          result = await invoke('export_csv', { stickers: filteredMissing });
           break;
         case 'txt':
-          result = await invoke('export_txt', { stickers: missing });
+          result = await invoke('export_txt', { stickers: filteredMissing });
           break;
         default:
           throw new Error(`Formato no soportado: ${format}`);
@@ -190,8 +204,15 @@ export function ExportScreen() {
   };
 
   const getPreview = () => {
-    return missing.slice(0, 5).map((s) => `${s.id},${s.name},${s.team}`).join('\n');
+    return filteredMissing.slice(0, 5).map((s) => `${s.id},${s.name},${s.team}`).join('\n');
   };
+
+  const collectionSelectStyle = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right 0.75rem center',
+    backgroundSize: '1rem',
+  } as const;
 
   return (
     <div>
@@ -205,28 +226,63 @@ export function ExportScreen() {
         Exporta tus cromos faltantes en diferentes formatos
       </p>
 
+      <Panel className="p-6 mb-6">
+        <h2 className="text-lg font-semibold mb-4 text-[var(--color-white)]">
+          Copia de seguridad
+        </h2>
+        <p className="text-sm text-[var(--color-white)] opacity-70 mb-2">
+          Guarda o abre tu colección completa en archivos .fwc26
+        </p>
+        <p className="text-xs text-[var(--color-white)] opacity-50 mb-4">
+          La copia de seguridad siempre incluye toda la colección actual.
+        </p>
+        <div className="flex gap-3 flex-wrap">
+          <Button variant="secondary" onClick={handleSaveBackup} disabled={backupBusy}>
+            <Save size={16} className="mr-2" />
+            Guardar backup
+          </Button>
+          <Button variant="secondary" onClick={handleOpenBackup} disabled={backupBusy}>
+            <Upload size={16} className="mr-2" />
+            Abrir backup
+          </Button>
+        </div>
+        {backupMessage && (
+          <p className="text-sm text-[var(--color-green)] mt-4">{backupMessage}</p>
+        )}
+      </Panel>
+
       <div className="flex gap-6">
         <div className="flex-1">
           <Panel className="p-6 mb-6">
             <h2 className="text-lg font-semibold mb-4 text-[var(--color-white)]">
-              Copia de seguridad
+              Generar checklist de faltantes
             </h2>
             <p className="text-sm text-[var(--color-white)] opacity-70 mb-4">
-              Guarda o abre tu colección en archivos .fwc26
+              Elige el origen de los cromos faltantes y el formato de exportación
             </p>
-            <div className="flex gap-3 flex-wrap">
-              <Button variant="secondary" onClick={handleSaveBackup} disabled={backupBusy}>
-                <Save size={16} className="mr-2" />
-                Guardar backup
-              </Button>
-              <Button variant="secondary" onClick={handleOpenBackup} disabled={backupBusy}>
-                <Upload size={16} className="mr-2" />
-                Abrir backup
-              </Button>
+            <div className="flex items-center gap-3 flex-wrap">
+              <label htmlFor="source-scope" className="text-sm text-[var(--color-white)] opacity-80">
+                Origen a exportar
+              </label>
+              <div className="relative">
+                <select
+                  id="source-scope"
+                  value={sourceScope}
+                  onChange={(event) => setSourceScope(event.target.value as GuiExportSourceScope)}
+                  className="appearance-none bg-[var(--color-surface)] text-[var(--color-white)] font-semibold px-4 py-2 pr-10 rounded-lg cursor-pointer border-2 border-[var(--color-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)] focus:ring-opacity-50"
+                  style={collectionSelectStyle}
+                >
+                  <option value="panini" className="bg-[var(--color-surface)] text-[var(--color-white)]">Panini</option>
+                  <option value="extra" className="bg-[var(--color-surface)] text-[var(--color-white)]">Extra</option>
+                  <option value="coca_cola" className="bg-[var(--color-surface)] text-[var(--color-white)]">Coca cola</option>
+                  <option value="mcdonalds" className="bg-[var(--color-surface)] text-[var(--color-white)]">McDonald's</option>
+                  <option value="todos" className="bg-[var(--color-surface)] text-[var(--color-white)]">Todos</option>
+                </select>
+              </div>
+              <span className="text-xs text-[var(--color-white)] opacity-60">
+                Seleccionado: {getGuiExportSourceLabel(sourceScope)}
+              </span>
             </div>
-            {backupMessage && (
-              <p className="text-sm text-[var(--color-green)] mt-4">{backupMessage}</p>
-            )}
           </Panel>
 
           <div className="grid grid-cols-3 gap-4 mb-6">
