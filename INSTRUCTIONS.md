@@ -132,11 +132,12 @@ Follow **Arrange-Act-Assert (AAA)** pattern.
 This project uses **OpenSpec** for change management:
 
 ```bash
-openspec status                    # View current changes
-openspec new change <name>         # Start a new change
-openspec continue                  # Advance to next artifact
-openspec verify <change>           # Verify implementation
-openspec archive <change>          # Archive completed change
+openspec list                               # View current changes
+openspec new change <name>                  # Start a new change
+openspec status --change <name>             # Check artifact progress
+openspec instructions <artifact> --change <name>  # Advance to next artifact guidance
+openspec validate <change>                  # Verify implementation
+openspec archive <change>                   # Archive completed change
 ```
 
 See `.opencode/skills/` for available commands.

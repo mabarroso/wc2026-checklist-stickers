@@ -95,10 +95,12 @@ bun run typecheck # TypeScript check
 Use `openspec` commands for all changes:
 
 ```bash
-openspec new change <name>   # Create change
-openspec continue            # Next artifact
-openspec verify <change>     # Verify implementation
-openspec archive <change>    # Archive completed change
+openspec list                               # View active changes
+openspec new change <name>                  # Create change
+openspec status --change <name>             # Check artifact progress
+openspec instructions <artifact> --change <name>  # Show next artifact guidance
+openspec validate <change>                  # Verify implementation
+openspec archive <change>                   # Archive completed change
 ```
 
 Never commit directly to main. Always work through an OpenSpec change.
