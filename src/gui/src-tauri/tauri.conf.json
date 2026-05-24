@@ -15,8 +15,6 @@
         "title": "Panini WC 2026 Checklist",
         "width": 1400,
         "height": 900,
-        "minWidth": 1024,
-        "minHeight": 768,
         "resizable": true,
         "fullscreen": false,
         "center": true

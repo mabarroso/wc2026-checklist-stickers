@@ -9,7 +9,7 @@ A CLI application to track your Panini FIFA World Cup 2026 sticker collection. M
 - Filter stickers by status: all, owned, missing, duplicated
 - Search stickers by number, name, team, or group
 - Export missing stickers to PDF (printable checklist), CSV, or TXT
-- Multi-platform: Linux, Unix, macOS
+- Multi-platform: Linux, Unix, macOS, Android, iOS
 
 ## Quick Start
 
@@ -43,14 +43,30 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source ~/.cargo/env
 ```
 
-**Build GUI:**
+**Build GUI (Desktop):**
 
 ```bash
 cd src/gui
 bun run tauri build
 ```
 
-**Outputs:**
+**Build GUI (Android):**
+
+```bash
+cd src/gui
+bun run tauri android build
+# Output: src/gui/src-tauri/gen/android/app/build/outputs/apk/universal/release/
+```
+
+**Build GUI (iOS — requires macOS/Xcode):**
+
+```bash
+cd src/gui
+npx tauri ios init        # One-time setup
+bun run tauri ios build   # Build IPA
+```
+
+**Outputs (Desktop):**
 
 | Platform | File | Location |
 |----------|------|----------|
@@ -73,6 +89,9 @@ sudo rpm -i "Panini WC 2026-1.0.0-1.x86_64.rpm"
 
 # macOS
 # Mount the .dmg and drag to Applications
+
+# Android
+adb install path/to/app-universal-release.apk
 ```
 
 **Web GUI (no install):**
@@ -81,16 +100,6 @@ sudo rpm -i "Panini WC 2026-1.0.0-1.x86_64.rpm"
 cd src/gui
 bun run dev     # Development server at http://localhost:5173
 bun run build   # Static build in src/gui/dist/
-```
-
-### Configurar Targets Adicionales
-
-Editar `src/gui/src-tauri/tauri.conf.json`:
-
-```json
-"bundle": {
-  "targets": ["deb", "rpm", "nsis", "dmg"]
-}
 ```
 
 ## CLI Menu Options
@@ -163,7 +172,7 @@ Auto-named with date stamp: `faltantes_YYYY-MM-DD.*`
 - **Bun** — runtime and build tool
 - **TypeScript** — type-safe codebase
 - **esbuild** — standalone binary compilation
-- **Tauri** — desktop GUI (Rust backend)
+- **Tauri** — desktop + mobile GUI (Rust backend)
 - **printpdf** — PDF generation (GUI)
 - **PDFKit** — PDF generation (CLI)
 - **Inquirer** — interactive CLI menus
@@ -188,12 +197,15 @@ tests/
 ## Commands
 
 ```bash
-bun run dev         # Run CLI in development mode
-bun run build       # Build standalone binary
-bun test            # Run tests
-bun run typecheck   # TypeScript check
-bun run gui:web     # Run GUI web in development (Vite)
-bun run gui:desktop # Run GUI desktop in development (Tauri)
+bun run dev           # Run CLI in development mode
+bun run build         # Build standalone binary
+bun test              # Run tests
+bun run typecheck     # TypeScript check
+bun run gui:web       # Run GUI web in development (Vite)
+bun run gui:desktop   # Run GUI desktop in development (Tauri)
+bun run tauri         # Run Tauri CLI
+bun run tauri:android # Build Android APK
+bun run tauri:ios     # Build iOS IPA (macOS only)
 ```
 
 ## Data Storage

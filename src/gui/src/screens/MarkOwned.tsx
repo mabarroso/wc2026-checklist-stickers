@@ -123,7 +123,7 @@ export function MarkOwnedScreen() {
               <Button
                 variant="secondary"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="!p-2"
+                className="!p-3"
               >
                 <Minus size={16} />
               </Button>
@@ -131,7 +131,7 @@ export function MarkOwnedScreen() {
               <Button
                 variant="secondary"
                 onClick={() => setQuantity((q) => q + 1)}
-                className="!p-2"
+                className="!p-3"
               >
                 <Plus size={16} />
               </Button>
@@ -177,9 +177,9 @@ export function MarkOwnedScreen() {
                   </div>
                   <button
                     onClick={() => handleUndo(item.id)}
-                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    className="p-3 hover:bg-white/10 rounded-lg transition-colors"
                   >
-                    <X size={14} className="text-[var(--color-red)]" />
+                    <X size={16} className="text-[var(--color-red)]" />
                   </button>
                 </motion.div>
               ))}

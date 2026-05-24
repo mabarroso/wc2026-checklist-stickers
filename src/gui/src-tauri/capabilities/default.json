@@ -1,5 +1,6 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
+  "platforms": ["linux", "macOS", "windows", "android", "iOS"],
   "identifier": "default",
   "description": "enables the default permissions",
   "windows": [

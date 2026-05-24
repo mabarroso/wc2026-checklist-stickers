@@ -9,7 +9,7 @@ Aplicación CLI para gestionar tu álbum de cromos Panini del Mundial 2026. Regi
 - Filtrar cromos por estado: todos, obtenidos, faltantes, repetidos
 - Buscar cromos por número, nombre, equipo o grupo
 - Exportar cromos faltantes a PDF (lista imprimible), CSV o TXT
-- Multiplataforma: Linux, Unix, macOS
+- Multiplataforma: Linux, Unix, macOS, Android, iOS
 
 ## Inicio Rápido
 
@@ -17,6 +17,40 @@ Aplicación CLI para gestionar tu álbum de cromos Panini del Mundial 2026. Regi
 bun install
 bun run build
 ./dist/panini-stickers
+```
+
+## Compilar GUI (Tauri)
+
+Requiere Rust instalado:
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
+```
+
+**Desktop:**
+```bash
+cd src/gui
+bun run tauri build
+```
+
+**Android:**
+```bash
+cd src/gui
+bun run tauri android build
+```
+
+**iOS (requiere macOS/Xcode):**
+```bash
+cd src/gui
+npx tauri ios init
+bun run tauri ios build
+```
+
+**Web (sin instalación):**
+```bash
+cd src/gui
+bun run dev       # http://localhost:5173
+bun run build     # Compilación estática en src/gui/dist/
 ```
 
 ## Menús de la CLI
@@ -89,6 +123,7 @@ Nombrado automático con fecha: `faltantes_YYYY-MM-DD.*`
 - **Bun** — runtime y herramienta de compilación
 - **TypeScript** — código con tipos seguros
 - **esbuild** — compilación a binario standalone
+- **Tauri** — GUI desktop + mobile (backend Rust)
 - **PDFKit** — generación de PDF
 - **Inquirer** — menús interactivos de CLI
 - **Chalk** — colores en terminal
@@ -112,10 +147,15 @@ tests/
 ## Comandos
 
 ```bash
-bun run dev       # Modo desarrollo
-bun run build     # Generar binario standalone
-bun test          # Ejecutar tests
-bun run typecheck # Verificación TypeScript
+bun run dev           # Modo desarrollo
+bun run build         # Generar binario standalone
+bun test              # Ejecutar tests
+bun run typecheck     # Verificación TypeScript
+bun run gui:web       # GUI web en desarrollo (Vite)
+bun run gui:desktop   # GUI desktop en desarrollo (Tauri)
+bun run tauri         # Ejecutar Tauri CLI
+bun run tauri:android # Compilar APK Android
+bun run tauri:ios     # Compilar IPA iOS (solo macOS)
 ```
 
 ## Almacenamiento de Datos

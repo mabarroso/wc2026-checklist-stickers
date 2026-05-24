@@ -107,7 +107,7 @@ export function MarkDuplicateScreen() {
               <Button
                 variant="secondary"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="!p-2"
+                className="!p-3"
               >
                 <span className="text-lg">-</span>
               </Button>
@@ -115,7 +115,7 @@ export function MarkDuplicateScreen() {
               <Button
                 variant="secondary"
                 onClick={() => setQuantity((q) => q + 1)}
-                className="!p-2"
+                className="!p-3"
               >
                 <span className="text-lg">+</span>
               </Button>

@@ -376,6 +376,7 @@ export function ExportScreen() {
                     console.error('Error al abrir carpeta:', err);
                   }
                 }}
+                className="hidden md:inline-flex"
               >
                 <FolderOpen size={16} className="mr-2" />
                 Abrir Carpeta

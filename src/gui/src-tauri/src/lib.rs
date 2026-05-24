@@ -1,9 +1,11 @@
-use tauri::{Manager, command};
+use tauri::{AppHandle, Manager, command};
 use serde::{Deserialize, Serialize};
 use std::fs::{self, File, create_dir_all};
 use std::io::BufWriter;
-use std::process::Command;
 use printpdf::*;
+
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
+use std::process::Command;
 
 use std::path::PathBuf;
 
@@ -14,14 +16,29 @@ struct Sticker {
     team: String,
 }
 
+fn get_export_dir(app: &AppHandle) -> Result<PathBuf, String> {
+    #[cfg(any(target_os = "android", target_os = "ios"))]
+    {
+        let data_dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
+        Ok(data_dir)
+    }
+
+    #[cfg(not(any(target_os = "android", target_os = "ios")))]
+    {
+        let _ = &app;
+        let downloads_dir = dirs::download_dir()
+            .ok_or_else(|| "No se encontró la carpeta de descargas".to_string())?;
+        Ok(downloads_dir)
+    }
+}
+
 #[command]
-fn export_pdf(stickers: Vec<Sticker>) -> Result<String, String> {
-    let downloads_dir = dirs::download_dir()
-        .ok_or_else(|| "No se encontró la carpeta de descargas".to_string())?;
+fn export_pdf(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> {
+    let export_dir = get_export_dir(&app)?;
 
-    create_dir_all(&downloads_dir).map_err(|e| format!("Error al crear directorio: {}", e))?;
+    create_dir_all(&export_dir).map_err(|e| format!("Error al crear directorio: {}", e))?;
 
-    let file_path: PathBuf = downloads_dir.join("faltantes.pdf");
+    let file_path: PathBuf = export_dir.join("faltantes.pdf");
 
     let (doc, page1, layer1) = PdfDocument::new(
         "Cromos Faltantes - Panini WC 2026",
@@ -82,11 +99,10 @@ fn export_pdf(stickers: Vec<Sticker>) -> Result<String, String> {
 }
 
 #[command]
-fn export_csv(stickers: Vec<Sticker>) -> Result<String, String> {
-    let downloads_dir = dirs::download_dir()
-        .ok_or_else(|| "No se encontró la carpeta de descargas".to_string())?;
+fn export_csv(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> {
+    let export_dir = get_export_dir(&app)?;
 
-    let file_path = downloads_dir.join("faltantes.csv");
+    let file_path = export_dir.join("faltantes.csv");
 
     let mut content = String::from("ID,Nombre,Equipo\n");
     for sticker in stickers {
@@ -100,11 +116,10 @@ fn export_csv(stickers: Vec<Sticker>) -> Result<String, String> {
 }
 
 #[command]
-fn export_txt(stickers: Vec<Sticker>) -> Result<String, String> {
-    let downloads_dir = dirs::download_dir()
-        .ok_or_else(|| "No se encontró la carpeta de descargas".to_string())?;
+fn export_txt(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> {
+    let export_dir = get_export_dir(&app)?;
 
-    let file_path = downloads_dir.join("faltantes.txt");
+    let file_path = export_dir.join("faltantes.txt");
 
     let mut content = String::from("PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES\n\n");
     for sticker in stickers {
@@ -117,6 +132,7 @@ fn export_txt(stickers: Vec<Sticker>) -> Result<String, String> {
     Ok(file_path.to_string_lossy().to_string())
 }
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 #[cfg(target_os = "windows")]
 fn open_folder(path: &std::path::Path) -> Result<(), String> {
     Command::new("explorer")
@@ -126,6 +142,7 @@ fn open_folder(path: &std::path::Path) -> Result<(), String> {
     Ok(())
 }
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 #[cfg(target_os = "macos")]
 fn open_folder(path: &std::path::Path) -> Result<(), String> {
     Command::new("open")
@@ -135,6 +152,7 @@ fn open_folder(path: &std::path::Path) -> Result<(), String> {
     Ok(())
 }
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 #[cfg(target_os = "linux")]
 fn open_folder(path: &std::path::Path) -> Result<(), String> {
     Command::new("xdg-open")
@@ -144,12 +162,12 @@ fn open_folder(path: &std::path::Path) -> Result<(), String> {
     Ok(())
 }
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 #[command]
-fn open_downloads_folder() -> Result<(), String> {
-    let downloads_dir = dirs::download_dir()
-        .ok_or_else(|| "No se encontró la carpeta de descargas".to_string())?;
+fn open_downloads_folder(app: AppHandle) -> Result<(), String> {
+    let export_dir = get_export_dir(&app)?;
 
-    open_folder(&downloads_dir)
+    open_folder(&export_dir)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -158,7 +176,13 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
-        .invoke_handler(tauri::generate_handler![export_pdf, export_csv, export_txt, open_downloads_folder])
+        .invoke_handler(tauri::generate_handler![
+            export_pdf,
+            export_csv,
+            export_txt,
+            #[cfg(not(any(target_os = "android", target_os = "ios")))]
+            open_downloads_folder,
+        ])
         .setup(|app| {
             let window = app.get_webview_window("main").unwrap();
             window.set_title("Panini WC 2026 Checklist").unwrap();

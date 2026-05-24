@@ -18,6 +18,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Android mobile support: APK build via `npx tauri android build`, app data dir for exports, hidden "Abrir Carpeta" button on mobile
+- iOS placeholder: scaffolding structure created (requires macOS/Xcode to complete)
+- Responsive UI: desktop sidebar + mobile bottom tab bar, `pb-16` clearance on mobile, 44px+ touch targets
+- New scripts: `bun run tauri`, `bun run tauri:android`, `bun run tauri:ios`
+- Platform icons: Android mipmap (`ic_launcher`) and iOS xcassets
+
+### Changed
+
+- Rust backend: `get_export_dir()` uses `app_data_dir()` on mobile, `download_dir()` on desktop
+- `Cargo.toml`: `dirs` crate moved to target-specific conditional dependency
+- `tauri.conf.json`: `minWidth`/`minHeight` removed; `bundle.targets` scoped to desktop only (mobile targets implicit in Tauri 2)
+- `capabilities/default.json`: added `platforms` list for linux/macOS/windows/android/iOS
+- `Sidebar.tsx`: responsive — desktop sidebar `hidden md:flex`, mobile tab bar `fixed md:hidden`
+
 ## [1.0.4] - 2026-05-24
 
 ### Fixed

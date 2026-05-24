@@ -125,7 +125,7 @@ export function SearchScreen() {
                             markOwned(sticker.id);
                           }}
                           disabled={ownedQty > 0}
-                          className={`text-xs px-2 py-1 rounded transition-all ${
+                          className={`text-sm px-3 py-2 rounded transition-all ${
                             ownedQty > 0
                               ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
                               : 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)] hover:bg-[var(--color-cyan)]/30'
@@ -139,7 +139,7 @@ export function SearchScreen() {
                             unmarkOwned(sticker.id);
                           }}
                           disabled={ownedQty === 0}
-                          className={`text-xs px-2 py-1 rounded transition-all ${
+                          className={`text-sm px-3 py-2 rounded transition-all ${
                             ownedQty === 0
                               ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
                               : 'bg-[var(--color-white)]/10 text-[var(--color-white)] hover:bg-[var(--color-white)]/20'
@@ -153,7 +153,7 @@ export function SearchScreen() {
                             markDuplicate(sticker.id);
                           }}
                           disabled={dupQty > 0}
-                          className={`text-xs px-2 py-1 rounded transition-all ${
+                          className={`text-sm px-3 py-2 rounded transition-all ${
                             dupQty > 0
                               ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
                               : 'bg-[var(--color-orange)]/20 text-[var(--color-orange)] hover:bg-[var(--color-orange)]/30'
