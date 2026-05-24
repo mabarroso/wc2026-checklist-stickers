@@ -2,7 +2,7 @@ import type { Sticker } from '../data/stickers';
 
 export type GuiExportSourceScope = 'panini' | 'extra' | 'coca_cola' | 'mcdonalds' | 'todos';
 
-const PANINI_TYPES = new Set<string>(['logo', 'fwc_special', 'team_badge', 'player', 'panini_extra']);
+const PANINI_ID_PATTERN = /^[A-Za-z]{3}\d{2}$/;
 const EXTRA_TYPES = new Set<string>(['extra_base', 'extra_bronze', 'extra_silver', 'extra_gold']);
 const COCA_COLA_TYPES = new Set<string>(['cocacola_us', 'cocacola_lam', 'cocacola_rw', 'cocacola_eu']);
 
@@ -20,7 +20,7 @@ export function filterGuiStickersByExportSource(stickers: Sticker[], scope: stri
 
   switch (normalizedScope) {
     case 'panini':
-      return stickers.filter((sticker) => PANINI_TYPES.has(sticker.type));
+      return stickers.filter((sticker) => PANINI_ID_PATTERN.test(sticker.id));
     case 'extra':
       return stickers.filter((sticker) => EXTRA_TYPES.has(sticker.type));
     case 'coca_cola':

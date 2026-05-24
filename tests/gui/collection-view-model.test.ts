@@ -33,7 +33,7 @@ describe('collection view model', () => {
     const cocaOptions = buildTeamOptions(stickers, 'Coca Cola');
     const allOptions = buildTeamOptions(stickers, 'Todas');
 
-    expect(paniniOptions.map((o) => o.value)).toEqual(['all', 'ARG', 'MEX']);
+    expect(paniniOptions.map((o) => o.value)).toEqual(['all', 'ARG', 'LEG', 'MEX']);
     expect(cocaOptions.map((o) => o.value)).toEqual(['all', 'CC-EU', 'CC-US']);
     expect(allOptions.map((o) => o.value)).toEqual(['all', 'ARG', 'AUS', 'CC-EU', 'CC-US', 'LEG', 'MEX']);
   });

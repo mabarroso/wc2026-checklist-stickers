@@ -4,11 +4,56 @@ import { getAllStickers } from '../../data/stickers';
 import type { Sticker } from '../../domain/entities/Sticker';
 import type { CollectionState } from '../../domain/entities/CollectionState';
 
+const PANINI_ID_PATTERN = /^[A-Za-z]{3}\d{2}$/;
+
+type SectionFilter = 'todas' | 'panini' | 'coca_cola' | 'mcdonalds' | 'extras';
+
 export type ViewFilter = 'all' | 'missing' | 'owned' | 'duplicates' | 'back';
 
+function applySectionFilter(stickers: Sticker[], section: SectionFilter): Sticker[] {
+  switch (section) {
+    case 'panini':
+      return stickers.filter((s) => PANINI_ID_PATTERN.test(s.id));
+    case 'coca_cola':
+      return stickers.filter((s) => s.id.startsWith('CC-'));
+    case 'mcdonalds':
+      return stickers.filter((s) => s.id.endsWith('mc'));
+    case 'extras': {
+      return stickers.filter((s) => {
+        if (s.id.startsWith('CC-')) return false;
+        if (s.id.endsWith('mc')) return false;
+        if (PANINI_ID_PATTERN.test(s.id)) return false;
+        return true;
+      });
+    }
+    default:
+      return stickers;
+  }
+}
+
 export class ViewCollectionMenu {
+  private selectedSection: SectionFilter = 'todas';
+
   async show(_state: CollectionState): Promise<ViewFilter> {
-    const answers = await inquirer.prompt([
+    const sectionAnswer = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'section',
+        message: chalk.cyan('¿Qué sección quieres ver?'),
+        choices: [
+          { name: '📋 Todas las secciones', value: 'todas' },
+          { name: '🏆 Panini', value: 'panini' },
+          { name: '🥤 Coca Cola', value: 'coca_cola' },
+          { name: '🍔 McDonald\'s', value: 'mcdonalds' },
+          { name: '✨ Extras', value: 'extras' },
+        ],
+        pageSize: 5,
+      },
+    ]);
+
+    this.selectedSection = sectionAnswer.section as SectionFilter;
+
+    const filterAnswer = await inquirer.prompt([
       {
         type: 'list',
         name: 'filter',
@@ -24,19 +69,19 @@ export class ViewCollectionMenu {
       },
     ]);
 
-    return answers.filter as ViewFilter;
+    return filterAnswer.filter as ViewFilter;
   }
 
   async displayStickers(stickers: CollectionState | Sticker[], filter: ViewFilter, allStickers: ReturnType<typeof getAllStickers>): Promise<void> {
     const state = filter === 'all' ? null : (stickers as CollectionState);
-    let displayStickers = allStickers;
+    let displayStickers = applySectionFilter(allStickers, this.selectedSection);
 
     if (filter === 'missing' && state) {
-      displayStickers = allStickers.filter(s => state.getOwnedQuantity(s.id) === 0);
+      displayStickers = displayStickers.filter(s => state.getOwnedQuantity(s.id) === 0);
     } else if (filter === 'owned' && state) {
-      displayStickers = allStickers.filter(s => state.getOwnedQuantity(s.id) > 0);
+      displayStickers = displayStickers.filter(s => state.getOwnedQuantity(s.id) > 0);
     } else if (filter === 'duplicates' && state) {
-      displayStickers = allStickers.filter(s => state.getDuplicateQuantity(s.id) > 0);
+      displayStickers = displayStickers.filter(s => state.getDuplicateQuantity(s.id) > 0);
     }
 
     const pageSize = 20;

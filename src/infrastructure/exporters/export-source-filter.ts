@@ -3,13 +3,7 @@ import { StickerType } from '../../domain/value-objects/StickerType';
 
 export type ExportSourceScope = 'panini' | 'extra' | 'coca_cola' | 'mcdonalds' | 'todos';
 
-const PANINI_TYPES = new Set<StickerType>([
-  StickerType.LOGO,
-  StickerType.FWC_SPECIAL,
-  StickerType.TEAM_BADGE,
-  StickerType.PLAYER,
-  StickerType.PANINI_EXTRA,
-]);
+const PANINI_ID_PATTERN = /^[A-Za-z]{3}\d{2}$/;
 
 const EXTRA_TYPES = new Set<StickerType>([
   StickerType.EXTRA_BASE,
@@ -39,7 +33,7 @@ export function filterStickersByExportSource(stickers: Sticker[], scope: string)
 
   switch (normalizedScope) {
     case 'panini':
-      return stickers.filter((sticker) => PANINI_TYPES.has(sticker.type));
+      return stickers.filter((sticker) => PANINI_ID_PATTERN.test(sticker.id));
     case 'extra':
       return stickers.filter((sticker) => EXTRA_TYPES.has(sticker.type));
     case 'coca_cola':

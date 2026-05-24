@@ -1,7 +1,8 @@
 import type { Sticker } from '../data/stickers';
-import { getPaniniGroupPrefixFromId, getStickerSection, PANINI_PREFIXES, type StickerSection } from './sticker-sections';
+import { getPaniniGroupPrefixFromId, getStickerSection, type StickerSection } from './sticker-sections';
 
-export const SORTED_PANINI_GROUPS = [...PANINI_PREFIXES].sort((a, b) => a.localeCompare(b));
+const PANINI_ID_PATTERN = /^[A-Za-z]{3}\d{2}$/;
+
 export const STATISTICS_SECTION_ORDER: StickerSection[] = ['Panini', 'Extras', 'Coca Cola', "McDonald's"];
 
 export interface SectionStat {
@@ -28,9 +29,20 @@ export interface StatisticsModel {
   totalDuplicates: number;
   missing: number;
   percentage: number;
+  sortedPaniniGroups: string[];
   groupStats: Record<string, GroupStat>;
   sectionStats: Record<StickerSection, SectionStat>;
   topDuplicates: TopDuplicate[];
+}
+
+function buildPaniniGroups(allStickers: Sticker[]): string[] {
+  const groups = new Set<string>();
+  allStickers.forEach((sticker) => {
+    if (PANINI_ID_PATTERN.test(sticker.id)) {
+      groups.add(sticker.id.substring(0, 3).toUpperCase());
+    }
+  });
+  return [...groups].sort((a, b) => a.localeCompare(b));
 }
 
 export function computeStatisticsModel(
@@ -67,8 +79,10 @@ export function computeStatisticsModel(
       : 0;
   });
 
+  const sortedPaniniGroups = buildPaniniGroups(allStickers);
+
   const groupStats: Record<string, GroupStat> = {};
-  SORTED_PANINI_GROUPS.forEach((group) => {
+  sortedPaniniGroups.forEach((group) => {
     groupStats[group] = { owned: 0, total: 0 };
   });
 
@@ -104,6 +118,7 @@ export function computeStatisticsModel(
     totalDuplicates,
     missing,
     percentage,
+    sortedPaniniGroups,
     groupStats,
     sectionStats,
     topDuplicates,

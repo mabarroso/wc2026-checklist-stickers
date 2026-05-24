@@ -36,6 +36,19 @@ The system SHALL filter missing stickers by selected source scope before export 
 
 ## Legacy Notes
 
+## MODIFIED Requirements
+
+### Requirement: Panini scope uses ID pattern filter
+The system SHALL filter Panini scope using the ID pattern `/^[A-Za-z]{3}\d{2}$/` (3 letters + 2 digits), instead of type-based filtering, to ensure only basic album stickers are included.
+
+#### Scenario: Panini scope matches ID pattern
+- **WHEN** source scope is `Panini`
+- **THEN** exported missing list includes only stickers whose ID matches the pattern `/^[A-Za-z]{3}\d{2}$/` (e.g., `ARG01`, `MEX05`, `FWC01`)
+
+#### Scenario: Panini scope excludes non-matching IDs
+- **WHEN** source scope is `Panini`
+- **THEN** stickers like `0` (logo), `ARG01S` (extra), `CC-US01` (Coca Cola), or `LM-b` (Extra Bronze) are excluded from the export
+
 ## ADDED Requirements
 
 ### Requirement: Export missing stickers to PDF

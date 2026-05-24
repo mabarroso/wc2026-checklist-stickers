@@ -4,7 +4,7 @@ import { useCollectionStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
 import { ProgressRing, Panel, Header, Button } from '../components';
 import { Trash2 } from 'lucide-react';
-import { computeStatisticsModel, SORTED_PANINI_GROUPS, STATISTICS_SECTION_ORDER } from '../lib/statistics-model';
+import { computeStatisticsModel, STATISTICS_SECTION_ORDER } from '../lib/statistics-model';
 
 export function StatisticsScreen() {
   const { owned, duplicates, reset } = useCollectionStore();
@@ -72,7 +72,7 @@ export function StatisticsScreen() {
             Por equipo
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-            {SORTED_PANINI_GROUPS.map((g) => {
+            {stats.sortedPaniniGroups.map((g) => {
               const { owned, total } = stats.groupStats[g];
               const pct = total > 0 ? Math.round((owned / total) * 100) : 0;
               return (

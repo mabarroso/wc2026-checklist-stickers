@@ -5,16 +5,19 @@ TBD - created by archiving change sectioned-collection-by-source. Update Purpose
 ## Requirements
 ### Requirement: Section classification rules for cromos
 The system SHALL classify each cromo into exactly one section using these rules:
-- `Panini`: cromo `0`, or IDs starting with one of:
-  `FWC, MEX, RSA, KOR, CZE, CAN, BIH, QAT, SUI, BRA, MAR, HAI, SCO, USA, PAR, AUS, TUR, GER, CUW, CIV, ECU, NED, JPN, SWE, TUN, BEL, EGY, IRN, NZL, ESP, CPV, KSA, URU, FRA, SEN, IRQ, NOR, ARG, ALG, AUT, JOR, POR, COD, UZB, COL, ENG, CRO, GHA, PAN`
+- `Panini`: IDs matching the pattern `/^[A-Za-z]{3}\d{2}$/` (3 letters + 2 digits, e.g., `ARG01`, `MEX05`, `FWC01`)
 - `Coca Cola`: IDs starting with `CC-` (including subgroups `CC-US`, `CC-LAM`, `CC-RW`, `CC-EU`)
 - `McDonald's`: IDs ending with `mc`
 - `Extras`: all remaining IDs
 
-#### Scenario: Classify Panini cromo by explicit rule
-- **WHEN** a cromo ID is `0` or starts with a listed Panini prefix
+#### Scenario: Classify Panini cromo by ID pattern
+- **WHEN** a cromo ID matches the pattern `/^[A-Za-z]{3}\d{2}$/`
 - **THEN** the system classifies it as `Panini`
 - **AND** the cromo MUST NOT be assigned to any other section
+
+#### Scenario: Reject non-matching IDs from Panini
+- **WHEN** a cromo ID is `0`, has a suffix (e.g., `ARG01S`), or contains special characters (e.g., `CC-US01`)
+- **THEN** the system classifies it as `Extras` (or appropriate section) instead of `Panini`
 
 #### Scenario: Classify Coca Cola cromo by prefix
 - **WHEN** a cromo ID begins with `CC-`

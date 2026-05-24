@@ -3,6 +3,17 @@ import type { CollectionStats } from '../../application/queries/GetCollectionSta
 import { getAllStickers } from '../../data/stickers';
 import type { CollectionState } from '../../domain/entities/CollectionState';
 
+const PANINI_ID_PATTERN = /^[A-Za-z]{3}\d{2}$/;
+
+type SectionLabel = 'Panini' | 'Coca Cola' | "McDonald's" | 'Extras';
+
+function getStickerSection(id: string): SectionLabel {
+  if (id.startsWith('CC-')) return 'Coca Cola';
+  if (id.endsWith('mc')) return "McDonald's";
+  if (PANINI_ID_PATTERN.test(id)) return 'Panini';
+  return 'Extras';
+}
+
 export class StatisticsDisplay {
   printStats(stats: CollectionStats): void {
     console.log(chalk.bold.cyan('\n╔══════════════════════════════════════╗'));
@@ -26,9 +37,19 @@ printDetailedStats(state: CollectionState): void {
 
     const byTeam: Record<string, { owned: number; total: number }> = {};
     const byType: Record<string, { owned: number; total: number }> = {};
+    const bySection: Record<SectionLabel, { owned: number; total: number }> = {
+      Panini: { owned: 0, total: 0 },
+      'Coca Cola': { owned: 0, total: 0 },
+      "McDonald's": { owned: 0, total: 0 },
+      Extras: { owned: 0, total: 0 },
+    };
 
     for (const sticker of allStickers) {
       const isOwned = state.getOwnedQuantity(sticker.id) > 0;
+
+      const section = getStickerSection(sticker.id);
+      bySection[section].total++;
+      if (isOwned) bySection[section].owned++;
 
       if (!byTeam[sticker.team]) {
         byTeam[sticker.team] = { owned: 0, total: 0 };
@@ -42,6 +63,13 @@ printDetailedStats(state: CollectionState): void {
       }
       byType[typeKey].total++;
       if (isOwned) byType[typeKey].owned++;
+    }
+
+    console.log(chalk.bold.cyan('\n=== ESTADÍSTICAS POR SECCIÓN ===\n'));
+    for (const [section, data] of Object.entries(bySection)) {
+      const pct = data.total > 0 ? Math.round((data.owned / data.total) * 100) : 0;
+      const color = pct === 100 ? chalk.green : pct > 50 ? chalk.yellow : chalk.red;
+      console.log(`  ${chalk.white(`${section}:`)} ${color(`${data.owned}/${data.total} (${pct}%)`)}`);
     }
 
     console.log(chalk.bold.cyan('\n=== ESTADÍSTICAS POR EQUIPO ===\n'));

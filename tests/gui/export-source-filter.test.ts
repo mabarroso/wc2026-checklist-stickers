@@ -26,15 +26,15 @@ describe('export source filter (GUI)', () => {
     makeSticker('ARG01s', 'panini_extra'),
     makeSticker('CC-US01', 'cocacola_us'),
     makeSticker('AUS13mc', 'mcdonalds'),
-    makeSticker('EX01', 'extra_base'),
+    makeSticker('LM-b', 'extra_bronze'),
   ];
 
-  it('filters Panini scope', () => {
-    expect(filterGuiStickersByExportSource(stickers, 'panini').map((s) => s.id)).toEqual(['0', 'ARG01', 'ARG01s']);
+  it('filters Panini scope (solo IDs 3 letras + 2 dígitos)', () => {
+    expect(filterGuiStickersByExportSource(stickers, 'panini').map((s) => s.id)).toEqual(['ARG01']);
   });
 
   it('filters Extra scope', () => {
-    expect(filterGuiStickersByExportSource(stickers, 'extra').map((s) => s.id)).toEqual(['EX01']);
+    expect(filterGuiStickersByExportSource(stickers, 'extra').map((s) => s.id)).toEqual(['LM-b']);
   });
 
   it('filters Coca cola scope', () => {

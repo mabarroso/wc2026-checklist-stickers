@@ -14,15 +14,15 @@ function makeSticker(id: string, type: StickerType): Sticker {
 describe('export source filter (CLI)', () => {
   const stickers = [
     makeSticker('0', StickerType.LOGO),
-    makeSticker('ARG-01', StickerType.PLAYER),
-    makeSticker('ARG-01S', StickerType.PANINI_EXTRA),
+    makeSticker('ARG01', StickerType.PLAYER),
+    makeSticker('ARG01S', StickerType.PANINI_EXTRA),
     makeSticker('CC-US01', StickerType.COCA_COLA_US),
     makeSticker('MC-01', StickerType.MC_DONALDS),
     makeSticker('EX-01', StickerType.EXTRA_BASE),
   ];
 
-  it('filters Panini scope', () => {
-    expect(filterStickersByExportSource(stickers, 'panini').map((s) => s.id)).toEqual(['0', 'ARG-01', 'ARG-01S']);
+  it('filters Panini scope (solo IDs 3 letras + 2 dígitos)', () => {
+    expect(filterStickersByExportSource(stickers, 'panini').map((s) => s.id)).toEqual(['ARG01']);
   });
 
   it('filters Extra scope', () => {

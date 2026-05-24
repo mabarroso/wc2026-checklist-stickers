@@ -33,6 +33,7 @@ export function ExportScreen() {
   const [backupMessage, setBackupMessage] = useState<string | null>(null);
   const [backupBusy, setBackupBusy] = useState(false);
   const [sourceScope, setSourceScope] = useState<GuiExportSourceScope>('todos');
+  const [sortOrder, setSortOrder] = useState<'id' | 'name'>('id');
 
   const allStickers = useMemo(() => getAllStickers(), []);
 
@@ -40,7 +41,12 @@ export function ExportScreen() {
     return allStickers.filter((s) => !owned[s.id]);
   }, [allStickers, owned]);
 
-  const filteredMissing = useMemo(() => filterGuiStickersByExportSource(missing, sourceScope), [missing, sourceScope]);
+  const filteredMissing = useMemo(() => {
+    const filtered = filterGuiStickersByExportSource(missing, sourceScope);
+    return [...filtered].sort((a, b) =>
+      sortOrder === 'name' ? a.name.localeCompare(b.name) : a.id.localeCompare(b.id),
+    );
+  }, [missing, sourceScope, sortOrder]);
 
   const missingCount = filteredMissing.length;
 
@@ -282,6 +288,23 @@ export function ExportScreen() {
               <span className="text-xs text-[var(--color-white)] opacity-60">
                 Seleccionado: {getGuiExportSourceLabel(sourceScope)}
               </span>
+            </div>
+            <div className="flex items-center gap-3 flex-wrap mt-4">
+              <label htmlFor="sort-order" className="text-sm text-[var(--color-white)] opacity-80">
+                Ordenar por
+              </label>
+              <div className="relative">
+                <select
+                  id="sort-order"
+                  value={sortOrder}
+                  onChange={(event) => setSortOrder(event.target.value as 'id' | 'name')}
+                  className="appearance-none bg-[var(--color-surface)] text-[var(--color-white)] font-semibold px-4 py-2 pr-10 rounded-lg cursor-pointer border-2 border-[var(--color-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)] focus:ring-opacity-50"
+                  style={collectionSelectStyle}
+                >
+                  <option value="id" className="bg-[var(--color-surface)] text-[var(--color-white)]">ID (orden de álbum)</option>
+                  <option value="name" className="bg-[var(--color-surface)] text-[var(--color-white)]">Nombre (alfabético)</option>
+                </select>
+              </div>
             </div>
           </Panel>
 

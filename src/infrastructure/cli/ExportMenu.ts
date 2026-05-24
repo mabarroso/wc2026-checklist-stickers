@@ -9,6 +9,7 @@ import {
 } from '../exporters/export-source-filter';
 
 export type ExportFormat = 'pdf' | 'csv' | 'txt';
+export type ExportSortOrder = 'id' | 'name';
 
 export class ExportMenu {
   private storageAdapter: ConfStorageAdapter;
@@ -79,6 +80,26 @@ export class ExportMenu {
         `Se encontraron ${filteredMissingStickers.length} cromo(s) faltante(s) para ${getExportSourceLabel(selectedScope)}.\n`,
       ),
     );
+
+    const sortAnswers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'sortOrder',
+        message: '¿Cómo quieres ordenar la lista?',
+        choices: [
+          { name: 'ID (orden de álbum)', value: 'id' },
+          { name: 'Nombre (alfabético)', value: 'name' },
+        ],
+        pageSize: 2,
+      },
+    ]);
+
+    const selectedSortOrder = sortAnswers.sortOrder as ExportSortOrder;
+    if (selectedSortOrder === 'name') {
+      filteredMissingStickers.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      filteredMissingStickers.sort((a, b) => a.id.localeCompare(b.id));
+    }
 
     const answers = await inquirer.prompt([
       {

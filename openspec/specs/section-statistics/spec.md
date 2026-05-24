@@ -21,9 +21,8 @@ Each completion metric SHALL be computed as unique owned cromos over total cromo
 - **WHEN** section totals and owned unique counts are available
 - **THEN** the displayed percentage for each section equals `(owned_unique / section_total) * 100`
 
-### Requirement: Por Grupo shall use Panini prefix set only
-The `Por Grupo` widget SHALL compute progress only for Panini prefixes:
-`FWC, MEX, RSA, KOR, CZE, CAN, BIH, QAT, SUI, BRA, MAR, HAI, SCO, USA, PAR, AUS, TUR, GER, CUW, CIV, ECU, NED, JPN, SWE, TUN, BEL, EGY, IRN, NZL, ESP, CPV, KSA, URU, FRA, SEN, IRQ, NOR, ARG, ALG, AUT, JOR, POR, COD, UZB, COL, ENG, CRO, GHA, PAN`.
+### Requirement: Por Grupo shall extract prefix from Panini IDs dynamically
+The `Por Grupo` widget SHALL compute progress only for stickers classified as Panini (matching `/^[A-Za-z]{3}\d{2}$/`). The 3-letter prefix SHALL be extracted from the ID (e.g., `ARG01` → `ARG`), and groups SHALL be built dynamically from the actual sticker data.
 
 #### Scenario: Exclude non-Panini IDs from Por Grupo
 - **WHEN** a cromo ID belongs to Coca Cola, McDonald's, or Extras

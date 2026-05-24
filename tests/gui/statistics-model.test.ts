@@ -1,4 +1,4 @@
-import { computeStatisticsModel, SORTED_PANINI_GROUPS } from '../../src/gui/src/lib/statistics-model';
+import { computeStatisticsModel } from '../../src/gui/src/lib/statistics-model';
 import type { Sticker } from '../../src/gui/src/data/stickers';
 
 function makeSticker(id: string, team: string): Sticker {
@@ -30,22 +30,22 @@ describe('statistics model', () => {
       { 'CC-EU07': 2 },
     );
 
-    expect(stats.sectionStats.Panini).toEqual({ owned: 2, total: 2, percentage: 100 });
+    expect(stats.sectionStats.Panini).toEqual({ owned: 2, total: 3, percentage: 67 });
     expect(stats.sectionStats['Coca Cola']).toEqual({ owned: 1, total: 1, percentage: 100 });
     expect(stats.sectionStats["McDonald's"]).toEqual({ owned: 0, total: 1, percentage: 0 });
-    expect(stats.sectionStats.Extras).toEqual({ owned: 0, total: 1, percentage: 0 });
+    expect(stats.sectionStats.Extras).toEqual({ owned: 0, total: 0, percentage: 0 });
   });
 
-  it('excludes non-panini IDs from Por Grupo and keeps alphabetical keys', () => {
+  it('builds dynamic panini groups from stickers matching the ID pattern', () => {
     const stats = computeStatisticsModel(
       stickers,
-      { MEX01: 1, ARG02: 1, 'CC-EU07': 1, AUS13mc: 1 },
+      { MEX01: 1, ARG02: 1, 'CC-EU07': 1 },
       {},
     );
 
-    expect(SORTED_PANINI_GROUPS[0]).toBe('ALG');
+    expect(stats.sortedPaniniGroups).toEqual(['ARG', 'LEG', 'MEX']);
     expect(stats.groupStats.MEX).toEqual({ owned: 1, total: 1 });
     expect(stats.groupStats.ARG).toEqual({ owned: 1, total: 1 });
-    expect(stats.groupStats.AUS).toEqual({ owned: 0, total: 0 });
+    expect(stats.groupStats.LEG).toEqual({ owned: 0, total: 1 });
   });
 });

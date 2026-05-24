@@ -1,20 +1,8 @@
 export type StickerSection = 'Panini' | 'Coca Cola' | "McDonald's" | 'Extras';
 
-export const PANINI_PREFIXES = [
-  'FWC', 'MEX', 'RSA', 'KOR', 'CZE', 'CAN', 'BIH', 'QAT', 'SUI', 'BRA',
-  'MAR', 'HAI', 'SCO', 'USA', 'PAR', 'AUS', 'TUR', 'GER', 'CUW', 'CIV',
-  'ECU', 'NED', 'JPN', 'SWE', 'TUN', 'BEL', 'EGY', 'IRN', 'NZL', 'ESP',
-  'CPV', 'KSA', 'URU', 'FRA', 'SEN', 'IRQ', 'NOR', 'ARG', 'ALG', 'AUT',
-  'JOR', 'POR', 'COD', 'UZB', 'COL', 'ENG', 'CRO', 'GHA', 'PAN',
-] as const;
-
-const PANINI_PREFIX_SET = new Set<string>(PANINI_PREFIXES);
+const PANINI_ID_PATTERN = /^[A-Za-z]{3}\d{2}$/;
 
 export function getStickerSection(id: string): StickerSection {
-  if (id === '0') {
-    return 'Panini';
-  }
-
   if (id.startsWith('CC-')) {
     return 'Coca Cola';
   }
@@ -23,8 +11,7 @@ export function getStickerSection(id: string): StickerSection {
     return "McDonald's";
   }
 
-  const prefix = getPaniniGroupPrefixFromId(id);
-  if (prefix && PANINI_PREFIX_SET.has(prefix)) {
+  if (PANINI_ID_PATTERN.test(id)) {
     return 'Panini';
   }
 
@@ -32,20 +19,14 @@ export function getStickerSection(id: string): StickerSection {
 }
 
 export function getPaniniGroupPrefixFromId(id: string): string | null {
-  for (const prefix of PANINI_PREFIXES) {
-    if (id.startsWith(prefix)) {
-      return prefix;
-    }
+  if (PANINI_ID_PATTERN.test(id)) {
+    return id.substring(0, 3).toUpperCase();
   }
 
   return null;
 }
 
 export function getStickerIdFix(id: string): string {
-  if (id === '0') {
-    return 'FWC';
-  }
-
   if (id.startsWith('CC-')) {
     const match = id.match(/^CC-[A-Z]+/);
     return match ? match[0] : 'CC';
