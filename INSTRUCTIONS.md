@@ -141,3 +141,22 @@ openspec archive <change>                   # Archive completed change
 ```
 
 See `.opencode/skills/` for available commands.
+
+## Release Workflow (Persistent)
+
+For every requested release, use this default workflow:
+
+1. Build release artifacts for all required platforms.
+2. Run verification gates:
+	- `bun test`
+	- `bun run typecheck`
+	- `bun run lint`
+3. Prepare commit with release changes and include `docs/RELEASE-vX.Y.Z.txt`.
+4. Do not version `docs/RELEASE-vX.Y.Z-GITHUB.md` when the request is to keep GitHub draft notes out of git.
+5. Before committing, present `git status --short`, `git diff --cached --stat`, and recent commits.
+6. Ask explicit confirmation: `¿Confirmas el commit?`.
+7. Commit and push to `main` after confirmation.
+8. Create and push tag `vX.Y.Z`.
+9. Publish GitHub release and upload all artifacts.
+10. Validate uploaded assets and checksums.
+11. If a new artifact is added later (for example Debian `.deb`), upload it to the existing release and refresh `SHA256SUMS.txt`.

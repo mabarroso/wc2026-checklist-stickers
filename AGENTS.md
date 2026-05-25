@@ -113,6 +113,28 @@ After every implementation:
 3. Run `bun run lint`
 4. Fix all failures before moving on
 
+## Release Workflow (Persistent)
+
+When preparing a GitHub release, follow this end-to-end workflow by default:
+
+1. Build and package all target artifacts for the release.
+2. Validate the release candidate:
+	- `bun test`
+	- `bun run typecheck`
+	- `bun run lint`
+3. Stage release files, including official release notes (`docs/RELEASE-vX.Y.Z.txt`).
+4. Keep GitHub-only draft notes unversioned when requested (for example, `docs/RELEASE-vX.Y.Z-GITHUB.md`).
+5. Before committing, show:
+	- `git status --short`
+	- staged diff summary (`git diff --cached --stat`)
+	- recent commit history (`git log --oneline -n 8`)
+6. Ask explicit confirmation in Spanish before commit: `¿Confirmas el commit?`.
+7. After confirmation, create commit and push to `main`.
+8. Create and push the release tag (`vX.Y.Z`).
+9. Create the GitHub release directly and upload all assets.
+10. Verify uploaded assets and checksums.
+11. If additional platform artifacts are requested after publication (for example `.deb`), upload them and refresh `SHA256SUMS.txt` in the same release.
+
 ## Accessibility (CLI)
 
 - All prompts use clear Spanish labels
