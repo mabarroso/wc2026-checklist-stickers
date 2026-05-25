@@ -1,4 +1,6 @@
-use tauri::{AppHandle, Manager, command};
+use tauri::{AppHandle, Manager, Runtime, command};
+#[cfg(mobile)]
+use tauri::plugin::PluginHandle;
 use serde::{Deserialize, Serialize};
 use std::fs::{self, File, create_dir_all};
 use std::io::BufWriter;
@@ -8,6 +10,30 @@ use printpdf::*;
 use std::process::Command;
 
 use std::path::PathBuf;
+
+struct SharePluginState<R: Runtime> {
+    #[cfg(mobile)]
+    handle: PluginHandle<R>,
+    #[cfg(not(mobile))]
+    _marker: std::marker::PhantomData<fn() -> R>,
+}
+
+fn share_plugin_init<R: Runtime>() -> tauri::plugin::TauriPlugin<R> {
+    tauri::plugin::Builder::<R>::new("share")
+        .setup(|app, api| {
+            #[cfg(target_os = "android")]
+            {
+                let handle = api.register_android_plugin("com.panini.wc2026.checklist", "SharePlugin")?;
+                app.manage(SharePluginState { handle });
+            }
+            #[cfg(not(target_os = "android"))]
+            {
+                let _ = (app, api);
+            }
+            Ok(())
+        })
+        .build()
+}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct Sticker {
@@ -19,8 +45,8 @@ struct Sticker {
 fn get_export_dir(app: &AppHandle) -> Result<PathBuf, String> {
     #[cfg(any(target_os = "android", target_os = "ios"))]
     {
-        let data_dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
-        Ok(data_dir)
+        let cache_dir = app.path().app_cache_dir().map_err(|e| e.to_string())?;
+        Ok(cache_dir)
     }
 
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
@@ -33,7 +59,7 @@ fn get_export_dir(app: &AppHandle) -> Result<PathBuf, String> {
 }
 
 #[command]
-fn export_pdf(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> {
+fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>) -> Result<String, String> {
     let export_dir = get_export_dir(&app)?;
 
     create_dir_all(&export_dir).map_err(|e| format!("Error al crear directorio: {}", e))?;
@@ -52,14 +78,23 @@ fn export_pdf(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> 
     let font = doc.add_builtin_font(BuiltinFont::Helvetica).map_err(|e| e.to_string())?;
     let font_bold = doc.add_builtin_font(BuiltinFont::HelveticaBold).map_err(|e| e.to_string())?;
 
-    current_layer.use_text("PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES", 16.0, Mm(10.0), Mm(277.0), &font_bold);
+    let is_ids_only = mode.as_deref() == Some("ids-only");
+
+    let title = if is_ids_only {
+        "PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES (Solo IDs)"
+    } else {
+        "PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES"
+    };
+    current_layer.use_text(title, 16.0, Mm(10.0), Mm(277.0), &font_bold);
     current_layer.use_text(&format!("Total: {} cromos", stickers.len()), 12.0, Mm(10.0), Mm(267.0), &font);
 
-    const COLS: usize = 2;
-    const ROWS: usize = 35;
-    const STICKERS_PER_PAGE: usize = COLS * ROWS;
+    let (cols, _rows, sticker_per_page): (usize, usize, usize) = if is_ids_only {
+        (6, 50, 300)
+    } else {
+        (2, 35, 70)
+    };
 
-    let chunks: Vec<_> = stickers.chunks(STICKERS_PER_PAGE).collect();
+    let chunks: Vec<_> = stickers.chunks(sticker_per_page).collect();
     let total_pages = chunks.len();
 
     for (page_idx, chunk) in chunks.iter().enumerate() {
@@ -75,19 +110,35 @@ fn export_pdf(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> 
             layer.use_text(&format!("Página {} de {}", page_idx + 1, total_pages), 10.0, Mm(100.0), Mm(287.0), &font);
         }
 
-        let start_y = 250.0;
-        let col_width = 90.0;
-        let row_height = 7.0;
+        if is_ids_only {
+            let start_y = 255.0;
+            let col_width = 31.0;
+            let row_height = 5.0;
 
-        for (i, sticker) in chunk.iter().enumerate() {
-            let col = i % COLS;
-            let row = i / COLS;
+            for (i, sticker) in chunk.iter().enumerate() {
+                let col = i % cols;
+                let row = i / cols;
 
-            let x = 10.0 + (col as f32 * col_width);
-            let y = start_y - (row as f32 * row_height);
+                let x = 10.0 + (col as f32 * col_width);
+                let y = start_y - (row as f32 * row_height);
 
-            layer.use_text(&format!("[ ]"), 10.0, Mm(x), Mm(y), &font);
-            layer.use_text(&format!("{} - {}", sticker.id, sticker.name), 8.0, Mm(x + 8.0), Mm(y), &font);
+                layer.use_text(&format!("[ ] {}", sticker.id), 7.0, Mm(x), Mm(y), &font);
+            }
+        } else {
+            let start_y = 250.0;
+            let col_width = 90.0;
+            let row_height = 7.0;
+
+            for (i, sticker) in chunk.iter().enumerate() {
+                let col = i % cols;
+                let row = i / cols;
+
+                let x = 10.0 + (col as f32 * col_width);
+                let y = start_y - (row as f32 * row_height);
+
+                layer.use_text(&format!("[ ]"), 10.0, Mm(x), Mm(y), &font);
+                layer.use_text(&format!("{} - {}", sticker.id, sticker.name), 8.0, Mm(x + 8.0), Mm(y), &font);
+            }
         }
     }
 
@@ -170,9 +221,55 @@ fn open_downloads_folder(app: AppHandle) -> Result<(), String> {
     open_folder(&export_dir)
 }
 
+#[command]
+fn copy_to_documents(app: AppHandle, source_path: String) -> Result<String, String> {
+    #[cfg(any(target_os = "android", target_os = "ios"))]
+    {
+        let source = std::path::Path::new(&source_path);
+        let file_name = source.file_name()
+            .ok_or_else(|| "Nombre de archivo inválido".to_string())?
+            .to_string_lossy()
+            .to_string();
+
+        let documents_dir = app.path().app_cache_dir().map_err(|e| e.to_string())?.join("documents");
+        create_dir_all(&documents_dir).map_err(|e| format!("Error al crear directorio: {}", e))?;
+
+        let dest_path = documents_dir.join(&file_name);
+        std::fs::copy(&source, &dest_path)
+            .map_err(|e| format!("Error al copiar archivo: {}", e))?;
+
+        Ok(dest_path.to_string_lossy().to_string())
+    }
+
+    #[cfg(not(any(target_os = "android", target_os = "ios")))]
+    {
+        let _ = &app;
+        Ok(source_path)
+    }
+}
+
+#[command]
+fn share_file(app: AppHandle, path: String) -> Result<(), String> {
+    #[cfg(target_os = "android")]
+    {
+        let state = app.state::<SharePluginState<tauri::Wry>>();
+        state
+            .handle
+            .run_mobile_plugin("share", serde_json::json!({ "path": path }))
+            .map_err(|e| e.to_string())
+    }
+
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = (&app, path);
+        Err("Compartir solo disponible en Android".to_string())
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(share_plugin_init::<tauri::Wry>())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
@@ -182,6 +279,8 @@ pub fn run() {
             export_txt,
             #[cfg(not(any(target_os = "android", target_os = "ios")))]
             open_downloads_folder,
+            copy_to_documents,
+            share_file,
         ])
         .setup(|app| {
             let window = app.get_webview_window("main").unwrap();

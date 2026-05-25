@@ -35,6 +35,17 @@ The system SHALL include Android-specific configuration in `tauri.conf.json`.
 ### Requirement: Android icons
 The system SHALL provide Android-compatible app icons.
 
-#### Scenario: Android mipmap icons exist
+#### Scenario: Android mipmap icons from docs/icons/android
 - **WHEN** an Android build runs
-- **THEN** required mipmap icons (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi) are present in `src-tauri/icons/`
+- **THEN** mipmap icons (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi) are present in `gen/android/app/src/main/res/`
+- **AND** the source icons come from `docs/icons/android/` (copied for each density)
+- **AND** `ic_launcher.png`, `ic_launcher_round.png`, and `ic_launcher_foreground.png` all use the same source image
+
+#### Scenario: Adaptive icon uses new foreground PNG
+- **WHEN** the app runs on API 26+
+- **THEN** `mipmap-anydpi-v26/ic_launcher.xml` uses `@mipmap/ic_launcher_foreground` (new icon) on a white background
+
+#### Scenario: Store icons in docs/
+- **WHEN** preparing for app store submission
+- **THEN** `docs/playstore.png` and `docs/appstore.png` are available
+- **AND** their sources are in `docs/icons/playstore.png` and `docs/icons/appstore.png`

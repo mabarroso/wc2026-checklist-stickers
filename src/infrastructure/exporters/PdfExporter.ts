@@ -8,14 +8,17 @@ import { BaseExporter } from './BaseExporter';
 export interface PdfExporterOptions {
   stickers: Sticker[];
   filename?: string;
+  mode?: 'full' | 'ids-only';
 }
 
 export class PdfExporter extends BaseExporter {
+  private mode: 'full' | 'ids-only';
   private stickersPerPage: number = 40;
   private rowsPerColumn: number = 20;
 
   constructor(options: PdfExporterOptions) {
     super(options);
+    this.mode = options.mode ?? 'full';
   }
 
   protected getExtension(): string {
@@ -52,6 +55,14 @@ export class PdfExporter extends BaseExporter {
   }
 
   private renderContent(doc: PDFKit.PDFDocument): void {
+    if (this.mode === 'ids-only') {
+      this.renderCompact(doc);
+    } else {
+      this.renderFull(doc);
+    }
+  }
+
+  private renderFull(doc: PDFKit.PDFDocument): void {
     const pageWidth = doc.page.width - 60;
     const colWidth = pageWidth / 2;
     const startX = 30;
@@ -62,7 +73,7 @@ export class PdfExporter extends BaseExporter {
     let currentPage = 1;
     const totalPages = Math.ceil(this.stickers.length / this.stickersPerPage);
 
-    this.renderHeader(doc, currentPage, totalPages);
+    this.renderHeader(doc, currentPage, totalPages, 'full');
 
     for (let i = 0; i < this.stickers.length; i++) {
       const sticker = this.stickers[i];
@@ -73,7 +84,7 @@ export class PdfExporter extends BaseExporter {
       if (indexOnPage > 0 && indexOnPage % this.stickersPerPage === 0) {
         doc.addPage();
         currentPage++;
-        this.renderHeader(doc, currentPage, totalPages);
+        this.renderHeader(doc, currentPage, totalPages, 'full');
       }
 
       const x = startX + col * colWidth;
@@ -105,11 +116,51 @@ export class PdfExporter extends BaseExporter {
     }
   }
 
-  private renderHeader(doc: PDFKit.PDFDocument, currentPage: number, totalPages: number): void {
+  private renderCompact(doc: PDFKit.PDFDocument): void {
+    const pageWidth = doc.page.width - 60;
+    const checkboxSize = 8;
+    const cols = 8;
+    const colWidth = pageWidth / cols;
+    const rowHeight = 6;
+    const rowsPerPage = 45;
+    const stickersPerPage = cols * rowsPerPage;
+    const startX = 30;
+    const startY = 50;
+
+    let currentPage = 1;
+    const totalPages = Math.ceil(this.stickers.length / stickersPerPage);
+
+    this.renderHeader(doc, currentPage, totalPages, 'ids-only');
+
+    for (let i = 0; i < this.stickers.length; i++) {
+      const sticker = this.stickers[i];
+      const indexOnPage = i % stickersPerPage;
+      const col = indexOnPage % cols;
+      const row = Math.floor(indexOnPage / cols);
+
+      if (indexOnPage > 0 && indexOnPage % stickersPerPage === 0) {
+        doc.addPage();
+        currentPage++;
+        this.renderHeader(doc, currentPage, totalPages, 'ids-only');
+      }
+
+      const x = startX + col * colWidth;
+      const y = startY + 25 + row * rowHeight;
+
+      doc.rect(x, y, checkboxSize, checkboxSize).stroke();
+
+      const textX = x + checkboxSize + 2;
+      doc.fontSize(7).fillColor('#000');
+      doc.text(sticker.id, textX, y, { width: colWidth - checkboxSize - 4, continued: false });
+    }
+  }
+
+  private renderHeader(doc: PDFKit.PDFDocument, currentPage: number, totalPages: number, mode: 'full' | 'ids-only'): void {
     const pageWidth = doc.page.width;
 
+    const title = mode === 'ids-only' ? 'Album Panini FIFA World Cup 2026 (Solo IDs)' : 'Album Panini FIFA World Cup 2026';
     doc.fontSize(14).fillColor('#1a1a2e');
-    doc.text('Album Panini FIFA World Cup 2026', 30, 20, { align: 'center', width: pageWidth - 60 });
+    doc.text(title, 30, 20, { align: 'center', width: pageWidth - 60 });
 
     doc.fontSize(10).fillColor('#666');
     doc.text(`Faltantes - Página ${currentPage}/${totalPages}`, 30, 38, { align: 'center', width: pageWidth - 60 });

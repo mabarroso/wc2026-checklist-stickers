@@ -23,7 +23,7 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="hidden md:flex w-64 h-screen shrink-0 relative z-20 bg-[var(--color-surface)] border-r border-white/10 flex-col">
+      <aside className="sidebar-desktop w-64 h-screen shrink-0 relative z-20 bg-[var(--color-surface)] border-r border-white/10 flex-col">
         <div className="p-6 border-b border-white/10">
           <h1 className="text-2xl font-bold tracking-wider text-[var(--color-blue)]">
             PANINI WC 2026
@@ -74,7 +74,7 @@ export function Sidebar() {
         </div>
       </aside>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-30 flex md:hidden bg-[var(--color-surface)] border-t border-white/10 safe-area-bottom">
+      <nav className="bottom-tabs fixed bottom-0 left-0 right-0 z-30 bg-[var(--color-surface)] border-t border-white/10">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
 

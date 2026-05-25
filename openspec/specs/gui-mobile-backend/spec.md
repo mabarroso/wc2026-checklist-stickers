@@ -35,3 +35,48 @@ The system SHALL use mobile-compatible capability schemas for Android and iOS.
 - **WHEN** the app runs on iOS
 - **THEN** the capability uses the `ios-schema.json` or a platform-agnostic schema
 - **AND** `fs:default` and `dialog:default` permissions are granted
+
+### Requirement: Custom SharePlugin for Android ACTION_SEND
+The system SHALL provide a custom Kotlin plugin (`SharePlugin.kt`) for sharing files via `Intent.ACTION_SEND` on Android.
+
+#### Scenario: SharePlugin registered in Rust
+- **WHEN** the Tauri app starts
+- **THEN** `SharePlugin.kt` is registered as an Android plugin via a `tauri::plugin::Builder` in `share_plugin_init()`
+- **AND** the plugin handle is stored in `SharePluginState<R>` with a `PluginHandle<R>` field (mobile only)
+
+#### Scenario: share_file command delegates to SharePlugin
+- **WHEN** the `share_file` Rust command is invoked on Android
+- **THEN** it calls `state.handle.run_mobile_plugin("share", { path })` on the SharePlugin
+- **AND** the Kotlin `SharePlugin.share()` method creates an `Intent.ACTION_SEND` with the file via `FileProvider.getUriForFile()`
+- **AND** the intent chooser is launched with `Intent.createChooser()`
+
+### Requirement: Export uses app_cache_dir on mobile
+The export directory on mobile SHALL use `app_cache_dir()` instead of `app_data_dir()` for FileProvider compatibility.
+
+#### Scenario: get_export_dir returns cache dir on mobile
+- **WHEN** `get_export_dir()` is called on Android or iOS
+- **THEN** it returns `app.path().app_cache_dir()`
+- **AND** the file is accessible via FileProvider's `<cache-path>` in `file_paths.xml`
+
+#### Scenario: copy_to_documents also uses cache dir
+- **WHEN** `copy_to_documents` is called on mobile
+- **THEN** it copies to `{cache_dir}/documents/` instead of `{app_data_dir}/documents/`
+
+### Requirement: content:// URL scope for Android sharing
+The system SHALL allow `content://` URLs in the opener plugin scope.
+
+#### Scenario: content:// URL scope allowed
+- **WHEN** the app runs on Android
+- **THEN** `opener:allow-open-url` permission has `{ "url": "content://*" }` scope
+
+### Requirement: copy_to_documents command for mobile
+The system SHALL provide a `copy_to_documents` Tauri command that copies a file to the device's documents folder on Android.
+
+#### Scenario: File copied to documents
+- **WHEN** `copy_to_documents` is called with a valid file path on Android
+- **THEN** the file is copied to `{cache_dir}/documents/`
+- **AND** the destination path is returned
+
+#### Scenario: copy_to_documents desktop fallback
+- **WHEN** `copy_to_documents` is called on desktop (Linux/Windows/macOS)
+- **THEN** the command returns the original path without copying

@@ -50,26 +50,49 @@ The system SHALL accept a `mode` parameter in the `export_pdf` Tauri command to 
 - **WHEN** `export_pdf` is called with `mode: "ids-only"`
 - **THEN** the PDF uses maximum columns (6+) with only checkbox + ID text
 
-### Requirement: Share plugin registered
-The system SHALL include `tauri-plugin-share` as a dependency and register it in the app builder.
+### Requirement: Custom SharePlugin for Android ACTION_SEND
+The system SHALL provide a custom Kotlin plugin (`SharePlugin.kt`) for sharing files via `Intent.ACTION_SEND` on Android.
 
-#### Scenario: Share plugin is initialized
+#### Scenario: SharePlugin registered in Rust
 - **WHEN** the Tauri app starts
-- **THEN** `tauri_plugin_share` is initialized via `.plugin(tauri_plugin_share::init())`
+- **THEN** `SharePlugin.kt` is registered as an Android plugin via `tauri::plugin::Builder` in `share_plugin_init()`
+- **AND** the plugin handle is stored in `SharePluginState<R>` with a `PluginHandle<R>` field (mobile only)
 
-#### Scenario: Share permissions in capabilities
-- **WHEN** capabilities are loaded
-- **THEN** share permissions are included for Android platform
+#### Scenario: share_file command delegates to SharePlugin
+- **WHEN** the `share_file` Rust command is invoked on Android
+- **THEN** it calls `state.handle.run_mobile_plugin("share", { path })` on the SharePlugin
+- **AND** the Kotlin `SharePlugin.share()` method creates an `Intent.ACTION_SEND` with the file via FileProvider
+- **AND** the intent chooser is launched with `Intent.createChooser()`
+
+#### Scenario: build and install app icons
+
+### Requirement: Export uses app_cache_dir on mobile
+The export directory on mobile SHALL use `app_cache_dir()` instead of `app_data_dir()` for FileProvider compatibility.
+
+#### Scenario: get_export_dir returns cache dir on mobile
+- **WHEN** `get_export_dir()` is called on Android or iOS
+- **THEN** it returns `app.path().app_cache_dir()`
+- **AND** the file is accessible via FileProvider's `<cache-path>` in `file_paths.xml`
+
+#### Scenario: copy_to_documents also uses cache dir
+- **WHEN** `copy_to_documents` is called on mobile
+- **THEN** it copies to `{cache_dir}/documents/` instead of `{app_data_dir}/documents/`
+
+### Requirement: capbilidades for content:// URL sharing
+The system SHALL allow `content://` URLs in the opener plugin scope for Android sharing.
+
+#### Scenario: content:// URL scope allowed
+- **WHEN** the app runs on Android
+- **THEN** `opener:allow-open-url` permission has `{ "url": "content://*" }` scope
 
 ### Requirement: copy_to_documents command for mobile
-The system SHALL provide a `copy_to_documents` Tauri command that copies a file to the device's public Documents folder on Android.
+The system SHALL provide a `copy_to_documents` Tauri command that copies a file to the device's documents folder on Android.
 
-#### Scenario: File copied to public Documents
+#### Scenario: File copied to documents
 - **WHEN** `copy_to_documents` is called with a valid file path on Android
-- **THEN** the file is copied to the device's external public Documents directory
+- **THEN** the file is copied to `{cache_dir}/documents/`
 - **AND** the destination path is returned
 
 #### Scenario: copy_to_documents desktop fallback
 - **WHEN** `copy_to_documents` is called on desktop (Linux/Windows/macOS)
 - **THEN** the command returns the original path without copying
-- **AND** a log message indicates the operation is a no-op on desktop

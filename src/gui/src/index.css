@@ -181,6 +181,29 @@
     color: white;
   }
 
+  .sidebar-desktop {
+    display: none;
+  }
+
+  .bottom-tabs {
+    display: flex;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (min-width: 80rem) {
+    .sidebar-desktop {
+      display: flex;
+    }
+
+    .bottom-tabs {
+      display: none;
+    }
+
+    .app {
+      padding-bottom: 0;
+    }
+  }
+
   .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));

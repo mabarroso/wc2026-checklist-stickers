@@ -25,14 +25,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Responsive UI: desktop sidebar + mobile bottom tab bar, `pb-16` clearance on mobile, 44px+ touch targets
 - New scripts: `bun run tauri`, `bun run tauri:android`, `bun run tauri:ios`
 - Platform icons: Android mipmap (`ic_launcher`) and iOS xcassets
+- App icons: Android launcher icons in `gen/android/` (5 densities), `docs/playstore.png`, `docs/appstore.png`
+- Share via Android share sheet: custom `SharePlugin.kt` using `Intent.ACTION_SEND` with FileProvider content URI
 
 ### Changed
 
 - Rust backend: `get_export_dir()` uses `app_data_dir()` on mobile, `download_dir()` on desktop
 - `Cargo.toml`: `dirs` crate moved to target-specific conditional dependency
 - `tauri.conf.json`: `minWidth`/`minHeight` removed; `bundle.targets` scoped to desktop only (mobile targets implicit in Tauri 2)
-- `capabilities/default.json`: added `platforms` list for linux/macOS/windows/android/iOS
+- `capabilities/default.json`: added `platforms` list for linux/macOS/windows/android/iOS; `opener:allow-open-url` scope with `content://*` for Android share
 - `Sidebar.tsx`: responsive — desktop sidebar `hidden md:flex`, mobile tab bar `fixed md:hidden`
+- Export directory on mobile: changed from `app_data_dir()` to `app_cache_dir()` for FileProvider compatibility
+- `file_paths.xml`: added `<files-path>` for internal data directory
+- Export share: replaced `openPath` (broken on Android due to plugin bug) with custom Rust `share_file` command + `SharePlugin.kt` using `Intent.ACTION_SEND`
 
 ## [1.0.4] - 2026-05-24
 

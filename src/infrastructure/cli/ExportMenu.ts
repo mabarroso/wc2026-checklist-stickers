@@ -101,6 +101,23 @@ export class ExportMenu {
       filteredMissingStickers.sort((a, b) => a.id.localeCompare(b.id));
     }
 
+    let pdfMode: 'full' | 'ids-only' = 'full';
+    if (format === 'pdf') {
+      const modeAnswer = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'mode',
+          message: '¿Incluir nombres?',
+          choices: [
+            { name: 'Sí (formato completo)', value: 'full' },
+            { name: 'No (solo IDs, más columnas)', value: 'ids-only' },
+          ],
+          pageSize: 2,
+        },
+      ]);
+      pdfMode = modeAnswer.mode as 'full' | 'ids-only';
+    }
+
     const answers = await inquirer.prompt([
       {
         type: 'list',
@@ -122,7 +139,7 @@ export class ExportMenu {
     try {
       switch (format) {
         case 'pdf': {
-          const exporter = new PdfExporter({ stickers: filteredMissingStickers });
+          const exporter = new PdfExporter({ stickers: filteredMissingStickers, mode: pdfMode });
           fullPath = await exporter.export(destination);
           break;
         }

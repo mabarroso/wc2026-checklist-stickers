@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Table, List, Download, FolderOpen, Save, Upload } from 'lucide-react';
+import { FileText, Table, List, Download, FolderOpen, Save, Upload, Share2, FileBox, X, Trash2 } from 'lucide-react';
 import { useCollectionStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
 import { Button, Panel, Badge, Header } from '../components';
@@ -30,10 +30,17 @@ export function ExportScreen() {
   const [exporting, setExporting] = useState(false);
   const [exported, setExported] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [backupMessage, setBackupMessage] = useState<string | null>(null);
-  const [backupBusy, setBackupBusy] = useState(false);
   const [sourceScope, setSourceScope] = useState<GuiExportSourceScope>('todos');
   const [sortOrder, setSortOrder] = useState<'id' | 'name'>('id');
+  const [compactMode, setCompactMode] = useState(false);
+  const [lastExportPath, setLastExportPath] = useState<string | null>(null);
+  const [showShareDialog, setShowShareDialog] = useState(false);
+  const [backupBusy, setBackupBusy] = useState(false);
+  const [backupMessage, setBackupMessage] = useState<string | null>(null);
+  const [shareBusy, setShareBusy] = useState(false);
+  const [shareMessage, setShareMessage] = useState<string | null>(null);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const isMobile = typeof window !== 'undefined' && !window.matchMedia('(min-width: 80rem)').matches;
 
   const allStickers = useMemo(() => getAllStickers(), []);
 
@@ -70,9 +77,11 @@ export function ExportScreen() {
       }
 
       switch (format) {
-        case 'pdf':
-          result = await invoke('export_pdf', { stickers: filteredMissing });
+        case 'pdf': {
+          const mode = compactMode ? 'ids-only' : 'full';
+          result = await invoke('export_pdf', { stickers: filteredMissing, mode });
           break;
+        }
         case 'csv':
           result = await invoke('export_csv', { stickers: filteredMissing });
           break;
@@ -85,8 +94,10 @@ export function ExportScreen() {
 
       setExporting(false);
       setExported(true);
-      // Optionally, we could show a success message with the file path
-      console.log('Exportado a:', result);
+      setLastExportPath(result);
+      if (isMobile) {
+        setShowShareDialog(true);
+      }
     } catch (err) {
       setExporting(false);
       setError(err instanceof Error ? err.message : 'Error desconocido');
@@ -125,6 +136,10 @@ export function ExportScreen() {
 
         await writeTextFile(finalPath, content);
         setBackupMessage(`Copia de seguridad guardada correctamente: ${finalPath}`);
+        setLastExportPath(finalPath);
+        if (isMobile) {
+          setShowShareDialog(true);
+        }
       } else {
         const blob = new Blob([content], { type: 'application/json' });
         const link = document.createElement('a');
@@ -251,6 +266,15 @@ export function ExportScreen() {
             <Upload size={16} className="mr-2" />
             Abrir backup
           </Button>
+          <Button
+            variant="secondary"
+            onClick={() => setShowDeleteConfirmation(true)}
+            disabled={backupBusy}
+            className="bg-[var(--color-red)]/20 text-[var(--color-red)] hover:bg-[var(--color-red)]/30"
+          >
+            <Trash2 size={16} className="mr-2" />
+            Borrar colección
+          </Button>
         </div>
         {backupMessage && (
           <p className="text-sm text-[var(--color-green)] mt-4">{backupMessage}</p>
@@ -305,6 +329,22 @@ export function ExportScreen() {
                   <option value="name" className="bg-[var(--color-surface)] text-[var(--color-white)]">Nombre (alfabético)</option>
                 </select>
               </div>
+            </div>
+            <div className="flex items-center gap-3 flex-wrap mt-4">
+              <label htmlFor="compact-mode" className="text-sm text-[var(--color-white)] opacity-80">
+                Modo PDF
+              </label>
+              <button
+                id="compact-mode"
+                onClick={() => setCompactMode(!compactMode)}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                  compactMode
+                    ? 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)] border border-[var(--color-cyan)]'
+                    : 'bg-[var(--color-surface)] text-[var(--color-white)] border border-white/20'
+                }`}
+              >
+                {compactMode ? 'Solo IDs' : 'Formato completo'}
+              </button>
             </div>
           </Panel>
 
@@ -376,7 +416,7 @@ export function ExportScreen() {
                     console.error('Error al abrir carpeta:', err);
                   }
                 }}
-                className="hidden md:inline-flex"
+                className="hidden xl:inline-flex"
               >
                 <FolderOpen size={16} className="mr-2" />
                 Abrir Carpeta
@@ -385,7 +425,7 @@ export function ExportScreen() {
           )}
         </div>
 
-        <div className="w-96">
+        <div className="w-96 hidden xl:block">
           <Panel className="p-4">
             <h2 className="text-lg font-semibold mb-4 text-[var(--color-white)]">
               Vista Previa
@@ -407,6 +447,128 @@ export function ExportScreen() {
           </Panel>
         </div>
       </div>
+
+      {showShareDialog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <Panel className="p-6 w-80 mx-4">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-[var(--color-white)]">
+                Exportación Completa
+              </h2>
+              <button
+                onClick={() => setShowShareDialog(false)}
+                className="text-[var(--color-white)] opacity-50 hover:opacity-100 p-2 min-h-[44px]"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {shareMessage && (
+              <p className="text-sm text-[var(--color-green)] mb-4">{shareMessage}</p>
+            )}
+
+            <div className="space-y-3">
+              <Button
+                className="w-full"
+                disabled={shareBusy}
+                onClick={async () => {
+                  setShareBusy(true);
+                  setShareMessage(null);
+                  try {
+                    await invoke('share_file', { path: lastExportPath! });
+                    setShareMessage('Archivo compartido.');
+                  } catch (err) {
+                    const msg = typeof err === 'string' ? err : err instanceof Error ? err.message : JSON.stringify(err);
+                    setShareMessage('Error al compartir: ' + msg);
+                  } finally {
+                    setShareBusy(false);
+                  }
+                }}
+              >
+                <Share2 size={16} className="mr-2" />
+                Compartir
+              </Button>
+
+              <Button
+                variant="secondary"
+                className="w-full"
+                disabled={shareBusy}
+                onClick={async () => {
+                  setShareBusy(true);
+                  setShareMessage(null);
+                  try {
+                    const result = await invoke<string>('copy_to_documents', { sourcePath: lastExportPath });
+                    setShareMessage(`Archivo guardado en documentos: ${result}`);
+                  } catch (err) {
+                    setShareMessage('Error al guardar: ' + (err instanceof Error ? err.message : 'Error desconocido'));
+                  } finally {
+                    setShareBusy(false);
+                  }
+                }}
+              >
+                <FileBox size={16} className="mr-2" />
+                Guardar en documentos
+              </Button>
+
+                <button
+                  onClick={() => setShowShareDialog(false)}
+                  className="w-full py-3 min-h-[44px] text-sm text-[var(--color-white)] opacity-60 hover:opacity-100 transition-opacity"
+                >
+                  Cerrar
+                </button>
+              </div>
+             </Panel>
+           </div>
+       )}
+
+       {showDeleteConfirmation && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <Panel className="p-6 w-80 mx-4">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-[var(--color-white)]">
+                ¿Borrar colección?
+              </h2>
+              <button
+                onClick={() => setShowDeleteConfirmation(false)}
+                className="text-[var(--color-white)] opacity-50 hover:opacity-100 p-2 min-h-[44px]"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <p className="text-sm text-[var(--color-white)] mb-6">
+              Esta acción eliminará permanentemente todos tus datos de colección.
+              Esta acción no se puede deshacer.
+            </p>
+
+            <div className="space-y-3">
+              <Button
+                variant="secondary"
+                onClick={async () => {
+                  setShowDeleteConfirmation(false);
+                  try {
+                    await invoke<void>('reset_collection');
+                    setBackupMessage('Colección borrada exitosamente');
+                  } catch (err) {
+                    setBackupMessage(`Error al borrar: ${err instanceof Error ? err.message : 'Error desconocido'}`);
+                  }
+                }}
+                className="w-full"
+              >
+                <Trash2 size={16} className="mr-2" />
+                Borrar colección
+              </Button>
+
+              <button
+                onClick={() => setShowDeleteConfirmation(false)}
+                className="w-full py-3 min-h-[44px] text-sm text-[var(--color-white)] opacity-60 hover:opacity-100"
+              >
+                Cancelar
+              </button>
+            </div>
+          </Panel>
+        </div>
+      )}
     </div>
   );
 }
