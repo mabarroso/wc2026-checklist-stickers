@@ -1,6 +1,6 @@
 # Panini FIFA World Cup 2026 - Lista de Cromos
 
-Aplicación CLI y GUI para gestionar tu álbum de cromos Panini del Mundial 2026. Registra los cromos que tienes, los que te faltan y los repetidos, y exporta listas de deseos en PDF, CSV y TXT.
+Aplicación CLI y GUI para gestionar tu álbum de cromos Panini del Mundial 2026. Registra los cromos que tienes, los que te faltan y los repetidos, y exporta listas de faltantes en PDF, CSV y TXT.
 
 ## Funcionalidades
 

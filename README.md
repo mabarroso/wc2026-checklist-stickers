@@ -118,4 +118,4 @@ Clean Architecture + DDD. See `docs/STYLE-GUIDE.md` for coding conventions and [
 
 ## Disclaimer
 
-Esta aplicación no está afiliada, asociada ni respaldada por Panini S.p.A. ni por la FIFA. Todas las marcas mencionadas pertenecen a sus respectivos propietarios.
+This application is not affiliated, associated, or endorsed by Panini S.p.A. or FIFA. All trademarks mentioned belong to their respective owners.
