@@ -222,6 +222,22 @@ Estructura:
 └── openspec/            # Cambios OpenSpec
 ```
 
+## Descargo de responsabilidad
+
+Esta aplicación es un proyecto independiente y no oficial.
+
+No está afiliada, asociada, autorizada ni respaldada por Panini S.p.A., la FIFA (Fédération Internationale de Football Association) ni por ninguna organización relacionada con la Copa Mundial de la FIFA.
+
+Esta aplicación no utiliza ni distribuye:
+- Logotipos oficiales
+- Marcas registradas
+- Diseños protegidos
+- Contenido oficial de álbumes o cromos
+
+Cualquier referencia a nombres, eventos o marcas se realiza únicamente con fines descriptivos y pertenece a sus respectivos propietarios.
+
+El uso de esta aplicación es exclusivamente para la gestión personal de colecciones.
+
 ## Contribución
 
 Todo el texto de la CLI está en español. Código, commits y documentación técnica están en inglés. Ver `docs/STYLE-GUIDE.md` para las convenciones de código.

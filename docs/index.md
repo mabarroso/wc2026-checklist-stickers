@@ -244,6 +244,22 @@ Structure:
 └── openspec/            # OpenSpec changes
 ```
 
+## Disclaimer
+
+This application is an independent, unofficial project.
+
+It is not affiliated with, associated with, authorized by, or endorsed by Panini S.p.A., FIFA (Fédération Internationale de Football Association), or any organization related to the FIFA World Cup.
+
+This application does not use or distribute:
+- Official logos
+- Registered trademarks
+- Protected designs
+- Official album or sticker content
+
+Any references to names, events, or trademarks are for descriptive purposes only and belong to their respective owners.
+
+This application is intended solely for personal collection management.
+
 ## Contributing
 
 All CLI text is in Spanish. Code, commits, and technical docs are in English. See `docs/STYLE-GUIDE.md` for coding conventions.

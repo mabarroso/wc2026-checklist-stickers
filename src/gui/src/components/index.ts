@@ -6,3 +6,4 @@ export { ProgressRing } from './ProgressRing';
 export { Badge } from './Badge';
 export { Header } from './Header';
 export { Sidebar } from './Sidebar';
+export { DisclaimerModal } from './DisclaimerModal';

@@ -37,3 +37,18 @@ The system SHALL remove or disable the `minWidth` window constraint on mobile pl
 - **WHEN** the app runs on Android or iOS
 - **THEN** there is no minimum width restriction
 - **AND** the app uses the full screen width
+
+## ADDED Requirements
+
+### Requirement: Mobile-safe disclaimer modal
+The disclaimer modal SHALL render correctly on mobile viewports with safe-area awareness.
+
+#### Scenario: Modal fits mobile viewport
+- **WHEN** the disclaimer modal is shown on a mobile device (width < 640px)
+- **THEN** the card uses horizontal padding (`px-4`) to avoid edge-to-edge text
+- **AND** the backdrop covers the full viewport including safe areas
+- **AND** the close button is at least 44px tall for touch targets
+
+#### Scenario: Modal fits desktop viewport
+- **WHEN** the disclaimer modal is shown on desktop (width >= 640px)
+- **THEN** the card is constrained to `max-w-md` (448px) width

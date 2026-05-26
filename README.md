@@ -115,3 +115,7 @@ tests/              # Unit and integration tests
 ## Architecture
 
 Clean Architecture + DDD. See `docs/STYLE-GUIDE.md` for coding conventions and [`docs/index.md`](docs/index.md) for full documentation ([español](docs/index-es.md)).
+
+## Disclaimer
+
+Esta aplicación no está afiliada, asociada ni respaldada por Panini S.p.A. ni por la FIFA. Todas las marcas mencionadas pertenecen a sus respectivos propietarios.

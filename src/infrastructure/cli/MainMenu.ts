@@ -50,6 +50,7 @@ export class MainMenu {
     console.log(chalk.bold.cyan('\n====================================='));
     console.log(chalk.bold.cyan('  PANINI WORLD CUP 2026 CHECKLIST'));
     console.log(chalk.bold.cyan('=====================================\n'));
+    console.log(chalk.gray('No afiliado a Panini ni a la FIFA. Uso solo para gestión personal.\n'));
   }
 
   printFarewell(): void {
