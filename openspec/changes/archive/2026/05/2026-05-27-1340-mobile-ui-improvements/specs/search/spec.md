@@ -1,9 +1,6 @@
-# search Specification
+# search Specification - Delta
 
-## Purpose
-Fast searching for stickers with mobile-optimized bottom sheet detail view and debounced input.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Bottom sheet detail view on mobile
 The Search screen SHALL display a bottom sheet for sticker details on mobile viewports instead of the hidden side panel.

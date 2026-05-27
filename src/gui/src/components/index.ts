@@ -7,3 +7,5 @@ export { Badge } from './Badge';
 export { Header } from './Header';
 export { Sidebar } from './Sidebar';
 export { DisclaimerModal } from './DisclaimerModal';
+export { ToastContainer } from './Toast';
+export { BottomSheet } from './BottomSheet';

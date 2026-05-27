@@ -57,20 +57,27 @@ export const useCollectionStore = create<CollectionStore>()(
           return {};
         }),
 
-      markDuplicate: (stickerId) =>
+      markDuplicate: (stickerId, quantity = 1) =>
         set((state) => {
           const currentOwned = state.owned[stickerId] || 0;
           const currentDuplicates = state.duplicates[stickerId] || 0;
+          const newDuplicates = Math.max(0, currentDuplicates + quantity);
 
           if (currentOwned === 0) {
             return {
               owned: { ...state.owned, [stickerId]: 1 },
-              duplicates: { ...state.duplicates, [stickerId]: 1 },
+              duplicates: { ...state.duplicates, [stickerId]: newDuplicates || 1 },
             };
           }
 
+          if (newDuplicates === 0) {
+            const rest = { ...state.duplicates };
+            delete rest[stickerId];
+            return { duplicates: rest };
+          }
+
           return {
-            duplicates: { ...state.duplicates, [stickerId]: currentDuplicates + 1 },
+            duplicates: { ...state.duplicates, [stickerId]: newDuplicates },
           };
         }),
 

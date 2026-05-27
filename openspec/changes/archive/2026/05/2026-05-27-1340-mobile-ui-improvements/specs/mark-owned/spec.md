@@ -1,21 +1,18 @@
-# mark-owned Specification
+# mark-owned Specification - Delta
 
-## Purpose
-Quick keyboard-first workflow optimized for rapid sticker entry, like collectors opening packs.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Undo snackbar replaces recently added list on mobile
-The Mark Owned screen SHALL replace the "Añadidos Recientemente" side panel with an undo snackbar on mobile viewports.
+The Mark Owned screen SHALL replace the "A&ntilde;adidos Recientemente" side panel with an undo snackbar on mobile viewports.
 
 #### Scenario: Undo snackbar on mobile
 - **WHEN** the viewport is narrower than 768px
-- **THEN** the "Añadidos Recientemente" side panel is hidden
+- **THEN** the "A&ntilde;adidos Recientemente" side panel is hidden
 - **AND** after adding a sticker, a toast with "Undo" action appears at the bottom
 
 #### Scenario: Side panel on desktop
 - **WHEN** the viewport is 768px or wider
-- **THEN** the existing "Añadidos Recientemente" side panel is shown (current behavior)
+- **THEN** the existing "A&ntilde;adidos Recientemente" side panel is shown (current behavior)
 
 #### Scenario: Undo action reverts last add
 - **WHEN** the user taps "Undo" on the snackbar
@@ -36,5 +33,5 @@ The Mark Owned screen SHALL show a visual empty state when no stickers have been
 #### Scenario: Empty state displayed
 - **WHEN** no stickers have been added recently
 - **THEN** an icon (FilePlus or similar) is displayed centered
-- **AND** text says "Aún no has añadido cromos"
+- **AND** text says "A&uacute;n no has a&ntilde;adido cromos"
 - **AND** a subtitle suggests "Busca un cromo por ID o nombre para empezar"

@@ -83,15 +83,15 @@ export function Sidebar() {
               key={item.path}
               type="button"
               onClick={() => navigate(item.path)}
-              className={`flex-1 flex flex-col items-center justify-center py-2 min-h-[56px] gap-0.5 transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center justify-center py-3 min-h-[64px] gap-0.5 transition-all duration-200 active:scale-95 ${
                 isActive
                   ? 'text-[var(--color-blue)]'
                   : 'text-[var(--color-white)] opacity-50 hover:opacity-80'
               }`}
               aria-current={isActive ? 'page' : undefined}
             >
-              <item.icon size={22} />
-              <span className="text-[10px] leading-tight font-medium">{item.label}</span>
+              <item.icon size={24} />
+              <span className="text-[11px] leading-tight font-medium">{item.label}</span>
             </button>
           );
         })}

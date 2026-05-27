@@ -1,15 +1,9 @@
 # export Specification
 
 ## Purpose
-Legacy synchronized capability specification for export.
-## Requirements
-### Requirement: export capability behavior
-The system SHALL implement the capability behavior described in this specification.
+Professional export center for generating missing sticker lists in multiple formats.
 
-#### Scenario: Capability behavior is used as baseline
-- **WHEN** this capability is implemented, tested, or reviewed
-- **THEN** the behavior captured in this specification MUST be treated as the baseline
-- **AND** legacy archived notes MUST remain available for reference
+## Requirements
 
 ### Requirement: Export flow allows source selection
 The system SHALL require users to select a source scope before exporting missing stickers.
@@ -45,94 +39,38 @@ The system SHALL keep source selection scoped to checklist generation and SHALL 
 - **THEN** the backup contains the full collection state
 - **AND** the selected export source does not change backup contents
 
-## Legacy Notes
+### Requirement: Responsive single-column layout on mobile
+The Export screen SHALL adapt to a single-column layout on mobile viewports.
 
-## export
+#### Scenario: Single column on mobile
+- **WHEN** the viewport is narrower than 1024px
+- **THEN** the export controls stack in a single column (full width)
+- **AND** the preview panel is hidden (it is desktop-only)
 
-### Screen Description
+#### Scenario: Two-column layout on desktop
+- **WHEN** the viewport is 1024px or wider
+- **THEN** the existing two-column layout with preview panel is shown
 
-Professional export center for generating missing sticker lists in multiple formats.
+### Requirement: Toast feedback replaces inline error panel
+Export success and error messages SHALL use the toast notification system instead of inline panels.
 
-### Layout
+#### Scenario: Export success toast
+- **WHEN** an export completes successfully on mobile
+- **THEN** a success toast appears with the message "Exportación completa"
+- **AND** the previous inline success panel with "Abrir Carpeta" button is hidden on mobile
 
-```html
-<div class="export-layout">
-  <section class="export-panel">
-    <button class="export-option pdf">
-      <span class="icon">📄</span>
-      <span class="label">PDF</span>
-    </button>
-    <button class="export-option csv">
-      <span class="icon">📊</span>
-      <span class="label">CSV</span>
-    </button>
-    <button class="export-option txt">
-      <span class="icon">📝</span>
-      <span class="label">TXT</span>
-    </button>
-  </section>
-  <section class="preview-panel">
-    <div class="export-preview"></div>
-    <div class="export-stats"></div>
-  </section>
-</div>
-```
+#### Scenario: Export error toast
+- **WHEN** an export fails on any device
+- **THEN** an error toast appears with the error message
+- **AND** the previous inline error panel is replaced by the toast
 
-### Export Cards
+### Requirement: Format export cards responsive
+The three format export cards (PDF, CSV, TXT) SHALL adapt to mobile viewports.
 
-| Format | Accent | Icon | Description |
-|--------|--------|------|-------------|
-| PDF | Red | 📄 | Printable checklist with checkboxes |
-| CSV | Green | 📊 | Spreadsheet format |
-| TXT | Cyan | 📝 | Human-readable list |
+#### Scenario: Full-width cards on mobile
+- **WHEN** the viewport is narrower than 640px
+- **THEN** the format cards stack vertically (single column)
 
-### Requirements
-
-- [ ] Three export format cards with icons
-- [ ] Hover animation (scale + glow)
-- [ ] Preview area showing file content sample
-- [ ] Stats: number of missing stickers
-- [ ] Export location selector (Downloads/Desktop/Custom)
-- [ ] Progress indicator during export
-- [ ] Success notification with file path
-- [ ] Open folder button after export
-
-### Export Card Styling
-
-```css
-.export-option {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 24px;
-  transition: 220ms ease-out;
-}
-
-.export-option:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(121,216,219,.2);
-}
-
-.export-option.pdf:hover {
-  border-color: var(--red);
-}
-
-.export-option.csv:hover {
-  border-color: var(--green);
-}
-
-.export-option.txt:hover {
-  border-color: var(--cyan);
-}
-```
-
-### File Naming
-
-Pattern: `faltantes_YYYY-MM-DD.{ext}`
-
-### Acceptance Criteria
-
-1. Clicking format generates correct file type
-2. Preview shows sample of output
-3. File is saved to selected location
-4. Success notification appears
-5. "Open folder" works after export
+#### Scenario: Three-column grid on desktop
+- **WHEN** the viewport is 640px or wider
+- **THEN** the format cards display in a 3-column grid (current behavior)

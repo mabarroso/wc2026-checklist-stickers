@@ -1,9 +1,6 @@
-# view-collection Specification
+# view-collection Specification - Delta
 
-## Purpose
-Core experience of the app. A premium digital football sticker album browser with card grid layout, pagination, and batch selection.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Pagination with 50 items per page
 The ViewCollection screen SHALL paginate the sticker grid to 50 items per page on all viewport sizes.

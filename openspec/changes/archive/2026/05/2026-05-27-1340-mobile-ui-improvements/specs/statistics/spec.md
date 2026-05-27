@@ -1,9 +1,6 @@
-# statistics Specification
+# statistics Specification - Delta
 
-## Purpose
-Sports analytics dashboard resembling FIFA analytics and esports control panels.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Team progress collapsible sections
 The team progress bars in Statistics SHALL be organized into collapsible sections.
@@ -24,7 +21,7 @@ The team progress bars in Statistics SHALL be organized into collapsible section
 - **THEN** the section header shows the section name and total count of teams in that section
 
 ### Requirement: Responsive stat summary cards
-The four summary stat cards (Total, En el álbum, Faltantes, Duplicadas) SHALL adapt to mobile viewports.
+The four summary stat cards (Total, En el album, Faltantes, Duplicadas) SHALL adapt to mobile viewports.
 
 #### Scenario: 2x2 grid on mobile
 - **WHEN** the viewport is narrower than 768px
@@ -44,10 +41,3 @@ The progress rings (Total + per-section) SHALL adapt to mobile viewports.
 #### Scenario: 6-column grid on desktop
 - **WHEN** the viewport is 768px or wider
 - **THEN** the progress rings display in a 6-column grid (current behavior)
-
-### Requirement: Statistics screen excludes reset action
-The statistics screen SHALL NOT include any "reset collection" or "borrar colección" action. The reset action is exclusively available in the export/backup screen.
-
-#### Scenario: Statistics screen has no reset button
-- **WHEN** user views the statistics screen
-- **THEN** there is no button or control to reset/delete the collection

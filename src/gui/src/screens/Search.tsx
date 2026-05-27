@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus, Trash2, Repeat, Users } from 'lucide-react';
 import { useCollectionStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
-import { Card, Badge, Header, Button } from '../components';
+import { Card, Badge, Header, Button, BottomSheet } from '../components';
+import { useDebounce } from '../hooks/useDebounce';
 
 interface Suggestion {
   type: 'id' | 'name' | 'team';
@@ -11,6 +12,9 @@ interface Suggestion {
   value: string;
   match: string;
 }
+
+const DEBOUNCE_SEARCH_MS = 150;
+const DEBOUNCE_ACTION_MS = 300;
 
 export function SearchScreen() {
   const {
@@ -26,11 +30,16 @@ export function SearchScreen() {
   const [query, setQuery] = useState('');
   const [showAutocomplete, setShowAutocomplete] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
+  const [showMobileSheet, setShowMobileSheet] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const autocompleteRef = useRef<HTMLDivElement>(null);
   const prevQueryRef = useRef('');
+  const lastActionTime = useRef<Record<string, number>>({});
 
+  const debouncedQuery = useDebounce(query, DEBOUNCE_SEARCH_MS);
   const allStickers = useMemo(() => getAllStickers(), []);
+
+  const isMobile = typeof window !== 'undefined' && !window.matchMedia('(min-width: 64rem)').matches;
 
   const suggestions = useMemo((): Suggestion[] => {
     if (query.length < 2) return [];
@@ -67,8 +76,8 @@ export function SearchScreen() {
     if (selectedTeam) {
       return allStickers.filter((s) => s.team === selectedTeam);
     }
-    if (!query) return [];
-    const lowerQuery = query.toLowerCase();
+    if (!debouncedQuery) return [];
+    const lowerQuery = debouncedQuery.toLowerCase();
     return allStickers
       .filter(
         (s) =>
@@ -77,7 +86,7 @@ export function SearchScreen() {
           s.team.toLowerCase().includes(lowerQuery),
       )
       .slice(0, 20);
-  }, [allStickers, query, selectedTeam]);
+  }, [allStickers, debouncedQuery, selectedTeam]);
 
   const selectedSticker = useMemo(() => {
     return selectedStickerId ? allStickers.find((s) => s.id === selectedStickerId) : null;
@@ -98,6 +107,14 @@ export function SearchScreen() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const withDebounce = (action: () => void, key: string) => {
+    const now = Date.now();
+    const last = lastActionTime.current[key] || 0;
+    if (now - last < DEBOUNCE_ACTION_MS) return;
+    lastActionTime.current[key] = now;
+    action();
+  };
+
   const handleSuggestionClick = (suggestion: Suggestion) => {
     setShowAutocomplete(false);
     if (suggestion.type === 'team') {
@@ -108,6 +125,16 @@ export function SearchScreen() {
       setSelectedTeam(null);
       setQuery(suggestion.value);
       setSelectedSticker(suggestion.value);
+      if (isMobile) {
+        setShowMobileSheet(true);
+      }
+    }
+  };
+
+  const openDetail = (id: string) => {
+    setSelectedSticker(id);
+    if (isMobile) {
+      setShowMobileSheet(true);
     }
   };
 
@@ -141,6 +168,75 @@ export function SearchScreen() {
         <span className="text-[var(--color-cyan)] font-semibold">{text.slice(idx, idx + queryStr.length)}</span>
         {text.slice(idx + queryStr.length)}
       </>
+    );
+  };
+
+  const renderStickerActions = (stickerId: string, small?: boolean) => {
+    const ownedQty = getOwnedQty(stickerId);
+    const dupQty = getDupQty(stickerId);
+    const btnClass = small
+      ? 'flex-1 flex items-center justify-center min-h-[44px] rounded-lg text-sm transition-all'
+      : 'flex-1 flex items-center justify-center min-h-[44px] rounded-lg text-sm transition-all';
+
+    return (
+      <div className="flex gap-2 mt-3">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            withDebounce(() => markOwned(stickerId), `own-${stickerId}`);
+          }}
+          disabled={ownedQty > 0}
+          className={`${btnClass} ${
+            ownedQty > 0
+              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
+              : 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)] hover:bg-[var(--color-cyan)]/30'
+          }`}
+          aria-label="Añadir al álbum"
+          title="Añadir al álbum"
+        >
+          <Plus size={small ? 14 : 16} className="mr-1" />
+          Añadir
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            withDebounce(() => {
+              if (dupQty > 1) {
+                setDuplicates({ ...duplicates, [stickerId]: dupQty - 1 });
+              } else if (dupQty === 1) {
+                const newDuplicates = { ...duplicates };
+                delete newDuplicates[stickerId];
+                setDuplicates(newDuplicates);
+              } else {
+                unmarkOwned(stickerId);
+              }
+            }, `remove-${stickerId}`);
+          }}
+          disabled={ownedQty === 0 && dupQty === 0}
+          className={`${btnClass} ${
+            ownedQty === 0 && dupQty === 0
+              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
+              : 'bg-[var(--color-white)]/10 text-[var(--color-white)] hover:bg-[var(--color-white)]/20'
+          }`}
+          aria-label="Quitar del álbum"
+          title="Quitar del álbum"
+        >
+          <Trash2 size={small ? 14 : 16} className="mr-1" />
+          Quitar
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            withDebounce(() => markDuplicate(stickerId), `dup-${stickerId}`);
+          }}
+          className={`${btnClass} bg-[var(--color-orange)]/20 text-[var(--color-orange)] hover:bg-[var(--color-orange)]/30`}
+          aria-label="Marcar como repetida"
+          title="Marcar como repetida"
+        >
+          <Repeat size={small ? 14 : 16} className="mr-1" />
+          Repetir
+        </button>
+      </div>
     );
   };
 
@@ -218,7 +314,7 @@ export function SearchScreen() {
           {selectedTeam && (
             <p className="text-sm text-[var(--color-yellow)] mb-4">
               <Users size={14} className="inline mr-1" />
-              {selectedTeam} — {results.length} cromo{results.length !== 1 ? 's' : ''}
+              {selectedTeam} &mdash; {results.length} cromo{results.length !== 1 ? 's' : ''}
             </p>
           )}
 
@@ -236,20 +332,20 @@ export function SearchScreen() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.9 }}
-                      onClick={() => setSelectedSticker(sticker.id)}
+                      onClick={() => openDetail(sticker.id)}
                       className={`cursor-pointer rounded-xl p-3 transition-all ${
                         selectedStickerId === sticker.id
                           ? 'bg-[var(--color-cyan)]/20 border border-[var(--color-cyan)]'
                           : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface-2)]'
                       }`}
                     >
-                      <p className="text-xs font-mono text-[var(--color-cyan)]">
+                      <p className="text-xs font-mono text-[var(--color-cyan)] truncate" title={sticker.id}>
                         {sticker.id}
                       </p>
-                      <p className="text-sm truncate text-[var(--color-white)]">
+                      <p className="text-sm truncate text-[var(--color-white)]" title={sticker.name}>
                         {sticker.name}
                       </p>
-                      <p className="text-xs text-[var(--color-white)] opacity-60">
+                      <p className="text-xs text-[var(--color-white)] opacity-60 truncate" title={sticker.team}>
                         {sticker.team}
                       </p>
                       {status !== 'missing' && (
@@ -262,53 +358,7 @@ export function SearchScreen() {
                           )}
                         </div>
                       )}
-                      <div className="flex gap-1 mt-2">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            markOwned(sticker.id);
-                          }}
-                          disabled={ownedQty > 0}
-                          className={`text-sm px-3 py-2 min-h-[36px] rounded transition-all ${
-                            ownedQty > 0
-                              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
-                              : 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)] hover:bg-[var(--color-cyan)]/30'
-                          }`}
-                        >
-                          Añadir
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (dupQty > 1) {
-                              setDuplicates({ ...duplicates, [sticker.id]: dupQty - 1 });
-                            } else if (dupQty === 1) {
-                              const newDuplicates = { ...duplicates };
-                              delete newDuplicates[sticker.id];
-                              setDuplicates(newDuplicates);
-                            } else {
-                              unmarkOwned(sticker.id);
-                            }
-                          }}
-                          disabled={ownedQty === 0 && dupQty === 0}
-                          className={`text-sm px-3 py-2 min-h-[36px] rounded transition-all ${
-                            ownedQty === 0 && dupQty === 0
-                              ? 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-30 cursor-not-allowed'
-                              : 'bg-[var(--color-white)]/10 text-[var(--color-white)] hover:bg-[var(--color-white)]/20'
-                          }`}
-                        >
-                          Quitar
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            markDuplicate(sticker.id);
-                          }}
-                          className="text-sm px-3 py-2 min-h-[36px] rounded transition-all bg-[var(--color-orange)]/20 text-[var(--color-orange)] hover:bg-[var(--color-orange)]/30"
-                        >
-                          Repetir
-                        </button>
-                      </div>
+                      {renderStickerActions(sticker.id, true)}
                     </motion.div>
                   );
                 })}
@@ -391,6 +441,79 @@ export function SearchScreen() {
           )}
         </div>
       </div>
+
+      <BottomSheet
+        show={showMobileSheet}
+        onClose={() => {
+          setShowMobileSheet(false);
+          setSelectedSticker(null);
+        }}
+      >
+        {selectedSticker && (
+          <div className="flex flex-col items-center py-4">
+            <div className="text-6xl mb-4">⚽</div>
+            <p className="text-3xl font-bold text-[var(--color-cyan)] mb-2">
+              {selectedSticker.id}
+            </p>
+            <p className="text-lg text-[var(--color-white)] text-center">
+              {selectedSticker.name}
+            </p>
+            <p className="text-sm text-[var(--color-white)] opacity-60 mb-4">
+              {selectedSticker.team}
+            </p>
+            <div className="flex gap-2 mb-4">
+              {getOwnedQty(selectedSticker.id) > 0 && (
+                <Badge variant="cyan">
+                  En el álbum x{getOwnedQty(selectedSticker.id)}
+                </Badge>
+              )}
+              {getDupQty(selectedSticker.id) > 0 && (
+                <Badge variant="orange">
+                  Repetida x{getDupQty(selectedSticker.id)}
+                </Badge>
+              )}
+            </div>
+            <div className="space-y-2 w-full">
+              <Button
+                className="w-full"
+                onClick={() => markOwned(selectedSticker.id)}
+                disabled={getOwnedQty(selectedSticker.id) > 0}
+              >
+                <Plus size={16} className="mr-2" />
+                Añadir al álbum
+              </Button>
+              <Button
+                variant="secondary"
+                className="w-full"
+                onClick={() => {
+                  const dupQty = getDupQty(selectedSticker.id);
+                  if (dupQty > 1) {
+                    setDuplicates({ ...duplicates, [selectedSticker.id]: dupQty - 1 });
+                  } else if (dupQty === 1) {
+                    const newDups = { ...duplicates };
+                    delete newDups[selectedSticker.id];
+                    setDuplicates(newDups);
+                  } else {
+                    unmarkOwned(selectedSticker.id);
+                  }
+                }}
+                disabled={getOwnedQty(selectedSticker.id) === 0 && getDupQty(selectedSticker.id) === 0}
+              >
+                <Trash2 size={16} className="mr-2" />
+                Quitar del álbum
+              </Button>
+              <Button
+                variant="secondary"
+                className="w-full"
+                onClick={() => markDuplicate(selectedSticker.id)}
+              >
+                <Repeat size={16} className="mr-2" />
+                Marcar como repetida
+              </Button>
+            </div>
+          </div>
+        )}
+      </BottomSheet>
     </div>
   );
 }

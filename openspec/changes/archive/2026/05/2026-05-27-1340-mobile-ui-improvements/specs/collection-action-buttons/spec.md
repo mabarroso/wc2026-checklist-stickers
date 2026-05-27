@@ -1,12 +1,9 @@
-# collection-action-buttons Specification
+# collection-action-buttons Specification - Delta
 
-## Purpose
-Action buttons for managing sticker ownership within the collection view.
+## MODIFIED Requirements
 
-## Requirements
-
-### Requirement: Action buttons inside selected sticker card
-The action buttons (Añadir, Quitar, Repetida) SHALL appear inside the selected sticker card at the bottom position, with equal widths and minimum 44px height.
+### Requirement: Action buttons inside selected sticker card (updated sizing)
+The action buttons (A&ntilde;adir, Quitar, Repetida) SHALL appear inside the selected sticker card at the bottom position, with equal widths and minimum 44px height.
 
 #### Scenario: No sticker selected
 - **WHEN** no sticker is currently selected (selectedSticker is null)
@@ -19,7 +16,7 @@ The action buttons (Añadir, Quitar, Repetida) SHALL appear inside the selected 
 - **AND** each button has equal width (flex-1) and minimum height of 44px
 
 #### Scenario: Add to album action
-- **WHEN** user clicks "Añadir" button on the selected sticker
+- **WHEN** user clicks "A&ntilde;adir" button on the selected sticker
 - **THEN** the owned quantity for that sticker increases by 1
 - **AND** the button is disabled for 300ms to prevent double-tap
 
@@ -38,6 +35,8 @@ The action buttons (Añadir, Quitar, Repetida) SHALL appear inside the selected 
 - **THEN** the new sticker becomes selected
 - **AND** the action buttons move to appear inside the newly selected card
 - **AND** the previous card no longer displays any buttons
+
+## ADDED Requirements
 
 ### Requirement: Button component supports size variant
 The Button component SHALL support a `size` prop with `sm`, `md`, and `lg` variants.

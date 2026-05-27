@@ -35,6 +35,7 @@
     font-family: var(--font-body);
     background-color: var(--bg-main);
     color: var(--text-main);
+    scroll-behavior: smooth;
   }
 
   body {
@@ -42,6 +43,12 @@
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-radius: 8px;
   }
 
   body::before {
@@ -56,6 +63,7 @@
     opacity: 0.15;
     z-index: 0;
     pointer-events: none;
+    will-change: transform;
   }
 
   body::after {
@@ -70,6 +78,7 @@
     opacity: 0.15;
     z-index: 0;
     pointer-events: none;
+    will-change: transform;
   }
 
   ::selection {
@@ -82,7 +91,13 @@
   .app {
     position: relative;
     z-index: 1;
-    padding: 24px;
+    padding: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .app {
+      padding: 24px;
+    }
   }
 
   .header {
@@ -108,6 +123,10 @@
     transform: translateY(-1px);
   }
 
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+
   .btn-secondary {
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(20px);
@@ -122,6 +141,10 @@
   .btn-secondary:hover {
     border-color: var(--blue);
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.97);
   }
 
   .panel {
@@ -190,7 +213,7 @@
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
-  @media (min-width: 80rem) {
+  @media (min-width: 64rem) {
     .sidebar-desktop {
       display: flex;
     }
@@ -208,5 +231,16 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
