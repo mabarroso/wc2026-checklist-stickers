@@ -306,7 +306,7 @@ export function ExportScreen() {
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                   compactMode
                     ? 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)] border border-[var(--color-cyan)]'
-                    : 'bg-[var(--color-surface)] text-[var(--color-white)] border border-white/20'
+                    : 'bg-[var(--color-surface)] text-[var(--color-white)] border border-[var(--color-border-strong)]'
                 }`}
               >
                 {compactMode ? 'Solo IDs' : 'Formato completo'}
@@ -324,7 +324,7 @@ export function ExportScreen() {
                 className={`p-6 rounded-2xl cursor-pointer transition-all ${
                   selectedFormat === format.id
                     ? 'bg-[var(--color-surface)] border-2'
-                    : 'bg-[var(--color-surface)]/50 border border-transparent hover:border-white/20'
+                    : 'bg-[var(--color-surface)]/50 border border-transparent hover:border-[var(--color-border-strong)]'
                 }`}
                 style={{
                   borderColor: selectedFormat === format.id ? format.color : undefined,

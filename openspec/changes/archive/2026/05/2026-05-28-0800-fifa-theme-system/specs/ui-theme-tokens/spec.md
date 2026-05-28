@@ -1,20 +1,4 @@
-# ui-theme-tokens Specification
-
-## Purpose
-Legacy synchronized capability specification for ui-theme-tokens.
-
-## Requirements
-### Requirement: ui-theme-tokens capability behavior
-The system SHALL implement the capability behavior described in this specification.
-
-#### Scenario: Capability behavior is used as baseline
-- **WHEN** this capability is implemented, tested, or reviewed
-- **THEN** the behavior captured in this specification MUST be treated as the baseline
-- **AND** legacy archived notes MUST remain available for reference
-
-## Legacy Notes
-
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: CSS tokens match ui_theme.md
 The GUI SHALL use CSS custom properties with themed token definitions.
@@ -68,15 +52,6 @@ The GUI SHALL display background with geometric shapes that adapt to the current
 - **WHEN** the light theme is active
 - **THEN** there SHALL be a fixed orange shape (#f97316, 400px) at bottom-right corner with 40% border-radius and opacity 0.08
 
-### Requirement: Poppins font
-The GUI SHALL use Poppins font family for all text.
-
-#### Scenario: Font loading
-- **WHEN** app loads
-- **THEN** Poppins font SHALL be loaded from Google Fonts
-- **AND** --font-body SHALL be set to 'Poppins', sans-serif
-- **AND** all text SHALL use Poppins font
-
 ### Requirement: Badge status system
 The GUI SHALL provide status badges with theme-aware backgrounds.
 
@@ -117,6 +92,8 @@ The GUI SHALL use theme-aware card styles.
 - **AND** border-radius 20px (--radius)
 - **AND** padding 16px
 - **AND** position relative with overflow hidden
+
+## ADDED Requirements
 
 ### Requirement: Nav-item color distribution
 The navigation items SHALL be assigned distinct FIFA colors to ensure all 6 colors are always visible.

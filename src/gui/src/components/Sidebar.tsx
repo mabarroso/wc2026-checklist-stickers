@@ -23,16 +23,17 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="sidebar-desktop w-64 h-screen shrink-0 relative z-20 bg-[var(--color-surface)] border-r border-white/10 flex-col">
-        <div className="p-6 border-b border-white/10">
+      <aside className="sidebar-desktop w-64 h-screen shrink-0 relative z-20 bg-[var(--color-surface)] border-r border-[var(--color-border)] flex-col">
+        <div className="p-6 border-b border-[var(--color-border)]">
           <h1 className="text-2xl font-bold tracking-wider text-[var(--color-blue)]">
             PANINI WC 2026
           </h1>
         </div>
 
         <nav className="flex-1 p-4 space-y-2">
-          {navItems.map((item) => {
+          {navItems.map((item, index) => {
             const isActive = location.pathname === item.path;
+            const navColor = `var(--nav-color-${index})`;
 
             return (
               <button
@@ -52,9 +53,16 @@ export function Sidebar() {
                 }}
                 className={`w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive
-                    ? 'bg-[var(--color-blue)]/15 border-l-4 border-[var(--color-blue)] text-[var(--color-blue)]'
-                    : 'hover:bg-white/5 text-[var(--color-white)] opacity-70 hover:opacity-100'
+                    ? `border-l-4 text-[${navColor}]`
+                    : 'hover:bg-[var(--color-hover)] text-[var(--color-white)] opacity-70 hover:opacity-100'
                 }`}
+                style={{
+                  backgroundColor: isActive
+                    ? `color-mix(in srgb, ${navColor} 15%, transparent)`
+                    : undefined,
+                  borderLeftColor: isActive ? navColor : undefined,
+                  color: isActive ? navColor : undefined,
+                }}
                 aria-current={isActive ? 'page' : undefined}
               >
                 <span className="pointer-events-none">
@@ -67,16 +75,17 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-[var(--color-border)]">
           <p className="text-xs text-[var(--color-white)] opacity-40 text-center">
             Teclado: 1-6 para navegar
           </p>
         </div>
       </aside>
 
-      <nav className="bottom-tabs fixed bottom-0 left-0 right-0 z-30 bg-[var(--color-surface)] border-t border-white/10">
-        {navItems.map((item) => {
+      <nav className="bottom-tabs fixed bottom-0 left-0 right-0 z-30 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+        {navItems.map((item, index) => {
           const isActive = location.pathname === item.path;
+          const navColor = `var(--nav-color-${index})`;
 
           return (
             <button
@@ -85,9 +94,12 @@ export function Sidebar() {
               onClick={() => navigate(item.path)}
               className={`flex-1 flex flex-col items-center justify-center py-3 min-h-[64px] gap-0.5 transition-all duration-200 active:scale-95 ${
                 isActive
-                  ? 'text-[var(--color-blue)]'
+                  ? ''
                   : 'text-[var(--color-white)] opacity-50 hover:opacity-80'
               }`}
+              style={{
+                color: isActive ? navColor : undefined,
+              }}
               aria-current={isActive ? 'page' : undefined}
             >
               <item.icon size={24} />

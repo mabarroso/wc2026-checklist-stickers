@@ -35,7 +35,7 @@ export function ToastContainer() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className={`pointer-events-auto flex items-center gap-3 bg-[var(--color-surface)] border border-white/10 border-l-4 ${borderMap[toast.variant]} rounded-xl px-4 py-3 shadow-lg max-w-sm w-[90vw]`}
+              className={`pointer-events-auto flex items-center gap-3 bg-[var(--color-surface)] border border-[var(--color-border)] border-l-4 ${borderMap[toast.variant]} rounded-xl px-4 py-3 shadow-lg max-w-sm w-[90vw]`}
             >
               <Icon size={20} className={`shrink-0 ${colorMap[toast.variant]}`} />
               <p className="flex-1 text-sm text-[var(--color-white)]">{toast.message}</p>

@@ -33,10 +33,10 @@ export function BottomSheet({ show, onClose, children }: BottomSheetProps) {
                 onClose();
               }
             }}
-            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl bg-[var(--color-surface)] border-t border-white/10 max-h-[80vh] overflow-auto"
+            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl bg-[var(--color-surface)] border-t border-[var(--color-border)] max-h-[80vh] overflow-auto"
           >
             <div className="flex justify-center pt-3 pb-2">
-              <div className="w-10 h-1 rounded-full bg-white/20" />
+              <div className="w-10 h-1 rounded-full bg-[var(--color-border-strong)]" />
             </div>
             <div className="px-4 pb-6">
               {children}

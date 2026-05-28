@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './components/Sidebar';
 import { DisclaimerModal } from './components/DisclaimerModal';
 import { ToastContainer } from './components/Toast';
+import { useDisclaimerStore } from './stores/disclaimerStore';
 
 export function AppLayout() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true);
+  const showDisclaimer = useDisclaimerStore((s) => s.show);
+  const setShowDisclaimer = useDisclaimerStore((s) => s.setShow);
 
   return (
     <div className="flex min-h-screen bg-[var(--bg-main)]">

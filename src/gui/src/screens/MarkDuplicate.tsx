@@ -94,12 +94,12 @@ export function MarkDuplicateScreen() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute z-10 w-full mt-2 bg-[var(--color-surface)] border border-white/10 rounded-xl overflow-hidden"
+                  className="absolute z-10 w-full mt-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl overflow-hidden"
                 >
                   {suggestions.map((s) => (
                     <button
                       key={s.id}
-                      className="w-full px-4 py-3 text-left hover:bg-white/5 transition-colors min-h-[44px]"
+                      className="w-full px-4 py-3 text-left hover:bg-[var(--color-hover)] transition-colors min-h-[44px]"
                       onClick={() => {
                         setStickerId(s.id);
                         setShowSuggestions(false);
@@ -154,7 +154,7 @@ export function MarkDuplicateScreen() {
               <select
                 value={sortField}
                 onChange={(e) => setSortField(e.target.value as SortField)}
-                className="appearance-none bg-[var(--color-surface)] text-[var(--color-white)] text-sm px-3 py-2 pr-8 rounded-lg cursor-pointer border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)]"
+                className="appearance-none bg-[var(--color-surface)] text-[var(--color-white)] text-sm px-3 py-2 pr-8 rounded-lg cursor-pointer border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-cyan)]"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
                   backgroundRepeat: 'no-repeat',
@@ -168,7 +168,7 @@ export function MarkDuplicateScreen() {
               </select>
               <button
                 onClick={() => setSortAsc(!sortAsc)}
-                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] border border-white/10 hover:bg-white/10 transition-colors"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] border border-[var(--color-border)] hover:bg-[var(--color-hover-strong)] transition-colors"
                 aria-label={sortAsc ? 'Orden descendente' : 'Orden ascendente'}
               >
                 <span className={`text-sm transition-transform ${sortAsc ? '' : 'rotate-180'}`}>▲</span>

@@ -282,9 +282,7 @@ pub fn run() {
             copy_to_documents,
             share_file,
         ])
-        .setup(|app| {
-            let window = app.get_webview_window("main").unwrap();
-            window.set_title("Panini WC 2026 Checklist").unwrap();
+        .setup(|_app| {
             Ok(())
         })
         .run(tauri::generate_context!())

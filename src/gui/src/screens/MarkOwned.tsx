@@ -107,12 +107,12 @@ export function MarkOwnedScreen() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute z-10 w-full mt-2 bg-[var(--color-surface)] border border-white/10 rounded-xl overflow-hidden"
+                  className="absolute z-10 w-full mt-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl overflow-hidden"
                 >
                   {suggestions.map((s) => (
                     <button
                       key={s.id}
-                      className="w-full px-4 py-3 text-left hover:bg-white/5 transition-colors min-h-[44px]"
+                      className="w-full px-4 py-3 text-left hover:bg-[var(--color-hover)] transition-colors min-h-[44px]"
                       onClick={() => {
                         setStickerId(s.id);
                         setShowSuggestions(false);
@@ -192,7 +192,7 @@ export function MarkOwnedScreen() {
                     </div>
                     <button
                       onClick={() => handleUndo(item.id)}
-                      className="p-3 hover:bg-white/10 rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                      className="p-3 hover:bg-[var(--color-hover-strong)] rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                       aria-label="Deshacer"
                     >
                       <X size={16} className="text-[var(--color-red)]" />

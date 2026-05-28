@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { useKeyboardNavigation } from './hooks';
+import { ThemeProvider } from './stores/ThemeContext';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -7,5 +8,5 @@ interface AppProvidersProps {
 
 export function AppProviders({ children }: AppProvidersProps) {
   useKeyboardNavigation();
-  return <>{children}</>;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }

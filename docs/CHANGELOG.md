@@ -18,6 +18,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Theme system: dark (default) and light themes with CSS custom properties, persisted to localStorage
+- 3-dot kebab menu (⋮) in Header with Tema (Claro/Oscuro), Aviso legal, and Acerca de options
+- About modal showing app name and version
+- `ThemeContext` + `ThemeProvider` for theme state management
+- `fifa-colors` and `theme-system` OpenSpec capability specs
+
+### Changed
+
+- Navigation sidebar and bottom tabs: each of the 6 items uses a distinct FIFA color (blue, green, yellow, orange, cyan, red)
+- All hardcoded `border-white/*` and `hover:bg-white/*` Tailwind classes replaced with theme-aware CSS variables (`--color-border`, `--color-hover`, etc.)
+- Box-shadows in `.btn-secondary:hover` and `.input-gui:focus` use theme-aware `--color-blue-shadow`
+- Decorative background shapes (green circle, orange blob) reduce opacity from 0.15 to 0.08 in light theme
+- `--blue` updated from `#3b82f6` to `#1d4ed8`; `--color-cyan` decoupled from `--blue` to `#0891b2`
+
+### Fixed
+
+- Android APK crash on launch: removed `get_webview_window("main").unwrap()` from Rust `.setup()` hook (no window on mobile)
+
 ## [1.1.0] - 2026-05-25
 
 ### Added

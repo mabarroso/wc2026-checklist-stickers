@@ -98,7 +98,7 @@ export function StatisticsScreen() {
             {sections.map((section) => {
               const isExpanded = expandedSections.has(section.id);
               return (
-                <div key={section.id} className="border border-white/10 rounded-xl overflow-hidden">
+                <div key={section.id} className="border border-[var(--color-border)] rounded-xl overflow-hidden">
                   <button
                     onClick={() => toggleSection(section.id)}
                     className="w-full flex items-center justify-between px-4 py-3 min-h-[44px] bg-[var(--color-surface-2)]/50 hover:bg-[var(--color-surface-2)] transition-colors"

@@ -275,20 +275,20 @@ export function SearchScreen() {
                   setShowAutocomplete(true);
                 }
               }}
-              className="w-full pl-12 pr-4 py-4 bg-[var(--color-surface)] border border-white/10 rounded-xl text-[var(--color-white)] text-lg focus:outline-none focus:border-[var(--color-cyan)]"
+              className="w-full pl-12 pr-4 py-4 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl text-[var(--color-white)] text-lg focus:outline-none focus:border-[var(--color-cyan)]"
               autoFocus
             />
 
             {showAutocomplete && (
               <div
                 ref={autocompleteRef}
-                className="absolute z-50 left-0 right-0 top-full mt-1 bg-[var(--color-surface)] border border-white/10 rounded-xl shadow-xl overflow-hidden"
+                className="absolute z-50 left-0 right-0 top-full mt-1 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-xl overflow-hidden"
               >
                 {suggestions.map((s, i) => (
                   <button
                     key={`${s.type}-${s.value}-${i}`}
                     onClick={() => handleSuggestionClick(s)}
-                    className="w-full flex items-center gap-3 px-4 min-h-[44px] text-left hover:bg-white/5 transition-colors border-b border-white/5 last:border-b-0"
+                    className="w-full flex items-center gap-3 px-4 min-h-[44px] text-left hover:bg-[var(--color-hover)] transition-colors border-b border-[var(--color-border-light)] last:border-b-0"
                   >
                     <span className="flex-shrink-0 w-5 flex justify-center">
                       {renderSuggestionIcon(s.type)}

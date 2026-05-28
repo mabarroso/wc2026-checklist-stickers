@@ -358,7 +358,7 @@ export function ViewCollectionScreen() {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={currentPage <= 1}
-              className="min-h-[44px] min-w-[100px] px-4 py-2 rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors"
+              className="min-h-[44px] min-w-[100px] px-4 py-2 rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[var(--color-hover-strong)] transition-colors"
               aria-label="Página anterior"
             >
               Anterior
@@ -369,7 +369,7 @@ export function ViewCollectionScreen() {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage >= totalPages}
-              className="min-h-[44px] min-w-[100px] px-4 py-2 rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors"
+              className="min-h-[44px] min-w-[100px] px-4 py-2 rounded-lg bg-[var(--color-surface)] text-[var(--color-white)] font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[var(--color-hover-strong)] transition-colors"
               aria-label="Página siguiente"
             >
               Siguiente
@@ -380,7 +380,7 @@ export function ViewCollectionScreen() {
 
       {batchMode && (
         <div className="fixed bottom-20 left-0 right-0 z-40 flex justify-center pointer-events-none">
-          <div className="pointer-events-auto flex items-center gap-3 bg-[var(--color-surface)] border border-white/10 rounded-xl px-4 py-3 shadow-lg">
+          <div className="pointer-events-auto flex items-center gap-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl px-4 py-3 shadow-lg">
             <span className="text-sm text-[var(--color-white)]">
               {batchSelected.size} seleccionado{batchSelected.size !== 1 ? 's' : ''}
             </span>
