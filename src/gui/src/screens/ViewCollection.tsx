@@ -6,6 +6,8 @@ import { Card, Badge, Header, Button } from '../components';
 import { type StickerSection } from '../lib/sticker-sections';
 import { buildTeamOptions, filterCollectionStickers, getActiveTeamFilter } from '../lib/collection-view-model';
 import { useToastStore } from '../stores/toastStore';
+import { useFlagStore } from '../stores/flagStore';
+import { getFlagEmoji } from '../lib/flag-utils';
 
 const ITEMS_PER_PAGE = 50;
 
@@ -32,6 +34,7 @@ const sectionOptions: Array<{ value: 'Todas' | StickerSection; label: string }> 
 export function ViewCollectionScreen() {
   const { owned, duplicates, filter, sortOrder, setFilter, setSortOrder, markOwned, markDuplicate, unmarkOwned } = useCollectionStore();
   const addToast = useToastStore((s) => s.addToast);
+  const showFlags = useFlagStore((s) => s.showFlags);
   const [selectedSticker, setSelectedSticker] = useState<string | null>(null);
   const [sectionFilter, setSectionFilter] = useState<'Todas' | StickerSection>('Panini');
   const [teamFilter, setTeamFilter] = useState<string>('all');
@@ -301,7 +304,7 @@ export function ViewCollectionScreen() {
                       )}
                     </div>
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      <span className="text-3xl">⚽</span>
+                      {showFlags ? <span className="text-3xl">{getFlagEmoji(sticker.id) ?? '⚽'}</span> : <span className="text-3xl">⚽</span>}
                       <span className="text-xs font-mono text-[var(--text-muted)] mt-1 truncate max-w-full" title={sticker.id}>{sticker.id}</span>
                     </div>
                     {isBatchSelected && (
@@ -379,7 +382,7 @@ export function ViewCollectionScreen() {
       </div>
 
       {batchMode && (
-        <div className="fixed bottom-20 left-0 right-0 z-40 flex justify-center pointer-events-none">
+        <div className="fixed bottom-28 left-0 right-0 z-40 flex justify-center pointer-events-none">
           <div className="pointer-events-auto flex items-center gap-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl px-4 py-3 shadow-lg">
             <span className="text-sm text-[var(--color-white)]">
               {batchSelected.size} seleccionado{batchSelected.size !== 1 ? 's' : ''}

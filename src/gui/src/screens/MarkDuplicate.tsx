@@ -198,11 +198,8 @@ export function MarkDuplicateScreen() {
                   </div>
                   <div className="flex items-center gap-1">
                     <button
-                      onClick={() => {
-                        if (qty > 1) markDuplicate(id, -1);
-                      }}
-                      className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--color-surface)] text-[var(--color-orange)] hover:bg-[var(--color-orange)]/20 transition-colors disabled:opacity-30"
-                      disabled={qty <= 1}
+                      onClick={() => markDuplicate(id, -1)}
+                      className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--color-surface)] text-[var(--color-orange)] hover:bg-[var(--color-orange)]/20 transition-colors"
                       aria-label="Reducir repetidas"
                     >
                       <Minus size={16} />

@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { useCollectionStore } from '../stores';
+import { useCollectionStore, useFlagStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
 import { ProgressRing, Panel, Header } from '../components';
+import { getFlagEmoji } from '../lib/flag-utils';
 import { computeStatisticsModel, STATISTICS_SECTION_ORDER } from '../lib/statistics-model';
 
 function chunkArray<T>(arr: T[], size: number): T[][] {
@@ -16,6 +17,7 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 
 export function StatisticsScreen() {
   const { owned, duplicates } = useCollectionStore();
+  const showFlags = useFlagStore((s) => s.showFlags);
   const allStickers = useMemo(() => getAllStickers(), []);
 
   const stats = useMemo(
@@ -134,7 +136,8 @@ export function StatisticsScreen() {
                             const pct = total > 0 ? Math.round((teamOwned / total) * 100) : 0;
                             return (
                               <div key={g} className="flex items-center gap-3">
-                                <span className="w-12 text-sm font-mono text-[var(--color-cyan)] shrink-0">
+                                <span className="w-14 text-sm font-mono text-[var(--color-cyan)] shrink-0 flex items-center gap-1">
+                                  {showFlags && <span>{getFlagEmoji(g + '01') ?? ''}</span>}
                                   {g}
                                 </span>
                                 <div className="flex-1 h-3 bg-[var(--color-surface-2)] rounded-full overflow-hidden">

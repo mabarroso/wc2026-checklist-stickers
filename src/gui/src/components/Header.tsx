@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MoreVertical, Sun, Moon, FileText, Info } from 'lucide-react';
+import { MoreVertical, Sun, Moon, FileText, Info, Flag } from 'lucide-react';
 import { useTheme } from '../stores/ThemeContext';
 import { useDisclaimerStore } from '../stores/disclaimerStore';
+import { useFlagStore } from '../stores/flagStore';
 const APP_VERSION = '1.1.0';
 
 const titles: Record<string, string> = {
@@ -19,6 +20,7 @@ export function Header() {
   const title = titles[location.pathname] || 'Colección';
   const { theme, toggleTheme } = useTheme();
   const setShowDisclaimer = useDisclaimerStore((s) => s.setShow);
+  const { showFlags, toggleFlags } = useFlagStore();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -38,6 +40,11 @@ export function Header() {
 
   function handleToggleTheme() {
     toggleTheme();
+    setMenuOpen(false);
+  }
+
+  function handleToggleFlags() {
+    toggleFlags();
     setMenuOpen(false);
   }
 
@@ -74,6 +81,16 @@ export function Header() {
               >
                 {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                 <span className="flex-1">Tema: {theme === 'dark' ? 'Claro' : 'Oscuro'}</span>
+              </button>
+
+              <div className="h-px bg-[var(--color-border-light)] mx-2" />
+
+              <button
+                onClick={handleToggleFlags}
+                className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-left text-sm text-[var(--color-white)] hover:bg-[var(--color-hover)] transition-colors"
+              >
+                <Flag size={18} />
+                <span className="flex-1">{showFlags ? 'Ocultar bandera países' : 'Mostrar bandera países'}</span>
               </button>
 
               <div className="h-px bg-[var(--color-border-light)] mx-2" />
