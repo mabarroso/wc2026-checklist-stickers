@@ -1,0 +1,14 @@
+Tag: v1.2.0
+Title: v1.2.0 - Minor Release with Theme System and UI Polish
+
+---
+
+This release focuses on visual customization and mobile stability improvements, while keeping backward compatibility. Includes:
+
+- Theme system with dark (default) and light modes using CSS variables and localStorage persistence
+- New 3-dot menu in Header with theme toggle, legal disclaimer access, and About modal
+- FIFA color palette applied across sidebar and mobile tabs for stronger visual distinction
+- Theme-aware replacement of hardcoded border/hover/shadow styles
+- Light theme visual refinements (decorative shape opacity adjustments)
+- Android startup crash fix in Rust setup hook (removed unsafe window unwrap on mobile)
+- Version alignment across CLI, GUI, and Tauri backend to 1.2.0

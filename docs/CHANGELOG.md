@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-05-28
+
 ### Added
 
 - Theme system: dark (default) and light themes with CSS custom properties, persisted to localStorage
