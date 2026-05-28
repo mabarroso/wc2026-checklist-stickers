@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { useCollectionStore, useFlagStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
 import { ProgressRing, Panel, Header } from '../components';
-import { getFlagEmoji } from '../lib/flag-utils';
+import { getFlagSvg } from '../lib/flag-utils';
 import { computeStatisticsModel, STATISTICS_SECTION_ORDER } from '../lib/statistics-model';
 
 function chunkArray<T>(arr: T[], size: number): T[][] {
@@ -40,6 +40,8 @@ export function StatisticsScreen() {
     return sections.length > 0 ? new Set([sections[0].id]) : new Set();
   });
 
+  const allExpanded = expandedSections.size === sections.length;
+
   const toggleSection = (id: string) => {
     setExpandedSections((prev) => {
       const next = new Set(prev);
@@ -50,6 +52,14 @@ export function StatisticsScreen() {
       }
       return next;
     });
+  };
+
+  const toggleAll = () => {
+    if (allExpanded) {
+      setExpandedSections(new Set());
+    } else {
+      setExpandedSections(new Set(sections.map((s) => s.id)));
+    }
   };
 
   return (
@@ -93,9 +103,18 @@ export function StatisticsScreen() {
 
       <div className="flex gap-8">
         <Panel className="p-4 flex-1">
-          <h2 className="text-lg font-semibold mb-4 text-[var(--color-white)]">
-            Por equipo
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-[var(--color-white)]">
+              Por equipo
+            </h2>
+            <button
+              onClick={toggleAll}
+              className="text-xs font-medium text-[var(--color-cyan)] hover:opacity-80 transition-opacity min-h-[44px] px-2"
+              aria-label={allExpanded ? 'Colapsar todo' : 'Desplegar todo'}
+            >
+              {allExpanded ? 'Colapsar todo' : 'Desplegar todo'}
+            </button>
+          </div>
           <div className="space-y-2">
             {sections.map((section) => {
               const isExpanded = expandedSections.has(section.id);
@@ -137,7 +156,7 @@ export function StatisticsScreen() {
                             return (
                               <div key={g} className="flex items-center gap-3">
                                 <span className="w-14 text-sm font-mono text-[var(--color-cyan)] shrink-0 flex items-center gap-1">
-                                  {showFlags && <span>{getFlagEmoji(g + '01') ?? ''}</span>}
+                                  {showFlags && getFlagSvg(g + '01') && <img className="w-6 h-4 object-cover inline-block" src={`data:image/svg+xml;utf8,${encodeURIComponent(getFlagSvg(g + '01')!)}`} alt={g} />}
                                   {g}
                                 </span>
                                 <div className="flex-1 h-3 bg-[var(--color-surface-2)] rounded-full overflow-hidden">

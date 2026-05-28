@@ -1,10 +1,10 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus, Trash2, Repeat, Users } from 'lucide-react';
-import { useCollectionStore, useFlagStore } from '../stores';
+import { useCollectionStore } from '../stores';
 import { getAllStickers } from '../data/stickers';
 import { Card, Badge, Header, Button, BottomSheet } from '../components';
-import { getFlagEmoji } from '../lib/flag-utils';
+import { getFlagSvg } from '../lib/flag-utils';
 import { useDebounce } from '../hooks/useDebounce';
 
 interface Suggestion {
@@ -28,7 +28,6 @@ export function SearchScreen() {
     unmarkOwned,
     setDuplicates,
   } = useCollectionStore();
-  const showFlags = useFlagStore((s) => s.showFlags);
   const [query, setQuery] = useState('');
   const [showAutocomplete, setShowAutocomplete] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
@@ -93,6 +92,8 @@ export function SearchScreen() {
   const selectedSticker = useMemo(() => {
     return selectedStickerId ? allStickers.find((s) => s.id === selectedStickerId) : null;
   }, [allStickers, selectedStickerId]);
+
+  const selectedStickerFlagSvg = selectedSticker ? getFlagSvg(selectedSticker.id) : null;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -375,7 +376,7 @@ export function SearchScreen() {
           </h2>
           {selectedSticker ? (
             <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-2)] aspect-[3/4] flex flex-col items-center justify-center p-6">
-              <div className="text-6xl mb-4">{showFlags ? getFlagEmoji(selectedSticker.id) ?? '⚽' : '⚽'}</div>
+              <div className="text-6xl mb-4">{selectedStickerFlagSvg ? <img className="w-16 h-12 object-cover" src={`data:image/svg+xml;utf8,${encodeURIComponent(selectedStickerFlagSvg)}`} alt={selectedSticker.id} /> : '⚽'}</div>
               <p className="text-4xl font-bold text-[var(--color-cyan)] mb-2">
                 {selectedSticker.id}
               </p>
@@ -453,7 +454,7 @@ export function SearchScreen() {
       >
         {selectedSticker && (
           <div className="flex flex-col items-center py-4">
-            <div className="text-6xl mb-4">{showFlags ? getFlagEmoji(selectedSticker.id) ?? '⚽' : '⚽'}</div>
+            <div className="text-6xl mb-4">{selectedStickerFlagSvg ? <img className="w-16 h-12 object-cover" src={`data:image/svg+xml;utf8,${encodeURIComponent(selectedStickerFlagSvg)}`} alt={selectedSticker.id} /> : '⚽'}</div>
             <p className="text-3xl font-bold text-[var(--color-cyan)] mb-2">
               {selectedSticker.id}
             </p>

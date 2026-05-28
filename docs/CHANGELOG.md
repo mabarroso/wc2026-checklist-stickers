@@ -27,6 +27,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - About modal showing app name and version
 - `ThemeContext` + `ThemeProvider` for theme state management
 - `fifa-colors` and `theme-system` OpenSpec capability specs
+- **Country flag toggle**: persisted setting (default ON) to show/hide country flags on sticker cards via 3-dot menu item "Mostrar/Ocultar bandera países"
+- **Country flag SVG rendering**: inline SVG flags from `country-flag-icons` npm package, rendered as `<img>` with data URI — no system emoji font dependency
+- **Statistics expand all**: "Desplegar todo / Colapsar todo" button in "Por equipo" section to expand/collapse all team groups at once
+- `country-flag-toggle` and `expand-all-teams` OpenSpec capability specs
 
 ### Changed
 
@@ -35,10 +39,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Box-shadows in `.btn-secondary:hover` and `.input-gui:focus` use theme-aware `--color-blue-shadow`
 - Decorative background shapes (green circle, orange blob) reduce opacity from 0.15 to 0.08 in light theme
 - `--blue` updated from `#3b82f6` to `#1d4ed8`; `--color-cyan` decoupled from `--blue` to `#0891b2`
+- Flag rendering: switched from emoji regional indicators to inline SVG (`country-flag-icons/string/3x2`) eliminating system font dependency
+- Duplicate minus button at qty=1 now removes the entry entirely instead of being disabled
+- Batch action bar position raised from `bottom-20` to `bottom-28` to avoid overlap with flag controls
 
 ### Fixed
 
 - Android APK crash on launch: removed `get_webview_window("main").unwrap()` from Rust `.setup()` hook (no window on mobile)
+- Non-country stickers (logo, special) now show ball fallback when flags are enabled instead of broken image
 
 ## [1.1.0] - 2026-05-25
 

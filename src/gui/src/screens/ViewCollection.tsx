@@ -7,7 +7,7 @@ import { type StickerSection } from '../lib/sticker-sections';
 import { buildTeamOptions, filterCollectionStickers, getActiveTeamFilter } from '../lib/collection-view-model';
 import { useToastStore } from '../stores/toastStore';
 import { useFlagStore } from '../stores/flagStore';
-import { getFlagEmoji } from '../lib/flag-utils';
+import { getFlagSvg } from '../lib/flag-utils';
 
 const ITEMS_PER_PAGE = 50;
 
@@ -269,6 +269,7 @@ export function ViewCollectionScreen() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
           {pageStickers.map((sticker) => {
             const isBatchSelected = batchSelected.has(sticker.id);
+            const flagSvg = showFlags ? getFlagSvg(sticker.id) : null;
             return (
               <div
                 key={sticker.id}
@@ -304,7 +305,7 @@ export function ViewCollectionScreen() {
                       )}
                     </div>
                     <div className="flex-1 flex flex-col items-center justify-center">
-                      {showFlags ? <span className="text-3xl">{getFlagEmoji(sticker.id) ?? '⚽'}</span> : <span className="text-3xl">⚽</span>}
+                      {flagSvg ? <img className="w-8 h-6 object-cover" src={`data:image/svg+xml;utf8,${encodeURIComponent(flagSvg)}`} alt={sticker.id} /> : <span className="text-3xl">⚽</span>}
                       <span className="text-xs font-mono text-[var(--text-muted)] mt-1 truncate max-w-full" title={sticker.id}>{sticker.id}</span>
                     </div>
                     {isBatchSelected && (
