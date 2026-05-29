@@ -10,6 +10,12 @@ import {
 
 export type ExportFormat = 'pdf' | 'csv' | 'txt';
 export type ExportSortOrder = 'id' | 'name';
+export type ExportType = 'faltantes' | 'repetidos';
+
+export type ExportConfig = {
+  format: ExportFormat;
+  type: ExportType;
+};
 
 export class ExportMenu {
   private storageAdapter: ConfStorageAdapter;
@@ -18,10 +24,31 @@ export class ExportMenu {
     this.storageAdapter = new ConfStorageAdapter();
   }
 
-  async show(): Promise<ExportFormat | null> {
-    console.log(chalk.cyan('\n--- Exportar cromos faltantes ---\n'));
+  async show(): Promise<ExportConfig | null> {
+    const typeAnswers = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'type',
+        message: '¿Qué quieres exportar?',
+        choices: [
+          { name: 'Cromos faltantes', value: 'faltantes' },
+          { name: 'Cromos repetidos', value: 'repetidos' },
+          { name: '← Volver al menú principal', value: 'back' },
+        ],
+        pageSize: 3,
+      },
+    ]);
 
-    const answers = await inquirer.prompt([
+    if (typeAnswers.type === 'back') {
+      return null;
+    }
+
+    const exportType = typeAnswers.type as ExportType;
+    const typeLabel = exportType === 'faltantes' ? 'faltantes' : 'repetidos';
+
+    console.log(chalk.cyan(`\n--- Exportar cromos ${typeLabel} ---\n`));
+
+    const formatAnswers = await inquirer.prompt([
       {
         type: 'list',
         name: 'format',
@@ -36,20 +63,28 @@ export class ExportMenu {
       },
     ]);
 
-    if (answers.format === 'back') {
+    if (formatAnswers.format === 'back') {
       return null;
     }
 
-    return answers.format as ExportFormat;
+    return {
+      format: formatAnswers.format as ExportFormat,
+      type: exportType,
+    };
   }
 
-  async execute(format: ExportFormat): Promise<string | null> {
+  async execute(format: ExportFormat, exportType: ExportType): Promise<string | null> {
     console.log(chalk.cyan('\nPreparando exportación...\n'));
 
     const state = await this.storageAdapter.load();
     const allStickers = (await import('../../data/stickers')).getAllStickers();
 
-    const missingStickers = allStickers.filter(s => state.getOwnedQuantity(s.id) === 0);
+    const stickers = allStickers.filter(s => {
+      if (exportType === 'faltantes') {
+        return state.getOwnedQuantity(s.id) === 0;
+      }
+      return state.getDuplicateQuantity(s.id) > 0;
+    });
 
     const sourceAnswers = await inquirer.prompt([
       {
@@ -68,16 +103,20 @@ export class ExportMenu {
     ]);
 
     const selectedScope = sourceAnswers.scope as ExportSourceScope;
-    const filteredMissingStickers = filterStickersByExportSource(missingStickers, selectedScope);
+    const filteredStickers = filterStickersByExportSource(stickers, selectedScope);
 
-    if (filteredMissingStickers.length === 0) {
-      console.log(chalk.green('\n🎉 ¡Felicidades! No tienes cromos faltantes.\n'));
+    if (filteredStickers.length === 0) {
+      const emptyMsg = exportType === 'faltantes'
+        ? '🎉 ¡Felicidades! No tienes cromos faltantes.'
+        : 'No tienes cromos repetidos.';
+      console.log(chalk.green(`\n${emptyMsg}\n`));
       return null;
     }
 
+    const stickerLabel = exportType === 'faltantes' ? 'faltante(s)' : 'repetido(s)';
     console.log(
       chalk.white(
-        `Se encontraron ${filteredMissingStickers.length} cromo(s) faltante(s) para ${getExportSourceLabel(selectedScope)}.\n`,
+        `Se encontraron ${filteredStickers.length} cromo(s) ${stickerLabel} para ${getExportSourceLabel(selectedScope)}.\n`,
       ),
     );
 
@@ -96,9 +135,9 @@ export class ExportMenu {
 
     const selectedSortOrder = sortAnswers.sortOrder as ExportSortOrder;
     if (selectedSortOrder === 'name') {
-      filteredMissingStickers.sort((a, b) => a.name.localeCompare(b.name));
+      filteredStickers.sort((a, b) => a.name.localeCompare(b.name));
     } else {
-      filteredMissingStickers.sort((a, b) => a.id.localeCompare(b.id));
+      filteredStickers.sort((a, b) => a.id.localeCompare(b.id));
     }
 
     let pdfMode: 'full' | 'ids-only' = 'full';
@@ -134,22 +173,25 @@ export class ExportMenu {
 
     const destination = this.getDestinationPath(answers.destination);
 
+    const label = exportType === 'faltantes' ? 'Faltantes' : 'Repetidos';
+    const exporterOptions = { stickers: filteredStickers, label };
+
     let fullPath: string;
 
     try {
       switch (format) {
         case 'pdf': {
-          const exporter = new PdfExporter({ stickers: filteredMissingStickers, mode: pdfMode });
+          const exporter = new PdfExporter({ ...exporterOptions, mode: pdfMode });
           fullPath = await exporter.export(destination);
           break;
         }
         case 'csv': {
-          const exporter = new CsvExporter({ stickers: filteredMissingStickers });
+          const exporter = new CsvExporter(exporterOptions);
           fullPath = await exporter.export(destination);
           break;
         }
         case 'txt': {
-          const exporter = new TxtExporter({ stickers: filteredMissingStickers });
+          const exporter = new TxtExporter(exporterOptions);
           fullPath = await exporter.export(destination);
           break;
         }

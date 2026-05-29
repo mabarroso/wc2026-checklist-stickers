@@ -30,6 +30,7 @@ export function ExportScreen() {
   const [exporting, setExporting] = useState(false);
   const [exported, setExported] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [exportType, setExportType] = useState<'faltantes' | 'repetidos'>('faltantes');
   const [sourceScope, setSourceScope] = useState<GuiExportSourceScope>('todos');
   const [sortOrder, setSortOrder] = useState<'id' | 'name'>('id');
   const [compactMode, setCompactMode] = useState(false);
@@ -48,14 +49,22 @@ export function ExportScreen() {
     return allStickers.filter((s) => !owned[s.id]);
   }, [allStickers, owned]);
 
-  const filteredMissing = useMemo(() => {
-    const filtered = filterGuiStickersByExportSource(missing, sourceScope);
+  const duplicateStickers = useMemo(() => {
+    return allStickers.filter((s) => (duplicates[s.id] || 0) > 0);
+  }, [allStickers, duplicates]);
+
+  const stickers = useMemo(() => {
+    return exportType === 'faltantes' ? missing : duplicateStickers;
+  }, [exportType, missing, duplicateStickers]);
+
+  const filteredStickers = useMemo(() => {
+    const filtered = filterGuiStickersByExportSource(stickers, sourceScope);
     return [...filtered].sort((a, b) =>
       sortOrder === 'name' ? a.name.localeCompare(b.name) : a.id.localeCompare(b.id),
     );
-  }, [missing, sourceScope, sortOrder]);
+  }, [stickers, sourceScope, sortOrder]);
 
-  const missingCount = filteredMissing.length;
+  const stickerCount = filteredStickers.length;
 
   const hasData = useMemo(() => {
     const ownedCount = Object.values(owned).some((qty) => qty > 0);
@@ -64,34 +73,43 @@ export function ExportScreen() {
   }, [owned, duplicates]);
 
   const handleExport = async (format: string) => {
+    console.log('EXPORT_DEBUG: handleExport called', { format, exportType, count: filteredStickers.length });
     setSelectedFormat(format);
     setExporting(true);
     setError(null);
 
     try {
       let result: string;
-      if (filteredMissing.length === 0) {
+      if (filteredStickers.length === 0) {
+        console.log('EXPORT_DEBUG: no stickers to export');
         setExporting(false);
-        setError(`No hay cromos faltantes para ${getGuiExportSourceLabel(sourceScope)}.`);
+        const label = exportType === 'faltantes' ? 'faltantes' : 'repetidos';
+        setError(`No hay cromos ${label} para ${getGuiExportSourceLabel(sourceScope)}.`);
         return;
       }
+
+      console.log('EXPORT_DEBUG: invoking command', format);
 
       switch (format) {
         case 'pdf': {
           const mode = compactMode ? 'ids-only' : 'full';
-          result = await invoke('export_pdf', { stickers: filteredMissing, mode });
+          result = await invoke('export_pdf', { stickers: filteredStickers, mode, exportType });
+          console.log('EXPORT_DEBUG: pdf result', result);
           break;
         }
         case 'csv':
-          result = await invoke('export_csv', { stickers: filteredMissing });
+          result = await invoke('export_csv', { stickers: filteredStickers, exportType });
+          console.log('EXPORT_DEBUG: csv result', result);
           break;
         case 'txt':
-          result = await invoke('export_txt', { stickers: filteredMissing });
+          result = await invoke('export_txt', { stickers: filteredStickers, exportType });
+          console.log('EXPORT_DEBUG: txt result', result);
           break;
         default:
           throw new Error(`Formato no soportado: ${format}`);
       }
 
+      console.log('EXPORT_DEBUG: export succeeded, path:', result);
       setExporting(false);
       setExported(true);
       setLastExportPath(result);
@@ -99,6 +117,7 @@ export function ExportScreen() {
         setShowShareDialog(true);
       }
     } catch (err) {
+      console.log('EXPORT_DEBUG: export failed with error:', err);
       setExporting(false);
       setError(err instanceof Error ? err.message : 'Error desconocido');
       console.error('Error al exportar:', err);
@@ -225,7 +244,7 @@ export function ExportScreen() {
   };
 
   const getPreview = () => {
-    return filteredMissing.slice(0, 5).map((s) => `${s.id},${s.name},${s.team}`).join('\n');
+    return filteredStickers.slice(0, 5).map((s) => `${s.id},${s.name},${s.team}`).join('\n');
   };
 
   const collectionSelectStyle = {
@@ -244,18 +263,47 @@ export function ExportScreen() {
         </Panel>
       )}
       <p className="text-[var(--color-white)] opacity-60 mb-6">
-        Exporta tus cromos faltantes en diferentes formatos
+        Exporta tus cromos faltantes o repetidos en diferentes formatos
       </p>
 
       <div className="flex gap-6">
         <div className="flex-1">
           <Panel className="p-6 mb-6">
             <h2 className="text-lg font-semibold mb-4 text-[var(--color-white)]">
-              Generar checklist de faltantes
+              {exportType === 'faltantes' ? 'Generar checklist de faltantes' : 'Generar lista de repetidos'}
             </h2>
             <p className="text-sm text-[var(--color-white)] opacity-70 mb-4">
-              Elige el origen de los cromos faltantes y el formato de exportación
+              {exportType === 'faltantes'
+                ? 'Elige el origen de los cromos faltantes y el formato de exportación'
+                : 'Elige el origen de los cromos repetidos y el formato de exportación'}
             </p>
+            <div className="flex items-center gap-3 flex-wrap mb-4">
+              <label className="text-sm text-[var(--color-white)] opacity-80">
+                Tipo de exportación
+              </label>
+              <div className="flex rounded-lg overflow-hidden border border-[var(--color-border-strong)]">
+                <button
+                  onClick={() => setExportType('faltantes')}
+                  className={`px-4 py-2 text-sm font-semibold transition-all ${
+                    exportType === 'faltantes'
+                      ? 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)]'
+                      : 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-60'
+                  }`}
+                >
+                  Faltantes
+                </button>
+                <button
+                  onClick={() => setExportType('repetidos')}
+                  className={`px-4 py-2 text-sm font-semibold transition-all ${
+                    exportType === 'repetidos'
+                      ? 'bg-[var(--color-cyan)]/20 text-[var(--color-cyan)]'
+                      : 'bg-[var(--color-surface)] text-[var(--color-white)] opacity-60'
+                  }`}
+                >
+                  Repetidos
+                </button>
+              </div>
+            </div>
             <div className="flex items-center gap-3 flex-wrap">
               <label htmlFor="source-scope" className="text-sm text-[var(--color-white)] opacity-80">
                 Origen a exportar
@@ -398,17 +446,17 @@ export function ExportScreen() {
             </h2>
             <div className="bg-[var(--color-surface-2)] rounded-xl p-4 font-mono text-xs text-[var(--color-white)] overflow-hidden">
               <pre className="whitespace-pre-wrap">{getPreview()}</pre>
-              {missingCount > 5 && (
+              {stickerCount > 5 && (
                 <p className="text-[var(--color-white)] opacity-40 mt-2">
-                  ... y {missingCount - 5} más
+                  ... y {stickerCount - 5} más
                 </p>
               )}
             </div>
             <div className="mt-4 flex items-center justify-between">
               <span className="text-sm text-[var(--color-white)] opacity-60">
-                Total faltantes
+                Total {exportType === 'faltantes' ? 'faltantes' : 'repetidos'}
               </span>
-              <Badge variant="red">{missingCount}</Badge>
+              <Badge variant={exportType === 'faltantes' ? 'red' : 'yellow'}>{stickerCount}</Badge>
             </div>
           </Panel>
         </div>

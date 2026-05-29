@@ -59,15 +59,17 @@ fn get_export_dir(app: &AppHandle) -> Result<PathBuf, String> {
 }
 
 #[command]
-fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>) -> Result<String, String> {
+fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>, export_type: Option<String>) -> Result<String, String> {
+    let export_type = export_type.unwrap_or_else(|| "faltantes".to_string());
     let export_dir = get_export_dir(&app)?;
 
     create_dir_all(&export_dir).map_err(|e| format!("Error al crear directorio: {}", e))?;
 
-    let file_path: PathBuf = export_dir.join("faltantes.pdf");
+    let file_path: PathBuf = export_dir.join(format!("{}.pdf", export_type));
 
+    let doc_title = format!("Cromos {} - Panini WC 2026", &export_type);
     let (doc, page1, layer1) = PdfDocument::new(
-        "Cromos Faltantes - Panini WC 2026",
+        &doc_title,
         Mm(210.0),
         Mm(297.0),
         "Layer 1",
@@ -80,10 +82,11 @@ fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>) -> R
 
     let is_ids_only = mode.as_deref() == Some("ids-only");
 
+    let export_type_upper = export_type.to_uppercase();
     let title = if is_ids_only {
-        "PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES (Solo IDs)"
+        format!("PANINI FIFA WORLD CUP 2026 - CROMOS {} (Solo IDs)", export_type_upper)
     } else {
-        "PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES"
+        format!("PANINI FIFA WORLD CUP 2026 - CROMOS {}", export_type_upper)
     };
     current_layer.use_text(title, 16.0, Mm(10.0), Mm(277.0), &font_bold);
     current_layer.use_text(&format!("Total: {} cromos", stickers.len()), 12.0, Mm(10.0), Mm(267.0), &font);
@@ -150,10 +153,11 @@ fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>) -> R
 }
 
 #[command]
-fn export_csv(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> {
+fn export_csv(app: AppHandle, stickers: Vec<Sticker>, export_type: Option<String>) -> Result<String, String> {
+    let export_type = export_type.unwrap_or_else(|| "faltantes".to_string());
     let export_dir = get_export_dir(&app)?;
 
-    let file_path = export_dir.join("faltantes.csv");
+    let file_path = export_dir.join(format!("{}.csv", export_type));
 
     let mut content = String::from("ID,Nombre,Equipo\n");
     for sticker in stickers {
@@ -167,12 +171,14 @@ fn export_csv(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> 
 }
 
 #[command]
-fn export_txt(app: AppHandle, stickers: Vec<Sticker>) -> Result<String, String> {
+fn export_txt(app: AppHandle, stickers: Vec<Sticker>, export_type: Option<String>) -> Result<String, String> {
+    let export_type = export_type.unwrap_or_else(|| "faltantes".to_string());
     let export_dir = get_export_dir(&app)?;
 
-    let file_path = export_dir.join("faltantes.txt");
+    let file_path = export_dir.join(format!("{}.txt", export_type));
 
-    let mut content = String::from("PANINI FIFA WORLD CUP 2026 - CROMOS FALTANTES\n\n");
+    let export_type_upper = export_type.to_uppercase();
+    let mut content = format!("PANINI FIFA WORLD CUP 2026 - CROMOS {}\n\n", export_type_upper);
     for sticker in stickers {
         content.push_str(&format!("[{}] {} - {}\n", sticker.id, sticker.name, sticker.team));
     }

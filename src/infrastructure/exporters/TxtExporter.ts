@@ -21,9 +21,11 @@ export class TxtExporter extends BaseExporter {
   protected generateContent(): string {
     const lines: string[] = [];
 
+    const txtLabel = this.label === 'Repetidos' ? 'Repetidas' : this.label;
+
     lines.push('='.repeat(60));
     lines.push('  ALBUM PANINI FIFA WORLD CUP 2026');
-    lines.push('  LISTA DE FIGURITAS FALTANTES');
+    lines.push(`  LISTA DE FIGURITAS ${txtLabel.toUpperCase()}`);
     lines.push('='.repeat(60));
     lines.push('');
 
@@ -43,7 +45,7 @@ export class TxtExporter extends BaseExporter {
     }
 
     lines.push('='.repeat(60));
-    lines.push(`Total faltantes: ${this.stickers.length}`);
+    lines.push(`Total ${txtLabel.toLowerCase()}: ${this.stickers.length}`);
     lines.push('='.repeat(60));
 
     return lines.join('\n');

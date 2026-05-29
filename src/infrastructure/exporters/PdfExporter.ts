@@ -163,7 +163,7 @@ export class PdfExporter extends BaseExporter {
     doc.text(title, 30, 20, { align: 'center', width: pageWidth - 60 });
 
     doc.fontSize(10).fillColor('#666');
-    doc.text(`Faltantes - Página ${currentPage}/${totalPages}`, 30, 38, { align: 'center', width: pageWidth - 60 });
+    doc.text(`${this.label} - Página ${currentPage}/${totalPages}`, 30, 38, { align: 'center', width: pageWidth - 60 });
 
     doc.moveTo(30, 48).lineTo(pageWidth - 30, 48).stroke();
   }

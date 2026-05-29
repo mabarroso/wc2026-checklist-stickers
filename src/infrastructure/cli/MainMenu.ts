@@ -22,7 +22,7 @@ export class MainMenu {
           { name: '🔍 Buscar cromo', value: 'search' },
           { name: '💾 Guardar copia de seguridad', value: 'save_backup' },
           { name: '📂 Abrir copia de seguridad', value: 'load_backup' },
-          { name: '📤 Exportar faltantes', value: 'export' },
+          { name: '📤 Exportar', value: 'export' },
           { name: '🔄 Resetear colección', value: 'reset' },
           { name: '👋 Salir', value: 'exit' },
         ],

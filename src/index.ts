@@ -101,9 +101,9 @@ async function main(): Promise<void> {
         }
 
         case 'export': {
-          const format = await exportMenu.show();
-          if (format) {
-            await exportMenu.execute(format);
+          const config = await exportMenu.show();
+          if (config) {
+            await exportMenu.execute(config.format, config.type);
           }
           break;
         }
