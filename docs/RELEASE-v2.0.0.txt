@@ -1,0 +1,25 @@
+Tag: v2.0.0
+Title: v2.0.0 - Major Release with Trademark-Safe Rename and Export Improvements
+
+---
+
+This release introduces a project identity migration and export improvements. Includes:
+
+- Project/app rename to remove trademarked names (Panini, FIFA, FIFA World Cup)
+- Android package identifier migration to `com.wc26.checklist`
+- Storage namespace migration to `wc26-checklist` / `wc26-collection`
+- New `Auto` theme mode in addition to light and dark
+- New export option to include only duplicate stickers in TXT/CSV/PDF outputs
+- Flag rendering fallback and collection flow polish for better consistency
+- Version alignment across CLI, GUI, and Tauri backend to `2.0.0`
+
+Release Type: Major
+
+Artifacts expected in GitHub release package:
+- wc26-checklist-v2.0.0.js
+- wc26-checklist-v2.0.0-android-universal-unsigned.apk
+- WC26-Checklist-v2.0.0-linux-amd64.deb
+- WC26-Checklist-v2.0.0-linux-x86_64.rpm
+- stickers.csv
+- RELEASE-v2.0.0.txt
+- SHA256SUMS.txt

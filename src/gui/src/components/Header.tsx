@@ -4,7 +4,7 @@ import { MoreVertical, Sun, Moon, Monitor, FileText, Info, Flag, Check } from 'l
 import { useTheme } from '../stores/ThemeContext';
 import { useDisclaimerStore } from '../stores/disclaimerStore';
 import { useFlagStore } from '../stores/flagStore';
-const APP_VERSION = '1.2.0';
+const APP_VERSION = '2.0.0';
 
 const titles: Record<string, string> = {
   '/': 'Ver Colección',

@@ -18,6 +18,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-05-30
+
+### Added
+
+- Theme setting now supports `Auto` mode, in addition to light and dark
+- New export option to include only duplicate stickers in TXT/CSV/PDF outputs
+
+### Changed
+
+- **BREAKING:** app identity and branding were renamed to trademark-safe names (`Panini/FIFA` references removed)
+- **BREAKING:** Android application identifier changed from `com.panini.wc2026.checklist` to `com.wc26.checklist`
+- **BREAKING:** persisted storage namespaces changed from `panini-stickers`/`panini-collection` to `wc26-checklist`/`wc26-collection`
+
+### Fixed
+
+- Non-country stickers in GUI now fall back to a ball icon when flags are enabled
+- Expanded/collapsed team sections and duplicates behavior in collection flow were polished for consistency
+
 ## [1.2.0] - 2026-05-28
 
 ### Added
