@@ -15,7 +15,7 @@ function needsMigration(owned: Record<string, number>, duplicates: Record<string
 export class ConfStorageAdapter implements CollectionRepository {
   private config: Conf;
 
-  constructor(namespace: string = 'panini-stickers') {
+  constructor(namespace: string = 'wc26-checklist') {
     this.config = new Conf({
       projectName: namespace,
     });

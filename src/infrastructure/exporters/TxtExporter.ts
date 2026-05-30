@@ -24,7 +24,7 @@ export class TxtExporter extends BaseExporter {
     const txtLabel = this.label === 'Repetidos' ? 'Repetidas' : this.label;
 
     lines.push('='.repeat(60));
-    lines.push('  ALBUM PANINI FIFA WORLD CUP 2026');
+    lines.push('  WC 2026 CHECKLIST');
     lines.push(`  LISTA DE FIGURITAS ${txtLabel.toUpperCase()}`);
     lines.push('='.repeat(60));
     lines.push('');

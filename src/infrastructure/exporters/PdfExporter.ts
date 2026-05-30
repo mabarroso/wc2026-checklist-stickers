@@ -158,7 +158,7 @@ export class PdfExporter extends BaseExporter {
   private renderHeader(doc: PDFKit.PDFDocument, currentPage: number, totalPages: number, mode: 'full' | 'ids-only'): void {
     const pageWidth = doc.page.width;
 
-    const title = mode === 'ids-only' ? 'Album Panini FIFA World Cup 2026 (Solo IDs)' : 'Album Panini FIFA World Cup 2026';
+    const title = mode === 'ids-only' ? 'WC 2026 (Solo IDs)' : 'WC 2026';
     doc.fontSize(14).fillColor('#1a1a2e');
     doc.text(title, 30, 20, { align: 'center', width: pageWidth - 60 });
 

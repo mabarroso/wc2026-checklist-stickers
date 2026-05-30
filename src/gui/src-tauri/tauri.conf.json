@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Panini WC 2026",
+  "productName": "WC 2026 Checklist",
   "version": "1.2.0",
-  "identifier": "com.panini.wc2026.checklist",
+  "identifier": "com.wc26.checklist",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Panini WC 2026 Checklist",
+        "title": "WC 2026 Checklist",
         "width": 1400,
         "height": 900,
         "resizable": true,

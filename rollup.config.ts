@@ -5,7 +5,7 @@ import typescript from '@rollup/plugin-typescript';
 const config = {
   input: './src/index.ts',
   output: {
-    file: './dist/panini-stickers.js',
+    file: './dist/wc26-checklist.js',
     format: 'node',
     platform: 'node',
     banner: '#!/usr/bin/env node',
@@ -33,7 +33,7 @@ const config = {
 
 rollup(config).then(async (bundle) => {
   await bundle.write(config.output);
-  console.log('Build complete: dist/panini-stickers.js');
+  console.log('Build complete: dist/wc26-checklist.js');
 }).catch((err) => {
   console.error('Build failed:', err);
   process.exit(1);

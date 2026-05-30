@@ -25,7 +25,7 @@ bun run dev
 bun run build
 ```
 
-Output: `dist/panini-stickers` (executable)
+Output: `dist/wc26-checklist` (executable)
 
 ### Run Tests
 
@@ -78,7 +78,7 @@ The project follows **Clean Architecture** (Robert C. Martin) with **Domain-Driv
 | `owned`   | Map<number, number> | Sticker number → quantity owned (1+) |
 | `duplicates` | Map<number, number> | Sticker number → duplicate count    |
 
-Persisted at: `~/.config/panini-stickers/collection.json`
+Persisted at: `~/.config/wc26-checklist/collection.json`
 
 ## Export Formats
 

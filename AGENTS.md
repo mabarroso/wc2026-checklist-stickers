@@ -2,7 +2,7 @@
 
 ## Context
 
-This is a **Bun + TypeScript CLI application** for tracking a Panini FIFA World Cup 2026 sticker collection. The app is built with **Clean Architecture + DDD**.
+This is a **Bun + TypeScript CLI application** for tracking a WC 2026 sticker collection. The app is built with **Clean Architecture + DDD**.
 
 ## Tech Stack
 
@@ -12,7 +12,7 @@ This is a **Bun + TypeScript CLI application** for tracking a Panini FIFA World 
 - **PDFKit** — PDF generation
 - **Inquirer** — interactive CLI menus
 - **Chalk** — terminal colors
-- **Conf** — JSON persistence (`~/.config/panini-stickers/`)
+- **Conf** — JSON persistence (`~/.config/wc26-checklist/`)
 - **Vitest** — testing
 
 ## Documentation
@@ -68,7 +68,7 @@ This is a **Bun + TypeScript CLI application** for tracking a Panini FIFA World 
 { owned: Record<number, number>; duplicates: Record<number, number> }
 ```
 
-Store path: `~/.config/panini-stickers/collection.json`
+Store path: `~/.config/wc26-checklist/collection.json`
 
 ## Naming Conventions
 
@@ -84,7 +84,7 @@ Store path: `~/.config/panini-stickers/collection.json`
 
 ```bash
 bun run dev       # Development
-bun run build     # Compile binary → dist/panini-stickers
+bun run build     # Compile binary → dist/wc26-checklist
 bun test          # Run tests
 bun run lint      # Lint
 bun run typecheck # TypeScript check

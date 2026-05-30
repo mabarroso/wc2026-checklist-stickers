@@ -1,6 +1,6 @@
-# Panini FIFA World Cup 2026 - Lista de Cromos
+# WC 2026 - Lista de Cromos
 
-Aplicación CLI y GUI para gestionar tu álbum de cromos Panini del Mundial 2026. Registra los cromos que tienes, los que te faltan y los repetidos, y exporta listas de faltantes en PDF, CSV y TXT.
+Aplicación CLI y GUI para gestionar tu álbum de cromos del Mundial 2026. Registra los cromos que tienes, los que te faltan y los repetidos, y exporta listas de faltantes en PDF, CSV y TXT.
 
 ## Funcionalidades
 
@@ -16,14 +16,14 @@ Aplicación CLI y GUI para gestionar tu álbum de cromos Panini del Mundial 2026
 ```bash
 bun install
 bun run build
-./dist/panini-stickers
+./dist/wc26-checklist
 ```
 
 ## Plataformas
 
 | Modo | Plataforma | Formato | Cómo ejecutar |
 |------|-----------|---------|---------------|
-| CLI | Linux, macOS, Windows | JS standalone (via Bun) | `./dist/panini-stickers.js` |
+| CLI | Linux, macOS, Windows | JS standalone (via Bun) | `./dist/wc26-checklist.js` |
 | GUI | Linux (Debian) | `.deb` | Instalar via `dpkg -i` |
 | GUI | Linux (Fedora/RHEL) | `.rpm` | Instalar via `rpm -i` |
 | GUI | Windows | `.exe` (NSIS) | Ejecutar instalador |
@@ -161,7 +161,7 @@ Nombrado automático con fecha: `faltantes_YYYY-MM-DD.*`
 - **PDFKit** — generación de PDF
 - **Inquirer** — menús interactivos de CLI
 - **Chalk** — colores en terminal
-- **Conf** — persistencia JSON (`~/.config/panini-stickers/`)
+- **Conf** — persistencia JSON (`~/.config/wc26-checklist/`)
 - **Vitest** — tests unitarios
 
 ## Arquitectura
@@ -196,7 +196,7 @@ bun run tauri:ios     # Compilar IPA iOS (solo macOS)
 
 El estado de la colección se guarda en:
 ```
-~/.config/panini-stickers/collection.json
+~/.config/wc26-checklist/collection.json
 ```
 
 Estructura:

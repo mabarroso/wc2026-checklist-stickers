@@ -2409,21 +2409,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "panini-wc-2026"
-version = "1.2.0"
-dependencies = [
- "dirs",
- "printpdf",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-opener",
-]
-
-[[package]]
 name = "parking"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4399,6 +4384,21 @@ dependencies = [
  "hashbrown 0.15.5",
  "indexmap 2.14.0",
  "semver",
+]
+
+[[package]]
+name = "wc26-checklist"
+version = "1.2.0"
+dependencies = [
+ "dirs",
+ "printpdf",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-opener",
 ]
 
 [[package]]

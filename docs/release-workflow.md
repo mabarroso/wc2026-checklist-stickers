@@ -84,7 +84,7 @@ bun run build
 
 Expected output:
 
-- `dist/panini-stickers.js`
+- `dist/wc26-checklist.js`
 - `dist/stickers.csv`
 
 ### Desktop GUI
@@ -97,8 +97,8 @@ cd ../..
 
 Expected Linux outputs:
 
-- `src/gui/src-tauri/target/release/bundle/deb/Panini WC 2026_<version>_amd64.deb`
-- `src/gui/src-tauri/target/release/bundle/rpm/Panini WC 2026-<version>-1.x86_64.rpm`
+- `src/gui/src-tauri/target/release/bundle/deb/WC 2026 Checklist_<version>_amd64.deb`
+- `src/gui/src-tauri/target/release/bundle/rpm/WC 2026 Checklist-<version>-1.x86_64.rpm`
 
 ### Android GUI
 
@@ -121,25 +121,25 @@ Create a local release folder and copy assets into stable GitHub-friendly names:
 
 ```bash
 mkdir -p release/vX.Y.Z
-cp dist/panini-stickers.js release/vX.Y.Z/panini-stickers-vX.Y.Z.js
-chmod +x release/vX.Y.Z/panini-stickers-vX.Y.Z.js
+cp dist/wc26-checklist.js release/vX.Y.Z/wc26-checklist-vX.Y.Z.js
+chmod +x release/vX.Y.Z/wc26-checklist-vX.Y.Z.js
 cp dist/stickers.csv release/vX.Y.Z/stickers.csv
-cp "src/gui/src-tauri/target/release/bundle/deb/Panini WC 2026_X.Y.Z_amd64.deb" \
-  "release/vX.Y.Z/Panini-WC-2026-vX.Y.Z-linux-amd64.deb"
-cp "src/gui/src-tauri/target/release/bundle/rpm/Panini WC 2026-X.Y.Z-1.x86_64.rpm" \
-  "release/vX.Y.Z/Panini-WC-2026-vX.Y.Z-linux-x86_64.rpm"
+cp "src/gui/src-tauri/target/release/bundle/deb/WC 2026 Checklist_X.Y.Z_amd64.deb" \
+  "release/vX.Y.Z/WC26-Checklist-vX.Y.Z-linux-amd64.deb"
+cp "src/gui/src-tauri/target/release/bundle/rpm/WC 2026 Checklist-X.Y.Z-1.x86_64.rpm" \
+  "release/vX.Y.Z/WC26-Checklist-vX.Y.Z-linux-x86_64.rpm"
 cp "src/gui/src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk" \
-  "release/vX.Y.Z/panini-wc-2026-vX.Y.Z-android-universal-unsigned.apk"
+  "release/vX.Y.Z/wc26-checklist-vX.Y.Z-android-universal-unsigned.apk"
 cp docs/RELEASE-vX.Y.Z.txt release/vX.Y.Z/RELEASE-vX.Y.Z.txt
 (cd release/vX.Y.Z && sha256sum * > SHA256SUMS.txt)
 ```
 
 For `v1.2.0`, the GitHub release assets were:
 
-- `panini-stickers-v1.2.0.js`
-- `panini-wc-2026-v1.2.0-android-universal-unsigned.apk`
-- `Panini-WC-2026-v1.2.0-linux-amd64.deb`
-- `Panini-WC-2026-v1.2.0-linux-x86_64.rpm`
+- `wc26-checklist-v1.2.0.js`
+- `wc26-checklist-v1.2.0-android-universal-unsigned.apk`
+- `WC26-Checklist-v1.2.0-linux-amd64.deb`
+- `WC26-Checklist-v1.2.0-linux-x86_64.rpm`
 - `RELEASE-v1.2.0.txt`
 - `SHA256SUMS.txt`
 - `stickers.csv`

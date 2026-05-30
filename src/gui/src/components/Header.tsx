@@ -159,13 +159,13 @@ export function Header() {
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="text-lg font-bold text-[var(--color-white)] mb-2">
-              Panini WC 2026
+              WC 2026 Checklist
             </h3>
             <p className="text-sm text-[var(--color-white)] opacity-60 mb-4">
               v{APP_VERSION}
             </p>
             <p className="text-sm text-[var(--color-white)] opacity-80 mb-6">
-              Aplicación para gestionar tu colección de cromos del Mundial FIFA 2026.
+              Aplicación para gestionar tu colección de cromos del Mundial 2026.
             </p>
             <button
               onClick={() => setAboutOpen(false)}

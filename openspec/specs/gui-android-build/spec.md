@@ -1,7 +1,7 @@
 # gui-android-build Specification
 
 ## Purpose
-Capability for building the Panini WC 2026 app as an Android APK via Tauri Mobile.
+Capability for building the WC 2026 Checklist app as an Android APK via Tauri Mobile.
 
 ## Requirements
 

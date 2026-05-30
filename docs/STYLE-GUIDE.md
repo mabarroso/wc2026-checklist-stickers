@@ -1,4 +1,4 @@
-# FIFA WORLD CUP 2026 CHECKLIST
+# WC 2026 CHECKLIST
 ## Design System & Style Guide
 ### OpenSpec Development Reference
 

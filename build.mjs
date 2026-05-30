@@ -12,7 +12,7 @@ async function build() {
     bundle: true,
     platform: 'node',
     target: 'node18',
-    outfile: './dist/panini-stickers.js',
+    outfile: './dist/wc26-checklist.js',
     format: 'esm',
     banner: {
       js: '#!/usr/bin/env node',
@@ -25,7 +25,7 @@ async function build() {
   const csvDest = join(__dirname, 'dist/stickers.csv');
   cpSync(csvSource, csvDest);
 
-  console.log('Build complete: dist/panini-stickers.js');
+  console.log('Build complete: dist/wc26-checklist.js');
 }
 
 build().catch((err) => {

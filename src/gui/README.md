@@ -1,6 +1,6 @@
-# Panini WC 2026 - GUI
+# WC 2026 - GUI
 
-Desktop application for managing your Panini FIFA World Cup 2026 sticker album collection.
+Desktop application for managing your WC 2026 sticker album collection.
 
 ## Features
 

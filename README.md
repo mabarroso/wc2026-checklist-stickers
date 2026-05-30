@@ -1,8 +1,8 @@
-# Panini FIFA World Cup 2026 Stickers Checklist
+# WC 2026 Stickers Checklist
 
 [📖 English docs](docs/index.md) · [📖 Documentación en español](docs/index-es.md)
 
-CLI + GUI application to track your Panini FIFA World Cup 2026 sticker collection. Manage your owned, duplicated, and missing stickers, then export wish lists in PDF, CSV, and TXT formats. Runs on desktop (Linux, Windows, macOS) and mobile (Android, iOS).
+CLI + GUI application to track your `Panini FIFA World Cup 2026` sticker collection. Manage your owned, duplicated, and missing stickers, then export wish lists in PDF, CSV, and TXT formats. Runs on desktop (Linux, Windows, macOS) and mobile (Android, iOS).
 
 ## Features
 
@@ -17,7 +17,7 @@ CLI + GUI application to track your Panini FIFA World Cup 2026 sticker collectio
 
 | Mode | Platform | Format | How to Run |
 |------|----------|--------|------------|
-| CLI | Linux, macOS, Windows | Standalone JS (via Bun) | `./dist/panini-stickers.js` |
+| CLI | Linux, macOS, Windows | Standalone JS (via Bun) | `./dist/wc26-checklist.js` |
 | GUI | Linux (Debian) | `.deb` | Install via `dpkg -i` |
 | GUI | Linux (Fedora/RHEL) | `.rpm` | Install via `rpm -i` |
 | GUI | Windows | `.exe` (NSIS) | Run installer |
@@ -32,7 +32,7 @@ CLI + GUI application to track your Panini FIFA World Cup 2026 sticker collectio
 ```bash
 bun install
 bun run build
-./dist/panini-stickers.js
+./dist/wc26-checklist.js
 ```
 
 ## Build
@@ -41,7 +41,7 @@ bun run build
 
 ```bash
 bun run build
-# Output: dist/panini-stickers.js
+# Output: dist/wc26-checklist.js
 ```
 
 ### GUI Desktop (requires Rust)
@@ -97,7 +97,7 @@ bun run tauri:ios     # Build iOS IPA (macOS only)
 - **PDFKit** — PDF generation (CLI)
 - **Inquirer** — interactive CLI menus
 - **Chalk** — terminal colors
-- **Conf** — JSON persistence (`~/.config/panini-stickers/`)
+- **Conf** — JSON persistence (`~/.config/wc26-checklist/`)
 - **Vitest** — unit testing
 
 ## Project Structure

@@ -1,4 +1,4 @@
-package com.panini.wc2026.checklist
+package com.wc26.checklist
 
 import android.app.Activity
 import android.content.Intent

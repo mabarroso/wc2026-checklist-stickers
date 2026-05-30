@@ -110,7 +110,7 @@ The GUI SHALL provide an "Acerca de" modal with app information.
 #### Scenario: About modal content
 - **WHEN** the user clicks "Acerca de" in the 3-dot menu
 - **THEN** a modal SHALL display with:
-  - App name: "Panini WC 2026"
+  - App name: "WC 2026 Checklist"
   - Version number
   - Brief description
 

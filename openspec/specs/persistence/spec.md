@@ -21,8 +21,8 @@ The system SHALL automatically create the storage directory and file on first la
 
 #### Scenario: First launch creates storage file
 - **WHEN** the application starts for the first time
-- **THEN** the directory `~/.config/panini-stickers/` is created
-- **AND** the file `~/.config/panini-stickers/collection.json` is created with empty `owned: {}` and `duplicates: {}`
+- **THEN** the directory `~/.config/wc26-checklist/` is created
+- **AND** the file `~/.config/wc26-checklist/collection.json` is created with empty `owned: {}` and `duplicates: {}`
 
 #### Scenario: Subsequent launches load existing data
 - **WHEN** the application starts and `collection.json` exists
@@ -59,11 +59,11 @@ The system SHALL use the appropriate config directory for each operating system 
 
 #### Scenario: Linux storage path
 - **WHEN** the application runs on Linux
-- **THEN** the storage file is at `~/.config/panini-stickers/collection.json`
+- **THEN** the storage file is at `~/.config/wc26-checklist/collection.json`
 
 #### Scenario: macOS storage path
 - **WHEN** the application runs on macOS
-- **THEN** the storage file is at `~/Library/Application Support/panini-stickers/collection.json`
+- **THEN** the storage file is at `~/Library/Application Support/wc26-checklist/collection.json`
 
 ### Requirement: Atomic writes
 The system SHALL write data atomically to prevent data corruption on crashes.

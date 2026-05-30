@@ -23,7 +23,7 @@ fn share_plugin_init<R: Runtime>() -> tauri::plugin::TauriPlugin<R> {
         .setup(|app, api| {
             #[cfg(target_os = "android")]
             {
-                let handle = api.register_android_plugin("com.panini.wc2026.checklist", "SharePlugin")?;
+                let handle = api.register_android_plugin("com.wc26.checklist", "SharePlugin")?;
                 app.manage(SharePluginState { handle });
             }
             #[cfg(not(target_os = "android"))]
@@ -67,7 +67,7 @@ fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>, expo
 
     let file_path: PathBuf = export_dir.join(format!("{}.pdf", export_type));
 
-    let doc_title = format!("Cromos {} - Panini WC 2026", &export_type);
+    let doc_title = format!("Cromos {} - WC 2026", &export_type);
     let (doc, page1, layer1) = PdfDocument::new(
         &doc_title,
         Mm(210.0),
@@ -84,9 +84,9 @@ fn export_pdf(app: AppHandle, stickers: Vec<Sticker>, mode: Option<String>, expo
 
     let export_type_upper = export_type.to_uppercase();
     let title = if is_ids_only {
-        format!("PANINI FIFA WORLD CUP 2026 - CROMOS {} (Solo IDs)", export_type_upper)
+        format!("WC 2026 - CROMOS {} (Solo IDs)", export_type_upper)
     } else {
-        format!("PANINI FIFA WORLD CUP 2026 - CROMOS {}", export_type_upper)
+        format!("WC 2026 - CROMOS {}", export_type_upper)
     };
     current_layer.use_text(title, 16.0, Mm(10.0), Mm(277.0), &font_bold);
     current_layer.use_text(&format!("Total: {} cromos", stickers.len()), 12.0, Mm(10.0), Mm(267.0), &font);
@@ -178,7 +178,7 @@ fn export_txt(app: AppHandle, stickers: Vec<Sticker>, export_type: Option<String
     let file_path = export_dir.join(format!("{}.txt", export_type));
 
     let export_type_upper = export_type.to_uppercase();
-    let mut content = format!("PANINI FIFA WORLD CUP 2026 - CROMOS {}\n\n", export_type_upper);
+    let mut content = format!("WC 2026 - CROMOS {}\n\n", export_type_upper);
     for sticker in stickers {
         content.push_str(&format!("[{}] {} - {}\n", sticker.id, sticker.name, sticker.team));
     }

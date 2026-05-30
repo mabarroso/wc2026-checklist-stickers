@@ -102,7 +102,7 @@ export const useCollectionStore = create<CollectionStore>()(
       reset: () => set({ owned: {}, duplicates: {}, sortOrder: 'album' }),
     }),
     {
-      name: 'panini-collection',
+      name: 'wc26-collection',
       partialize: (state) => ({
         owned: state.owned,
         duplicates: state.duplicates,

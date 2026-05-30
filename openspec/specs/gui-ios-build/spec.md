@@ -1,7 +1,7 @@
 # gui-ios-build Specification
 
 ## Purpose
-Capability for building the Panini WC 2026 app as an iOS IPA via Tauri Mobile (requires macOS + Xcode).
+Capability for building the WC 2026 Checklist app as an iOS IPA via Tauri Mobile (requires macOS + Xcode).
 
 ## Requirements
 

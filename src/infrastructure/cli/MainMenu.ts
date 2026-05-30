@@ -13,7 +13,7 @@ export class MainMenu {
       {
         type: 'list',
         name: 'action',
-        message: chalk.bold.cyan('\n=== ALBUM PANINI FIFA WORLD CUP 2026 ==='),
+        message: chalk.bold.cyan('\n=== ALBUM WC 2026 ==='),
         choices: [
           { name: '📋 Ver colección', value: 'view' },
           { name: '✅ Marcar cromo como obtenido', value: 'mark_owned' },
@@ -48,13 +48,13 @@ export class MainMenu {
 
   printHeader(): void {
     console.log(chalk.bold.cyan('\n====================================='));
-    console.log(chalk.bold.cyan('  PANINI WORLD CUP 2026 CHECKLIST'));
+    console.log(chalk.bold.cyan('  WC 2026 CHECKLIST'));
     console.log(chalk.bold.cyan('=====================================\n'));
     console.log(chalk.gray('No afiliado a Panini ni a la FIFA. Uso solo para gestión personal.\n'));
   }
 
   printFarewell(): void {
-    console.log(chalk.green('\n¡Gracias por usar Panini WC 2026 Checklist!'));
+    console.log(chalk.green('\n¡Gracias por usar WC 2026 Checklist!'));
     console.log(chalk.green('¡Buena suerte completando tu álbum! 🎉\n'));
   }
 }

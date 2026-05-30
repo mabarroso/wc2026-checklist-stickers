@@ -1,10 +1,10 @@
 {
-  "name": "panini-stickers",
+  "name": "wc26-checklist",
   "version": "1.2.0",
-  "description": "CLI tool to track Panini FIFA World Cup 2026 sticker collection",
+  "description": "CLI tool to track WC 2026 sticker collection",
   "type": "module",
   "bin": {
-    "panini-stickers": "./dist/panini-stickers.js"
+    "wc26-checklist": "./dist/wc26-checklist.js"
   },
   "scripts": {
     "dev": "bun run src/index.ts",

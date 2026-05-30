@@ -1,6 +1,6 @@
-# Panini FIFA World Cup 2026 Stickers Checklist
+# WC 2026 Stickers Checklist
 
-A CLI and GUI application to track your Panini FIFA World Cup 2026 sticker collection. Manage your owned, duplicated, and missing stickers, then export wish lists in PDF, CSV, and TXT formats.
+A CLI and GUI application to track your WC 2026 sticker collection. Manage your owned, duplicated, and missing stickers, then export wish lists in PDF, CSV, and TXT formats.
 
 ## Features
 
@@ -16,14 +16,14 @@ A CLI and GUI application to track your Panini FIFA World Cup 2026 sticker colle
 ```bash
 bun install
 bun run build
-./dist/panini-stickers.js
+./dist/wc26-checklist.js
 ```
 
 ## Platforms
 
 | Mode | Platform | Format | How to Run |
 |------|----------|--------|------------|
-| CLI | Linux, macOS, Windows | Standalone JS (via Bun) | `./dist/panini-stickers.js` |
+| CLI | Linux, macOS, Windows | Standalone JS (via Bun) | `./dist/wc26-checklist.js` |
 | GUI | Linux (Debian) | `.deb` | Install via `dpkg -i` |
 | GUI | Linux (Fedora/RHEL) | `.rpm` | Install via `rpm -i` |
 | GUI | Windows | `.exe` (NSIS) | Run installer |
@@ -44,9 +44,9 @@ bun install
 # Build standalone binary
 bun run build
 
-# Output: dist/panini-stickers.js
-chmod +x dist/panini-stickers.js
-./dist/panini-stickers.js
+# Output: dist/wc26-checklist.js
+chmod +x dist/wc26-checklist.js
+./dist/wc26-checklist.js
 ```
 
 ### GUI Executables (Tauri)
@@ -183,7 +183,7 @@ Auto-named with date stamp: `faltantes_YYYY-MM-DD.*`
 - **PDFKit** — PDF generation (CLI)
 - **Inquirer** — interactive CLI menus
 - **Chalk** — terminal colors
-- **Conf** — JSON persistence (`~/.config/panini-stickers/`)
+- **Conf** — JSON persistence (`~/.config/wc26-checklist/`)
 - **Vitest** — unit testing
 
 ## Architecture
@@ -218,7 +218,7 @@ bun run tauri:ios     # Build iOS IPA (macOS only)
 
 Collection state is persisted to:
 ```
-~/.config/panini-stickers/collection.json
+~/.config/wc26-checklist/collection.json
 ```
 
 Structure:
